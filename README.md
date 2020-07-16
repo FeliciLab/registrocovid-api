@@ -63,7 +63,7 @@ php artisan key:generate
 Será necessário da permissão para as views acessar os storage
 ```
 sudo chgrp -R www-data storage bootstrap/cache
-sudo chmod -R ug+rwx storage bootstrap/cache`
+sudo chmod -R ug+rwx storage bootstrap/cache
 ```
 
 
