@@ -13,7 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CoresSeeder::class,
-            EstadoCivisSeeder::class
+            EstadoCivisSeeder::class,
+            EstadosSeeder::class,
+            MunicipiosSeeder::class,
+            BairrosSeeder::class
         ]);
 
     }
