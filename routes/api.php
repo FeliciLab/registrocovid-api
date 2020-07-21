@@ -29,5 +29,11 @@ Route::group([
     Route::post('logout', 'Api\JWTAuthController@logout');
     Route::post('refresh', 'Api\JWTAuthController@refresh');
     Route::get('profile', 'Api\JWTAuthController@profile');
-
 });
+
+
+Route::get('/pacientes', 'Api\PacienteController@index');
+Route::get('/pacientes/{id}', 'Api\PacienteController@show');
+Route::post('/pacientes', 'Api\PacienteController@store');
+Route::put('/pacientes/{id}', 'Api\PacienteController@update');
+Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
