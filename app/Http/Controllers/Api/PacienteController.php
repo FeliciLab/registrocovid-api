@@ -21,7 +21,7 @@ class PacienteController extends Controller
     
     public function index()
     {
-        $pacientes = $this->paciente->all();
+        $pacientes = $this->paciente->orderBy('created_at', 'DESC')->get();
         return response()->json($pacientes);
     }
 
