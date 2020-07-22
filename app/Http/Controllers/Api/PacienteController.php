@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Paciente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\PacienteRequest;
 
 class PacienteController extends Controller
 {
@@ -24,7 +25,7 @@ class PacienteController extends Controller
         return response()->json($pacientes);
     }
 
-    public function store(Request $request)
+    public function store(PacienteRequest $request)
     {
         $data = $request->all();
         $paciente = $this->paciente->create($data);
@@ -40,7 +41,7 @@ class PacienteController extends Controller
         return response()->json($paciente);
     }
 
-    public function update(Request $request)
+    public function update(PacienteRequest $request)
     {
         $id = $request->id;
 
@@ -52,13 +53,13 @@ class PacienteController extends Controller
         return response()->json($paciente);
     }
 
-    public function destroy(Request $request)
-    {
-        $id = $request->id;
+    // public function destroy(Request $request)
+    // {
+    //     $id = $request->id;
 
-        $paciente = $this->paciente->find($id);
-        $paciente->delete();
+    //     $paciente = $this->paciente->find($id);
+    //     $paciente->delete();
 
-        return response()->json(['data' => [ 'msg' => 'Paciente removido com sucesso ' ]]);
-    }
+    //     return response()->json(['data' => [ 'msg' => 'Paciente removido com sucesso ' ]]);
+    // }
 }
