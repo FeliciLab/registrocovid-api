@@ -19,10 +19,29 @@ class PacienteController extends Controller
         $this->paciente = $paciente;
     }
     
-    public function index()
+    public function index(Request $request)
     {
+        $pacientes = $this->paciente;
+
+        if($request->has('conditions')) {
+            $expressions = explode(';', $request->get('conditions'));
+
+            foreach($expressions as $e) {
+                $exp = explode(':', $e);
+                $pacientes = $pacientes->where($exp[0], $exp[1], $exp[2]);
+              }
+        }
+
+        if($request->has('fields')) {
+            $fields = $request->get('fields');
+
+            $pacientes = $pacientes->selectRaw($fields);
+        }
+
         $coletador_id = auth()->user()->id;
-        $pacientes = $this->paciente->where('coletador_id', $coletador_id)->orderBy('created_at', 'DESC')->get();
+
+        $pacientes = $pacientes->where('coletador_id', $coletador_id)->orderBy('created_at', 'DESC')->get();
+
         return response()->json($pacientes);
     }
 
