@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             EstadoCivisSeeder::class,
             EstadosSeeder::class,
             MunicipiosSeeder::class,
-            BairrosSeeder::class
+            BairrosSeeder::class,
+            InstituicoesSeeder::class,
         ]);
 
     }
