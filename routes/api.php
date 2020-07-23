@@ -31,21 +31,21 @@ Route::group([
     Route::get('profile', 'Api\JWTAuthController@profile');
 });
 
-// Route::group([
-//     'middleware' => ['apiJwt'],
-// ], function ($router) {
-//     Route::get('/pacientes', 'Api\PacienteController@index');
-//     Route::get('/pacientes/{id}', 'Api\PacienteController@show');
-//     Route::post('/pacientes', 'Api\PacienteController@store');
-//     Route::put('/pacientes/{id}', 'Api\PacienteController@update');
-//     Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
-// });
+Route::group([
+    'middleware' => ['apiJwt'],
+], function ($router) {
+    Route::get('/pacientes', 'Api\PacienteController@index');
+    Route::get('/pacientes/{id}', 'Api\PacienteController@show');
+    Route::post('/pacientes', 'Api\PacienteController@store');
+    Route::put('/pacientes/{id}', 'Api\PacienteController@update');
+    Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
+});
 
-Route::get('/pacientes', 'Api\PacienteController@index');
-Route::get('/pacientes/{id}', 'Api\PacienteController@show');
-Route::post('/pacientes', 'Api\PacienteController@store');
-Route::put('/pacientes/{id}', 'Api\PacienteController@update');
-Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
+// Route::get('/pacientes', 'Api\PacienteController@index');
+// Route::get('/pacientes/{id}', 'Api\PacienteController@show');
+// Route::post('/pacientes', 'Api\PacienteController@store');
+// Route::put('/pacientes/{id}', 'Api\PacienteController@update');
+// Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
 
 
 

@@ -21,7 +21,8 @@ class PacienteController extends Controller
     
     public function index()
     {
-        $pacientes = $this->paciente->orderBy('created_at', 'DESC')->get();
+        $coletador_id = auth()->user()->id;
+        $pacientes = $this->paciente->where('coletador_id', $coletador_id)->orderBy('created_at', 'DESC')->get();
         return response()->json($pacientes);
     }
 
