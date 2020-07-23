@@ -29,6 +29,9 @@ class PacienteController extends Controller
     public function store(PacienteRequest $request)
     {
         $data = $request->all();
+
+        $data["coletador_id"] = auth()->user()->id;
+
         $paciente = $this->paciente->create($data);
         return response()->json($paciente);
     }

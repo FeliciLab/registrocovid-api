@@ -26,8 +26,7 @@ class PacienteRequest extends FormRequest
         return [
             'prontuario' => 'required|unique:pacientes|string|max:100',
             'instituicao_id' => 'required|int',
-            'data_internacao' => 'required|date',
-            'coletador_id' => 'required|int',
+            'data_internacao' => 'required|date'
         ];
     }
 }
