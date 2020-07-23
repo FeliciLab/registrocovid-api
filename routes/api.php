@@ -29,5 +29,8 @@ Route::group([
     Route::post('logout', 'Api\JWTAuthController@logout');
     Route::post('refresh', 'Api\JWTAuthController@refresh');
     Route::get('profile', 'Api\JWTAuthController@profile');
+});
 
+Route::group(['middleware' => ['apiJwt'], 'prefix' => 'paciente'], function () {
+    Route::post('paciente', 'Api\Paciente\PacienteController@store');
 });
