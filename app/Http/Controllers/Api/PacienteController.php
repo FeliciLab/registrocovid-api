@@ -6,6 +6,7 @@ use App\Models\Paciente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PacienteRequest;
+USE App\Repositories\PacienteRepository;
 
 class PacienteController extends Controller
 {
@@ -21,21 +22,31 @@ class PacienteController extends Controller
     
     public function index(Request $request)
     {
+        // if($request->has('conditions')) {
+        //     $expressions = explode(';', $request->get('conditions'));
+
+        //     foreach($expressions as $e) {
+        //         $exp = explode(':', $e);
+        //         $pacientes = $pacientes->where($exp[0], $exp[1], $exp[2]);
+        //       }
+        // }
+
+        // if($request->has('fields')) {
+        //     $fields = $request->get('fields');
+
+        //     $pacientes = $pacientes->selectRaw($fields);
+        // }
+
         $pacientes = $this->paciente;
 
-        if($request->has('conditions')) {
-            $expressions = explode(';', $request->get('conditions'));
+        $pacienteRepository = new PacienteRepository($pacientes, $request);
 
-            foreach($expressions as $e) {
-                $exp = explode(':', $e);
-                $pacientes = $pacientes->where($exp[0], $exp[1], $exp[2]);
-              }
+        if ($request->has('conditions')) {
+            $pacientes = $pacienteRepository->selectConditions($request->get('conditions'));
         }
 
         if($request->has('fields')) {
-            $fields = $request->get('fields');
-
-            $pacientes = $pacientes->selectRaw($fields);
+            $pacientes = $pacienteRepository->selectFields($request->get('fields'));
         }
 
         $coletador_id = auth()->user()->id;
