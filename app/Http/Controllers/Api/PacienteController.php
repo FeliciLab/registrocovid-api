@@ -37,6 +37,17 @@ class PacienteController extends Controller
         //     $pacientes = $pacientes->selectRaw($fields);
         // }
 
+        $orderBy = 'created_at';
+        $order = 'DESC';
+
+        if ($request->has('order_by')) {
+            $orderBy = $request->get('order_by');
+        }
+
+        if ($request->has('order')) {
+            $order = $request->get('order');
+        }
+
         $pacientes = $this->paciente;
 
         $pacienteRepository = new PacienteRepository($pacientes, $request);
@@ -51,7 +62,7 @@ class PacienteController extends Controller
 
         $coletador_id = auth()->user()->id;
 
-        $pacientes = $pacientes->where('coletador_id', $coletador_id)->orderBy('created_at', 'DESC')->get();
+        $pacientes = $pacientes->where('coletador_id', $coletador_id)->orderBy($orderBy, $order)->get();
 
         return response()->json($pacientes);
     }
