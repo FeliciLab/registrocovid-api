@@ -13,15 +13,9 @@ abstract class AbstractRepository
    */
   private $model;
 
-  /**
-   * @var Request
-   */
-  private $request;
-
-  public function __construct(Model $model, Request $request)
+  public function __construct(Model $model)
   {
     $this->model = $model;
-    $this->request = $request;
   }
 
   public function selectFields($fields)
