@@ -6,7 +6,7 @@ use App\Models\Paciente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PacienteRequest;
-USE App\Repositories\PacienteRepository;
+use App\Repositories\PacienteRepository;
 
 class PacienteController extends Controller
 {
@@ -22,21 +22,6 @@ class PacienteController extends Controller
     
     public function index(Request $request)
     {
-        // if($request->has('conditions')) {
-        //     $expressions = explode(';', $request->get('conditions'));
-
-        //     foreach($expressions as $e) {
-        //         $exp = explode(':', $e);
-        //         $pacientes = $pacientes->where($exp[0], $exp[1], $exp[2]);
-        //       }
-        // }
-
-        // if($request->has('fields')) {
-        //     $fields = $request->get('fields');
-
-        //     $pacientes = $pacientes->selectRaw($fields);
-        // }
-
         $orderBy = 'created_at';
         $order = 'DESC';
 
@@ -56,15 +41,15 @@ class PacienteController extends Controller
             $pacientes = $pacienteRepository->selectConditions($request->get('conditions'));
         }
 
+        $coletador_id = auth()->user()->id;
+
+        $pacientes = $pacienteRepository->getPacientes($coletador_id, $orderBy, $order);
+
         if($request->has('fields')) {
             $pacientes = $pacienteRepository->selectFields($request->get('fields'));
         }
 
-        $coletador_id = auth()->user()->id;
-
-        $pacientes = $pacientes->where('coletador_id', $coletador_id)->orderBy($orderBy, $order)->get();
-
-        return response()->json($pacientes);
+        return response()->json($pacientes->get());
     }
 
     public function store(PacienteRequest $request)
@@ -97,14 +82,4 @@ class PacienteController extends Controller
 
         return response()->json($paciente);
     }
-
-    // public function destroy(Request $request)
-    // {
-    //     $id = $request->id;
-
-    //     $paciente = $this->paciente->find($id);
-    //     $paciente->delete();
-
-    //     return response()->json(['data' => [ 'msg' => 'Paciente removido com sucesso ' ]]);
-    // }
 }
