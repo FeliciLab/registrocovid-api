@@ -8,22 +8,14 @@ class Paciente extends Model
 {
     protected $fillable = [
         'prontuario',
-        'instituicao_id',
+        'data_internacao',
         'instituicao_primeiro_atendimento_id',
         'instituicao_refererencia_id',
+        'instituicao_id',
+        'paciente_suporte_respiratorio',
+        'suporte_respiratorio',
+        'reinternacao',
         'coletador_id',
-        'bairro_id',
-        'estado_nascimento_id',
-        'cor_id',
-        'estadocivil_id',
-        'escolaridade_id',
-        'atividadeprofissional_id',
-        'data_internacao',
-        'data_atendimento_referencia',
-        'sexo',
-        'data_nascimento',
-        'qtd_pessoas_domicilio',
-        'caso_confirmado',
-        'data_inicio_sintomas',
     ];
+
 }

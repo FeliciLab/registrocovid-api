@@ -5,22 +5,30 @@ namespace Tests\Unit\Paciente;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Artisan;
 
 class PacienteStoreTest extends TestCase
 {
     use WithoutMiddleware;
+    use RefreshDatabase;
+    use DatabaseMigrations;
 
     private $user;
 
     protected function setUp(): void
     {
         parent::setUp();
+        
+        Artisan::call('db:seed --env=testing');
 
         $user = User::create([
-            "name" => "Moises rodrigues",
-            "cpf" => "07093988326",
-            "email" => "moisesabreurodrigues@gmail.com",
-            "password" => "123456789"
+            "name" => "Nome coletador",
+            "cpf" => "987654321",
+            "email" => "coletador.email@mail.com",
+            "password" => "123456789",
+            "instituicao_id" => "1"
         ]);
 
         auth()->login($user);
@@ -28,38 +36,36 @@ class PacienteStoreTest extends TestCase
         $this->user = $user;
     }
 
-    protected function tearDown(): void
-    {
-        auth()->logout();
-
-        parent::tearDown();
-    }
-
     public function testCriarPacienteComSucesso()
     {
-        $postData = [
-            "prontuario" => "5415147",
-            "data_internacao"=> "2020-07-22",
-            "instituicao_primeiro_atendimento_id"=> "1",
-            "instituicao_refererencia_id"=> "2",
-            "data_atendimento_referencia"=> "2020-07-21",
-            "instituicao_id"=> "2",
-            "bairro_id"=> "1",
-            "estado_nascimento_id"=> "2",
-            "cor_id" => "1",
-            "estadocivil_id"=> "1",
-            "escolaridade_id"=> "1",
-            "atividadeprofissional_id"=> "1",
-            "sexo"=> "M",
-            "data_nascimento"=> "04/09/1998",
-            "qtd_pessoas_domicilio"=> "2",
-            "caso_confirmado"=> false,
-            "data_inicio_sintomas"=> "2020-07-22"
-        ];
+        $postData = $this->form();
 
         $response = $this->post('api/paciente/paciente', $postData);
 
         $response->assertStatus(201);
 
+    }
+
+    public function testCriarPacienteComProntuarioDuplicado()
+    {
+        $postData = ["prontuario" => "5415215"];
+
+        $response = $this->post('api/paciente/paciente', $postData);
+
+        $response->assertStatus(400);
+    }
+
+    private function form()
+    {
+        return [
+            "prontuario" => "123456",
+            "data_internacao" => "2020-07-22",
+            "instituicao_primeiro_atendimento_id" => "1",
+            "instituicao_refererencia_id" => "2",
+            "data_atendimento_referencia" => "2020-07-21",
+            "paciente_suporte_respiratorio" => true,
+            "suporte_respiratorio" => "Ventilação invasiva",
+            "reinternacao" => false
+        ];
     }
 }

@@ -15,17 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group([
-    'prefix' => 'auth'
-], function ($router) {
+Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('register', 'Api\JWTAuthController@register');
     Route::post('login', 'Api\JWTAuthController@login');
 });
 
-Route::group([
-    'middleware' => ['apiJwt'],
-    'prefix' => 'auth'
-], function ($router) {
+Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::post('logout', 'Api\JWTAuthController@logout');
     Route::post('refresh', 'Api\JWTAuthController@refresh');
     Route::get('profile', 'Api\JWTAuthController@profile');

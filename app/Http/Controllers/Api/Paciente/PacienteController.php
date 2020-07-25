@@ -25,19 +25,21 @@ class PacienteController extends Controller
             ]);
 
             if ($dataValidated->fails()) {
-                return response()->json($dataValidated->errors());
+                $errors = $dataValidated->errors();
+                return response()->json($errors, 400);
             }
 
             $pacienteInstance = $this->paciente->fill(array_merge(
                 $request->post(),
                 [
-                    'coletador_id' => auth()->user()->id
+                    'coletador_id' => auth()->user()->id,
+                    'instituicao_id' => auth()->user()->instituicao_id
                 ]
             ));
 
             $pacienteInstance->save();
 
-            return response()->json(['message' => 'Paciente criado com sucesso'], 201);
+            return response()->json(['message' => 'Paciente cadastrado com sucesso'], 201);
         }
         catch (Exception $e)
         {
