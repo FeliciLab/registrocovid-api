@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVotesToUsersTable extends Migration
+class AddInstituicaoIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,6 +25,9 @@ class AddVotesToUsersTable extends Migration
      */
     public function down()
     {
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['instituicao_id']);
+            $table->dropColumn('instituicao_id');
+        });
     }
 }
