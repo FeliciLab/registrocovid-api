@@ -45,4 +45,7 @@ Route::group([
     Route::put('/historico/{id}', 'Api\HistoricoController@update');
     
     Route::get('/situacao-uso-drogas', 'Api\SituacaoUsoDrogasController@index');
+
+    Route::get('/drogas', 'Api\DrogaController@index');
+    Route::post('/drogas', 'Api\DrogaController@store');
 });
