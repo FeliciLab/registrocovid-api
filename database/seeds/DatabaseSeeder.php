@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             BairrosSeeder::class,
             InstituicoesSeeder::class,
             SituacaoUsoDrogasSeeder::class,
+            DrogasSeeder::class,
         ]);
 
     }
