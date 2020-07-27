@@ -39,4 +39,7 @@ Route::group([
     Route::post('/pacientes', 'Api\PacienteController@store');
     Route::put('/pacientes/{id}', 'Api\PacienteController@update');
     Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
+    
+    Route::get('/historico', 'Api\HistoricoController@show');
+    Route::post('/historico', 'Api\HistoricoController@store');
 });

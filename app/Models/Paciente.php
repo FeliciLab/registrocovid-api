@@ -9,4 +9,9 @@ class Paciente extends Model
     protected $fillable = [
         'prontuario', 'instituicao_id', 'coletador_id', 'data_internacao'
     ];
+
+    public function historico()
+    {
+        return $this->hasOne(Historico::class);
+    }
 }
