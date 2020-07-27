@@ -43,4 +43,6 @@ Route::group([
     Route::get('/historico/{id}', 'Api\HistoricoController@show');
     Route::post('/historico', 'Api\HistoricoController@store');
     Route::put('/historico/{id}', 'Api\HistoricoController@update');
+    
+    Route::get('/situacao-uso-drogas', 'Api\SituacaoUsoDrogasController@index');
 });

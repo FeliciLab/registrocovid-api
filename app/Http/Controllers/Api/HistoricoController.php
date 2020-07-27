@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Historico;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\HistoricoRequest;
 
 class HistoricoController extends Controller
 {
@@ -28,7 +29,7 @@ class HistoricoController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(HistoricoRequest $request)
     {
         $data = $request->all();
 
@@ -44,7 +45,7 @@ class HistoricoController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, HistoricoRequest $request)
     {
         $data = $request->all();
 
