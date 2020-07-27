@@ -34,12 +34,13 @@ class HistoricoController extends Controller
         $data = $request->all();
 
         try {
-
             $historico = $this->historico->create($data);
 
-            return response()->json([
-                'msg' => 'Historico cadastrado com sucesso'
-            ], 200);
+            if(isset($data['drogas']) && count($data['drogas'])) {
+                $historico->drogas()->sync($data['drogas']);
+            }
+
+            return response()->json($historico);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }

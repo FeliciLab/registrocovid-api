@@ -16,4 +16,9 @@ class Historico extends Model
     {
         return $this->belongsTo(Paciente::class);
     }
+
+    public function drogas()
+    {
+        return $this->belongsToMany(Droga::class, 'historico_drogas');
+    }
 }

@@ -9,4 +9,9 @@ class Droga extends Model
     protected $fillable = [
         'descricao'
     ];
+
+    public function historicos()
+    {
+        return $this->belongsToMany(Historico::class);
+    }
 }
