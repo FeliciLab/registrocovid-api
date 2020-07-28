@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             MunicipiosSeeder::class,
             BairrosSeeder::class,
             InstituicoesSeeder::class,
+            SituacaoUsoDrogasSeeder::class,
+            DrogasSeeder::class,
         ]);
 
     }
