@@ -7,6 +7,9 @@ use App\Models\Historico;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\HistoricoRequest;
+use App\Models\Droga;
+use App\Models\Paciente;
+use App\Models\SituacaoUsoDrogas;
 
 class HistoricoController extends Controller
 {
@@ -20,6 +23,10 @@ class HistoricoController extends Controller
     public function show($paciente_id)
     {
         try {
+
+            if (!Paciente::find($paciente_id)) {
+                return response()->json(['message' => 'Paciente não existe'], 400);
+            }
 
             $historico = $this->historico->where('paciente_id', $paciente_id)->first();
 
@@ -39,15 +46,32 @@ class HistoricoController extends Controller
         }
     }
 
-    public function store(HistoricoRequest $request)
+    public function store($paciente_id, HistoricoRequest $request)
     {
         try {
 
             $data = $request->all();
 
+            $data["paciente_id"] = $paciente_id;
+
+            if (!Paciente::find($paciente_id)) {
+                return response()->json(['message' => 'Paciente não existe'], 400);
+            }
+
+            if ($request->has('situacao_uso_drogas_id')
+                && !SituacaoUsoDrogas::find($request->get('situacao_uso_drogas_id'))) {
+                return response()->json(['message' => 'Situação não existe'], 400);
+            }
+
             $historico = $this->historico->create($data);
 
             if(isset($data['drogas']) && count($data['drogas'])) {
+                foreach($data['drogas'] as $droga_id) {
+                    if (!Droga::find($droga_id)) {
+                        return response()->json(['message' => "Droga $droga_id não existe"], 400);
+                    }
+                }
+
                 $historico->drogas()->sync($data['drogas']);
             }
 
