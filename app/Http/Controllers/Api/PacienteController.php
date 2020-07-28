@@ -43,13 +43,13 @@ class PacienteController extends Controller
 
         $coletador_id = auth()->user()->id;
 
-        $pacientes = $pacienteRepository->getPacientes($coletador_id, $orderBy, $order);
+        $pacientes = $pacienteRepository->buildWhere('coletador_id', '=', $coletador_id);
 
         if($request->has('fields')) {
             $pacientes = $pacienteRepository->selectFields($request->get('fields'));
         }
 
-        return response()->json($pacientes->get());
+        return response()->json($pacienteRepository->getResult()->get());
     }
 
     public function store(PacienteRequest $request)
