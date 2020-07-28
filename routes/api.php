@@ -40,7 +40,7 @@ Route::group([
     Route::put('/pacientes/{id}', 'Api\PacienteController@update');
     Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
     
-    Route::get('/historico/{id}', 'Api\HistoricoController@show');
+    Route::get('/historico/{paciente_id}', 'Api\HistoricoController@show');
     Route::post('/historico', 'Api\HistoricoController@store');
     Route::put('/historico/{id}', 'Api\HistoricoController@update');
     

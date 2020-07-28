@@ -16,13 +16,17 @@ class HistoricoController extends Controller
         $this->historico = $historico;
     }
 
-    public function show($id)
+    public function show($paciente_id)
     {
         try {
 
-            $historico = $this->historico->where('paciente_id', $id)->first();
+            $historico = $this->historico->where('paciente_id', $paciente_id)->first();
+            
+            $drogas = $this->historico->find($historico->id)->drogas()->get();
 
-            return response()->json($historico, 200);
+            $historico['drogas'] = $drogas;
+
+            return response()->json($historico);
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
@@ -51,7 +55,6 @@ class HistoricoController extends Controller
         $data = $request->all();
 
         try {
-
             $historico = $this->historico->findOrFail($id);
             $historico->update($data);
 
