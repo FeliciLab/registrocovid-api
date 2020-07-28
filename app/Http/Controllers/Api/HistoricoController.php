@@ -58,6 +58,10 @@ class HistoricoController extends Controller
                 return response()->json(['message' => 'Paciente não existe'], 400);
             }
 
+            if (Historico::where('paciente_id', $paciente_id)->exists()) {
+                return response()->json(['message' => 'Paciente já possui historico'], 400);
+            }
+
             if ($request->has('situacao_uso_drogas_id')
                 && !SituacaoUsoDrogas::find($request->get('situacao_uso_drogas_id'))) {
                 return response()->json(['message' => 'Situação não existe'], 400);
@@ -68,7 +72,7 @@ class HistoricoController extends Controller
             if(isset($data['drogas']) && count($data['drogas'])) {
                 foreach($data['drogas'] as $droga_id) {
                     if (!Droga::find($droga_id)) {
-                        return response()->json(['message' => "Droga $droga_id não existe"], 400);
+                        return response()->json(['message' => "Droga de id $droga_id não existe"], 400);
                     }
                 }
 
