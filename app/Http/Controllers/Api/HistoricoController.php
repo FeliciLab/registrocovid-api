@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Api\ErrorMessage;
 use App\Models\Historico;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ class HistoricoController extends Controller
         try {
 
             $historico = $this->historico->where('paciente_id', $paciente_id)->first();
+
+            if (!isset($historico)) {
+                throw new \Exception('Paciente não possui historico cadastrado');
+            }
             
             $drogas = $this->historico->find($historico->id)->drogas()->get();
 
@@ -29,15 +34,17 @@ class HistoricoController extends Controller
             return response()->json($historico);
 
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), $message->getCode());
         }
     }
 
     public function store(HistoricoRequest $request)
     {
-        $data = $request->all();
-
         try {
+
+            $data = $request->all();
+
             $historico = $this->historico->create($data);
 
             if(isset($data['drogas']) && count($data['drogas'])) {
@@ -45,24 +52,30 @@ class HistoricoController extends Controller
             }
 
             return response()->json($historico);
+
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), $message->getCode());
         }
     }
 
     public function update($id, HistoricoRequest $request)
     {
-        $data = $request->all();
 
         try {
+
+            $data = $request->all();
+            
             $historico = $this->historico->findOrFail($id);
             $historico->update($data);
 
             return response()->json([
-                'msg' => 'Historico atualizado com sucesso'
-            ], 200);
+                'message' => 'Historico atualizado com sucesso'
+            ]);
+
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), $message->getCode());
         }
     }
 }

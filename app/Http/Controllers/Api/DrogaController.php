@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Droga;
 use App\Http\Requests\DrogaRequest;
+use App\Api\ErrorMessage;
 
 class DrogaController extends Controller
 {
@@ -24,9 +25,16 @@ class DrogaController extends Controller
      */
     public function index()
     {
-        $drogas = $this->droga->all();
+        try {
+
+            $drogas = $this->droga->all();
         
-        return response()->json($drogas);
+            return response()->json($drogas);
+
+        } catch(\Exception $e) {
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), $message->getCode());
+        }
     }
 
     /**
@@ -37,10 +45,17 @@ class DrogaController extends Controller
      */
     public function store(DrogaRequest $request)
     {
-        $data = $request->all();
+        try {
 
-        $droga = $this->droga->create($data);
+            $data = $request->all();
 
-        return response()->json($droga);
+            $droga = $this->droga->create($data);
+
+            return response()->json($droga);
+
+        } catch(\Exception $e) {
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), $message->getCode());
+        }
     }
 }
