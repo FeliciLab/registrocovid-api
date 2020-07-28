@@ -23,8 +23,15 @@ class SituacaoUsoDrogasController extends Controller
      */
     public function index()
     {
-        $situacoes = $this->situacao->all();
+        try {
+            
+            $situacoes = $this->situacao->all();
         
-        return response()->json($situacoes);
+            return response()->json($situacoes);
+
+        } catch(\Exception $e) {
+            $message = new ErrorMessage($e->getMessage(), $e->getCode());
+            return response()->json($message->getMessage(), $message->getCode());
+        }
     }
 }
