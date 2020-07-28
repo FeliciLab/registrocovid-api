@@ -24,7 +24,7 @@ class HistoricoController extends Controller
             $historico = $this->historico->where('paciente_id', $paciente_id)->first();
 
             if (!isset($historico)) {
-                throw new \Exception('Paciente não possui historico cadastrado');
+                return response()->json(['message' => 'Paciente não possui histórico cadastrado'], 400);
             }
             
             $drogas = $this->historico->find($historico->id)->drogas()->get();
@@ -35,7 +35,7 @@ class HistoricoController extends Controller
 
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), $message->getCode());
+            return response()->json($message->getMessage(), 500);
         }
     }
 
@@ -55,7 +55,7 @@ class HistoricoController extends Controller
 
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), $message->getCode());
+            return response()->json($message->getMessage(), 500);
         }
     }
 
@@ -75,7 +75,7 @@ class HistoricoController extends Controller
 
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), $message->getCode());
+            return response()->json($message->getMessage(), 500);
         }
     }
 }

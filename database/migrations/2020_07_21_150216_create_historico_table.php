@@ -16,9 +16,9 @@ class CreateHistoricoTable extends Migration
         Schema::create('historico', function (Blueprint $table) {
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
-            $table->foreignId('situacao_uso_drogas_id')->references('id')->on('situacao_uso_drogas');
-            $table->boolean('tabagismo');
-            $table->boolean('etilismo');
+            $table->foreignId('situacao_uso_drogas_id')->nullable()->references('id')->on('situacao_uso_drogas');
+            $table->boolean('tabagismo')->nullable();
+            $table->boolean('etilismo')->nullable();
             $table->timestamps();
         });
     }

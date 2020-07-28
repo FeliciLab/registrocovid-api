@@ -31,7 +31,7 @@ class SituacaoUsoDrogasController extends Controller
 
         } catch(\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), $message->getCode());
+            return response()->json($message->getMessage(), 500);
         }
     }
 }
