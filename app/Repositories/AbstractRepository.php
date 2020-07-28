@@ -32,4 +32,14 @@ abstract class AbstractRepository
       $this->model = $this->model->where($exp[0], $exp[1], $exp[2]);
     }
   }
+
+  public function buildWhere($x, $operator, $y)
+  {
+    return $this->model = $this->model->where($x, $operator, $y);
+  }
+
+  public function getResult()
+  {
+    return $this->model;
+  }
 }
