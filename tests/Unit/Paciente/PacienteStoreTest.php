@@ -63,9 +63,19 @@ class PacienteStoreTest extends TestCase
             "instituicao_primeiro_atendimento_id" => "1",
             "instituicao_refererencia_id" => "2",
             "data_atendimento_referencia" => "2020-07-21",
-            "paciente_suporte_respiratorio" => true,
-            "suporte_respiratorio" => "Ventilação invasiva",
-            "reinternacao" => false
+            "suporte_respiratorio" => true,
+            "reinternacao" => false,
+            "tipos_suporte_respiratorio" => [
+                [
+                    "id" => 1
+                ],
+                [
+                    "id" => 2
+                ],
+                [
+                    "id" => 3
+                ]
+            ]
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
 class PacienteController extends Controller
 {
@@ -39,7 +40,13 @@ class PacienteController extends Controller
 
             $pacienteInstance->save();
 
-            return response()->json(['message' => 'Paciente cadastrado com sucesso'], 201);
+            $pacienteInstance->associarPacienteTipoSuporteRespiratorio($request->post());
+
+            return response()->json(
+                [
+                    'message' => 'Paciente cadastrado com sucesso',
+                    'paciente' => $pacienteInstance->toArray()
+                ], 201);
         }
         catch (Exception $e)
         {
