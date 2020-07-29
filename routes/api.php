@@ -15,31 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group([
-    'prefix' => 'auth'
-], function ($router) {
+Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('register', 'Api\JWTAuthController@register');
     Route::post('login', 'Api\JWTAuthController@login');
 });
 
-Route::group([
-    'middleware' => ['apiJwt'],
-], function ($router) {
+Route::group(['middleware' => ['apiJwt']], function ($router) {
+    Route::post('logout', 'Api\JWTAuthController@logout');
+    Route::post('refresh', 'Api\JWTAuthController@refresh');
+    Route::get('profile', 'Api\JWTAuthController@profile');
+});
 
-    Route::group([
-        'prefix' => 'auth'
-    ], function ($router) {
-        Route::post('logout', 'Api\JWTAuthController@logout');
-        Route::post('refresh', 'Api\JWTAuthController@refresh');
-        Route::get('profile', 'Api\JWTAuthController@profile');
-    });
-    
-    Route::get('/pacientes', 'Api\PacienteController@index');
-    Route::get('/pacientes/{id}', 'Api\PacienteController@show');
-    Route::post('/pacientes', 'Api\PacienteController@store');
-    Route::put('/pacientes/{id}', 'Api\PacienteController@update');
-    Route::delete('/pacientes/{id}', 'Api\PacienteController@destroy');
-    
+Route::group(['middleware' => ['apiJwt']], function ($router) { 
+    Route::get('/pacientes', 'Api\Paciente\PacienteController@index');
+    Route::post('/pacientes', 'Api\Paciente\PacienteController@store');
     Route::get('/historico/{paciente_id}', 'Api\HistoricoController@show');
     Route::post('/historico/{paciente_id}', 'Api\HistoricoController@store');
     Route::put('/historico/{id}', 'Api\HistoricoController@update');
