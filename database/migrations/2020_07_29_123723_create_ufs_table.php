@@ -13,7 +13,7 @@ class CreateUfsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ufs', function (Blueprint $table) {
+        Schema::create('unidade_federativa', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('sigla', 2);
@@ -28,6 +28,6 @@ class CreateUfsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ufs');
+        Schema::dropIfExists('unidade_federativa');
     }
 }
