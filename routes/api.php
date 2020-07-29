@@ -39,4 +39,5 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::post('/drogas', 'Api\DrogaController@store');
 
     Route::get('estados', 'Api\EstadoController@index');
+    Route::get('municipios', 'Api\MunicipioController@index');
 });
