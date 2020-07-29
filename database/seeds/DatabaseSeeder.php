@@ -20,8 +20,7 @@ class DatabaseSeeder extends Seeder
             InstituicoesSeeder::class,
             TiposSuporteRespiratorio::class,
             SituacaoUsoDrogasSeeder::class,
-            DrogasSeeder::class,
-            UFsSeeds::class
+            DrogasSeeder::class
         ]);
 
     }
