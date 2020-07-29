@@ -23,9 +23,26 @@ class ComorbidadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($paciente_id)
     {
-        //
+        try {
+
+            if (!Paciente::find($paciente_id)) {
+                return response()->json(['message' => 'Paciente não existe'], 400);
+            }
+
+            $comorbidade = $this->comorbidade->where('paciente_id', $paciente_id)->first();
+
+            if (!isset($comorbidade)) {
+                return response()->json(['message' => 'Paciente não possui histórico cadastrado'], 400);
+            }
+            
+            return response()->json($comorbidade);
+
+        } catch (\Exception $e) {
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), 500);
+        }
     }
 
     /**

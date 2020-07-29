@@ -42,6 +42,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         });
 
         Route::namespace('Comorbidade')->group(function() {
+            Route::get('/comorbidades/{paciente_id}', 'ComorbidadeController@show');
             Route::post('/comorbidades/{paciente_id}', 'ComorbidadeController@store');
         });
     });
