@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Historico;
 
 use App\Api\ErrorMessage;
 use App\Models\Historico;

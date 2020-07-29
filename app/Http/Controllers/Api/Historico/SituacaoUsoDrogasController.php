@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Historico;
 
 use App\Models\SituacaoUsoDrogas;
 use App\Http\Controllers\Controller;
