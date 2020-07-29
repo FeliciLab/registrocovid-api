@@ -34,7 +34,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::namespace('Historico')->group(function() {
             Route::get('/historico/{paciente_id}', 'HistoricoController@show');
             Route::post('/historico/{paciente_id}', 'HistoricoController@store');
-            Route::put('/historico/{id}', 'HistoricoController@update');
 
             Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
 
@@ -43,6 +42,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         });
 
         Route::namespace('Comorbidade')->group(function() {
+            Route::post('/comorbidades/{paciente_id}', 'ComorbidadeController@store');
         });
     });
 });

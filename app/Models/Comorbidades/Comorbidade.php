@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comorbidade extends Model
 {
     protected $fillable = [
+        'paciente_id',
         'diabetes',
         'obesidade',
         'hipertensao',

@@ -4,9 +4,20 @@ namespace App\Http\Controllers\Api\Comorbidade;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Comorbidades\Comorbidade;
+use App\Models\Paciente;
+use App\Api\ErrorMessage;
 
 class ComorbidadeController extends Controller
 {
+
+    private $comorbidade;
+
+    public function __construct(Comorbidade $comorbidade)
+    {
+        $this->comorbidade = $comorbidade;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,38 +34,25 @@ class ComorbidadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($paciente_id, Request $request)
     {
         try {
 
             $data = $request->all();
 
+            $data["paciente_id"] = $paciente_id;
+
             if (!Paciente::find($paciente_id)) {
                 return response()->json(['message' => 'Paciente não existe'], 400);
             }
 
-            if (Historico::where('paciente_id', $paciente_id)->exists()) {
-                return response()->json(['message' => 'Paciente já possui historico'], 400);
+            if (Comorbidade::where('paciente_id', $paciente_id)->exists()) {
+                return response()->json(['message' => 'Paciente já possui comorbidade'], 400);
             }
 
-            if ($request->has('situacao_uso_drogas_id')
-                && !SituacaoUsoDrogas::find($request->get('situacao_uso_drogas_id'))) {
-                return response()->json(['message' => 'Situação não existe'], 400);
-            }
+            $comorbidade = $this->comorbidade->create($data);
 
-            $historico = $this->historico->create($data);
-
-            if(isset($data['drogas']) && count($data['drogas'])) {
-                foreach($data['drogas'] as $droga_id) {
-                    if (!Droga::find($droga_id)) {
-                        return response()->json(['message' => "Droga de id $droga_id não existe"], 400);
-                    }
-                }
-
-                $historico->drogas()->sync($data['drogas']);
-            }
-
-            return response()->json($historico);
+            return response()->json($comorbidade);
 
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
