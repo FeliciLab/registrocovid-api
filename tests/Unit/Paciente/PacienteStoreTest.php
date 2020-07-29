@@ -40,7 +40,7 @@ class PacienteStoreTest extends TestCase
     {
         $postData = $this->form();
 
-        $response = $this->post('api/paciente/paciente', $postData);
+        $response = $this->post('api/pacientes', $postData);
 
         $response->assertStatus(201);
 
@@ -50,7 +50,7 @@ class PacienteStoreTest extends TestCase
     {
         $postData = ["prontuario" => "5415215"];
 
-        $response = $this->post('api/paciente/paciente', $postData);
+        $response = $this->post('api/pacientes', $postData);
 
         $response->assertStatus(400);
     }

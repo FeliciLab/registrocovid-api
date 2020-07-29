@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             MunicipiosSeeder::class,
             BairrosSeeder::class,
             InstituicoesSeeder::class,
-            TiposSuporteRespiratorio::class
+            TiposSuporteRespiratorio::class,
+            SituacaoUsoDrogasSeeder::class,
+            DrogasSeeder::class,
         ]);
 
     }

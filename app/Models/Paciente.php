@@ -47,4 +47,9 @@ class Paciente extends Model
     {
         return $this->hasMany(TipoSuporteRespitarioPaciente::class);
     }
+    
+    public function historico()
+    {
+        return $this->hasOne(Historico::class);
+    }
 }

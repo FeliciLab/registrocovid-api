@@ -26,6 +26,15 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('profile', 'Api\JWTAuthController@profile');
 });
 
-Route::group(['middleware' => ['apiJwt'], 'prefix' => 'paciente'], function () {
-    Route::post('paciente', 'Api\Paciente\PacienteController@store');
+Route::group(['middleware' => ['apiJwt']], function ($router) { 
+    Route::get('/pacientes', 'Api\Paciente\PacienteController@index');
+    Route::post('/pacientes', 'Api\Paciente\PacienteController@store');
+    Route::get('/historico/{paciente_id}', 'Api\HistoricoController@show');
+    Route::post('/historico/{paciente_id}', 'Api\HistoricoController@store');
+    Route::put('/historico/{id}', 'Api\HistoricoController@update');
+    
+    Route::get('/situacao-uso-drogas', 'Api\SituacaoUsoDrogasController@index');
+
+    Route::get('/drogas', 'Api\DrogaController@index');
+    Route::post('/drogas', 'Api\DrogaController@store');
 });
