@@ -21,6 +21,7 @@ class Paciente extends Model
         'sexo',
         'data_nascimento',
         'estado_nascimento_id',
+        'cor_id',
         'estadocivil_id',
         'escolaridade_id',
         'atividadeprofissional_id',
@@ -35,7 +36,35 @@ class Paciente extends Model
         'reinternacao' => 'boolean',
     ];
 
+    protected $appends = [
+        'instituicao',
+        'instituicao_primeiro_atendimento',
+        'bairro',
+        'telefones'
+    ];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
+    public function getInstituicaoAttribute()
+    {
+        return $this->instituicao()->first()->nome;
+    }
+
+    public function getInstituicaoPrimeiroAtendimentoAttribute()
+    {
+        return $this->instituicaoPrimeiroAtendimento()->first()->nome;
+    }
+
+    public function gettelefonesAttribute()
+    {
+        return $this->telefones()->first()->nome;
+    }
+
+    public function getBairroAttribute()
+    {
+        return $this->bairro()->first()->nome;
+    }
+    
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
         $postData = is_array($postData) ? (object) $postData : $postData;
@@ -87,6 +116,25 @@ class Paciente extends Model
 
     }
 
+    public function instituicao()
+    {
+        return $this->hasOne(Instituicao::class, 'id', 'instituicao_id');
+    }
+
+    public function instituicaoPrimeiroAtendimento()
+    {
+        return $this->hasOne(Instituicao::class, 'id', 'instituicao_primeiro_atendimento_id');
+    }
+
+    public function bairro()
+    {
+        return $this->hasOne(Bairro::class, 'id', 'bairro_id');
+    }
+
+    public function telefones()
+    {
+        return $this->hasMany(Bairro::class, 'id', 'bairro_id');
+    }
 
     public function tiposuporterespiratorio()
     {

@@ -38,5 +38,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('estados', 'Api\EstadoController@index');
     Route::get('municipios', 'Api\MunicipioController@index');
 
-    Route::post('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPaciente@store');
+    Route::post('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPacienteController@store');
+    Route::get('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPacienteController@index');
 });

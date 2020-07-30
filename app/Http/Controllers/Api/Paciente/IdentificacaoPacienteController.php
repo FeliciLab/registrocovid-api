@@ -8,13 +8,36 @@ use App\Models\Paciente;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 
-class IdentificacaoPaciente extends Controller
+class IdentificacaoPacienteController extends Controller
 {
     private $paciente;
 
     public function __construct(Paciente $paciente)
     {
         $this->paciente = $paciente;
+    }
+
+    public function index($id)
+    {
+        try {
+            $pacienteInstance = $this->paciente->find($id);
+
+            if(!isset($pacienteInstance)){
+                return response()->json(
+                    [
+                        'message' => 'Paciente não existe',
+                    ], 404);
+            }
+
+            return response()->json(
+                [
+                    'message' => 'Identificação do paciente retornado com sucesso',
+                    'paciente' => $pacienteInstance->toArray()
+                ], 200);
+
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        }
     }
 
     public function store(Request $request, $id)
@@ -43,6 +66,12 @@ class IdentificacaoPaciente extends Controller
             $pacienteInstanceUpdated->update();
             
             $pacienteInstance->associarTelefonesPaciente($request->post());
+
+            return response()->json(
+                [
+                    'message' => 'Identificação do paciente cadastrado com sucesso',
+                    'paciente' => $pacienteInstance->toArray()
+                ], 201);
 
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());
