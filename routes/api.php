@@ -31,14 +31,12 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::post('/pacientes', 'Api\Paciente\PacienteController@store');
     Route::get('/historico/{paciente_id}', 'Api\HistoricoController@show');
     Route::post('/historico/{paciente_id}', 'Api\HistoricoController@store');
-    Route::put('/historico/{id}', 'Api\HistoricoController@update');
-    
+    Route::put('/historico/{id}', 'Api\HistoricoController@update');    
     Route::get('/situacao-uso-drogas', 'Api\SituacaoUsoDrogasController@index');
-
     Route::get('/drogas', 'Api\DrogaController@index');
     Route::post('/drogas', 'Api\DrogaController@store');
-
     Route::get('estados', 'Api\EstadoController@index');
     Route::get('municipios', 'Api\MunicipioController@index');
-    Route::get('unidades/federativas', 'Api\UnidadeFederativaController@index');
+
+    Route::post('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPaciente@store');
 });
