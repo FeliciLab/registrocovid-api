@@ -24,7 +24,6 @@ class Paciente extends Model
         'reinternacao' => 'boolean',
     ];
 
-
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
         $postData = is_array($postData) ? (object) $postData : $postData;
@@ -37,7 +36,7 @@ class Paciente extends Model
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
                 TipoSuporteRespitarioPaciente::firstOrCreate([
                     'tipo_suporte_id' => $suporte_id['id'],
-                    'paciente_id' => $this->id    
+                    'paciente_id' => $this->id
                 ]);
             }
         }
@@ -47,7 +46,7 @@ class Paciente extends Model
     {
         return $this->hasMany(TipoSuporteRespitarioPaciente::class);
     }
-    
+
     public function historico()
     {
         return $this->hasOne(Historico::class);

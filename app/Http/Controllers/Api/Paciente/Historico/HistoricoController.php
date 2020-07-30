@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\Paciente\Historico;
 
 use App\Api\ErrorMessage;
-use App\Models\Historico;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\HistoricoRequest;
 use App\Models\Droga;
+use App\Models\Historico;
 use App\Models\Paciente;
 use App\Models\SituacaoUsoDrogas;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HistoricoController extends Controller
 {
@@ -23,22 +24,34 @@ class HistoricoController extends Controller
     public function show(int $pacienteId)
     {
         try {
+            $rules = [
+                'paciente_id' => 'required|exists:pacientes,id',
+            ];
 
-            if (!Paciente::find($pacienteId)) {
-                return response()->json(['message' => 'Paciente não existe'], 400);
+            $validator = Validator::make(['paciente_id' => $pacienteId], $rules);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        'message' => 'Campos inválidos.',
+                        'errors' => $validator->errors()
+                    ],
+                    422
+                );
             }
 
-            $historico = $this->historico->where('paciente_id', $pacienteId)->first();
+            $historico = Historico::where('paciente_id', $pacienteId)->first();
 
-            if (!isset($historico)) {
-                return response()->json(['message' => 'Paciente não possui histórico cadastrado'], 400);
+            if (!$historico) {
+                return response()->json([
+                    'message' => 'Histórico não encontrado.',
+                    'errors' => [
+                        'paciente_id' => ['Não existe histórico para o paciente.']
+                    ]
+                ], 404);
             }
 
-            $drogas = $this->historico->find($historico->id)->drogas()->get();
-
-            $historico['drogas'] = $drogas;
-
-            return response()->json($historico);
+            return response()->json($historico->toArray());
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
