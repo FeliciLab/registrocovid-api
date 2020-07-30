@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Historico;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,10 +28,9 @@ class DrogaController extends Controller
         try {
 
             $drogas = $this->droga->all();
-        
-            return response()->json($drogas);
 
-        } catch(\Exception $e) {
+            return response()->json($drogas);
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }
@@ -52,8 +51,7 @@ class DrogaController extends Controller
             $droga = $this->droga->create($data);
 
             return response()->json($droga);
-
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }

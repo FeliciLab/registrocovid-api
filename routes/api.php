@@ -26,14 +26,14 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('profile', 'Api\JWTAuthController@profile');
 });
 
-Route::group(['middleware' => ['apiJwt']], function ($router) { 
-    Route::namespace('Api')->group(function() {
+Route::group(['middleware' => ['apiJwt']], function ($router) {
+    Route::namespace('Api')->group(function () {
         Route::get('/pacientes', 'Paciente\PacienteController@index');
         Route::post('/pacientes', 'Paciente\PacienteController@store');
 
-        Route::namespace('Historico')->group(function() {
-            Route::get('/historico/{paciente_id}', 'HistoricoController@show');
-            Route::post('/historico/{paciente_id}', 'HistoricoController@store');
+        Route::namespace('Historico')->group(function () {
+            Route::get('/pacientes/{pacienteId}/historico', 'HistoricoController@show');
+            Route::post('/pacientes/{pacienteId}/historico', 'HistoricoController@store');
 
             Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
 
@@ -41,9 +41,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
             Route::post('/drogas', 'DrogaController@store');
         });
 
-        Route::namespace('Comorbidade')->group(function() {
-            Route::get('/comorbidades/{paciente_id}', 'ComorbidadeController@show');
-            Route::post('/comorbidades/{paciente_id}', 'ComorbidadeController@store');
+        Route::namespace('Comorbidade')->group(function () {
+            Route::get('/pacientes/{paciente_id}/comorbidades', 'ComorbidadeController@show');
+            Route::post('/pacientes/{paciente_id}/comorbidades', 'ComorbidadeController@store');
         });
     });
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Comorbidade;
+namespace App\Http\Controllers\Api\Paciente\Comorbidade;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -36,9 +36,8 @@ class ComorbidadeController extends Controller
             if (!isset($comorbidade)) {
                 return response()->json(['message' => 'Paciente não possui histórico cadastrado'], 400);
             }
-            
-            return response()->json($comorbidade);
 
+            return response()->json($comorbidade);
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
@@ -70,7 +69,6 @@ class ComorbidadeController extends Controller
             $comorbidade = $this->comorbidade->create($data);
 
             return response()->json($comorbidade);
-
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
