@@ -68,6 +68,7 @@ class MostrarHistoricoTest extends TestCase
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id,
         ]);
+        
         $historico = factory(Historico::class)->create([
             'paciente_id' => $paciente->id
         ]);
