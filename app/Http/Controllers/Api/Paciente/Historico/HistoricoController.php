@@ -24,20 +24,6 @@ class HistoricoController extends Controller
     public function show(int $pacienteId)
     {
         try {
-           
-            $erros = $this->validarExistenciaPaciente($pacienteId);
-           
-            if ($erros) {
-                return response()->json(
-                    [
-                        'message' => 'Campos inválidos.',
-                        'errors' => $erros
-                    ],
-                    422
-                );
-            }
-
-
             $historico = Historico::where('paciente_id', $pacienteId)->first();
 
             if (!$historico) {
@@ -59,19 +45,6 @@ class HistoricoController extends Controller
     public function store($pacienteId, HistoricoRequest $request)
     {
         try {
-
-            $erros = $this->validarExistenciaPaciente($pacienteId);
-           
-            if ($erros) {
-                return response()->json(
-                    [
-                        'message' => 'Campos inválidos.',
-                        'errors' => $erros
-                    ],
-                    422
-                );
-            }
-
             if (Historico::where('paciente_id', $pacienteId)->exists()) {
                 return response()->json(
                     (new ErrorMessage('Paciente já possui histórico.'))->toArray(),
@@ -111,20 +84,5 @@ class HistoricoController extends Controller
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }
-    }
-
-    private function validarExistenciaPaciente(int $pacienteId)
-    {
-        $rules = [
-            'paciente_id' => 'required|exists:pacientes,id',
-        ];
-
-        $validator = Validator::make(['paciente_id' => $pacienteId], $rules);
-
-        if ($validator->fails()) {
-            return $validator->errors();
-        }
-
-        return null;
     }
 }
