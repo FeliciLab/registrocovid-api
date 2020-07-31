@@ -11,14 +11,7 @@ use App\Repositories\PacienteRepository;
 
 class PacienteController extends Controller
 {
-    private $paciente;
-
-    public function __construct(Paciente $paciente)
-    {
-        $this->paciente = $paciente;
-    }
-
-    public function index(Request $request)
+    public function index(Request $request, Paciente $pacientes)
     {
         $orderBy = 'created_at';
         $order = 'DESC';
@@ -31,23 +24,9 @@ class PacienteController extends Controller
             $order = $request->get('order');
         }
 
-        $pacientes = $this->paciente;
-
         $pacienteRepository = new PacienteRepository($pacientes, $request);
 
-        if ($request->has('conditions')) {
-            $pacientes = $pacienteRepository->selectConditions($request->get('conditions'));
-        }
-
-        $coletador_id = auth()->user()->id;
-
-        $pacientes = $pacienteRepository->buildWhere('coletador_id', '=', $coletador_id);
-
-        if ($request->has('fields')) {
-            $pacientes = $pacienteRepository->selectFields($request->get('fields'));
-        }
-
-        return response()->json($pacienteRepository->getResult()->get());
+        return response()->json($pacienteRepository->getResult());
     }
 
     public function store(PacienteStoreRequest $request)

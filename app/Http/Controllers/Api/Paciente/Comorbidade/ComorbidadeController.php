@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Paciente\Comorbidade;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Comorbidades\Comorbidade;
+use App\Models\Comorbidade;
 use App\Models\Paciente;
 use App\Api\ErrorMessage;
 

@@ -122,7 +122,6 @@ class CriarHistoricoTest extends TestCase
       'paciente_id',
       'tabagismo',
       'etilismo',
-      'drogas',
       'created_at',
       'updated_at'
     ]);

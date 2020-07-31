@@ -85,10 +85,9 @@ class HistoricoController extends Controller
 
             if ($request->has('drogas')) {
                 $historico->drogas()->sync($request->get('drogas'));
-                $historico->save();
             }
 
-            return response()->json($historico->toArray(), 201);
+            return response()->json($historico, 201);
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);

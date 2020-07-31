@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
@@ -23,6 +24,13 @@ class Paciente extends Model
         'suporte_respiratorio' => 'boolean',
         'reinternacao' => 'boolean',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('coletador_id', function (Builder $query) {
+            $query->where('coletador_id', auth()->user()->id);
+        });
+    }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
