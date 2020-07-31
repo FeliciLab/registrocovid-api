@@ -31,6 +31,7 @@ class Paciente extends Model
 
         'coletador_id',
         'instituicao_id',
+        'municipio_id'
     ];
 
     protected $casts = [
