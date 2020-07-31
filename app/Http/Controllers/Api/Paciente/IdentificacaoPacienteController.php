@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\Paciente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Paciente;
+use App\Http\Resources\Paciente as PacienteResource;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 
 class IdentificacaoPacienteController extends Controller
@@ -20,23 +22,18 @@ class IdentificacaoPacienteController extends Controller
     public function index($id)
     {
         try {
-            $pacienteInstance = $this->paciente->find($id);
 
-            if(!isset($pacienteInstance)){
-                return response()->json(
-                    [
-                        'message' => 'Paciente não existe',
-                    ], 404);
-            }
+            return new PacienteResource($this->paciente->findOrFail($id));
 
-            return response()->json(
-                [
-                    'message' => 'Identificação do paciente retornado com sucesso',
-                    'paciente' => $pacienteInstance->toArray()
-                ], 200);
-
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        }catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Paciente não existe'
+            ], 404);
+        }
+        catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -61,16 +58,20 @@ class IdentificacaoPacienteController extends Controller
             
             $pacienteInstance = $this->paciente->find($id);
 
-            $pacienteInstanceUpdated = $pacienteInstance->fill(array_merge($pacienteInstance->toArray(), $request->post()));
+            $verificaIdentificacao =  $pacienteInstance->verificaSeExisteIdentificacaoPaciente();
 
-            $pacienteInstanceUpdated->update();
+            if($verificaIdentificacao)
+            {
+                return response()->json(['message' => 'Identificação do paciente já existe'], 403);
+            }
+
+            $pacienteInstanceUpdated = $this->paciente->where('id', $id)->update($request->except('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho'));
             
             $pacienteInstance->associarTelefonesPaciente($request->post());
 
             return response()->json(
                 [
                     'message' => 'Identificação do paciente cadastrado com sucesso',
-                    'paciente' => $pacienteInstance->toArray()
                 ], 201);
 
         } catch (Exception $e) {

@@ -77,8 +77,7 @@ class PacienteController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'Paciente cadastrado com sucesso',
-                    'paciente' => $pacienteInstance->toArray()
+                    'message' => 'Paciente cadastrado com sucesso'
                 ], 201);
         }
         catch (Exception $e)

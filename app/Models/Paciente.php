@@ -34,13 +34,78 @@ class Paciente extends Model
         'municipio_id'
     ];
 
-    protected $casts = [
-        'suporte_respiratorio' => 'boolean',
-        'reinternacao' => 'boolean',
+
+    protected $appends = [
+        'instituicao_primeiro_atendimento',
+        'instituicao_refererencia',
+        'cor',
+        'estado_civil',
+        'escolaridade',
+        'atividade_profissional',
+        'data_nascimento',
+        'municipio',
+        'estado',
+        'telefones'
     ];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    public function getinstituicaoPrimeiroAtendimentoAttribute()
+    {
+        return $this->instituicaoPrimeiroAtendimento()->first()->nome;
+    }
 
+    public function getInstituicaoRefererenciaAttribute()
+    {
+        return $this->instituicaoReferencia()->first()->nome;
+    }
+
+    public function getCorAttribute()
+    {
+        return $this->cor()->first()->nome;
+    }
+
+    public function getEstadoCivilAttribute()
+    {
+        return $this->estadoCivil()->first()->nome;
+    }
+
+    public function getEscolaridadeAttribute()
+    {
+        return $this->escolaridade()->first()->nome;
+    }
+
+    public function getAtividadeProfissionalAttribute()
+    {
+        return $this->atividadeProfissional()->first()->nome;
+    }
+
+    public function getDataNascimentoAttribute()
+    {
+        return date('d-m-Y', strtotime($this->attributes['data_nascimento']));
+    }
+
+    public function getMunicipioAttribute()
+    {
+        return $this->municipio()->first()->nome;
+    }
+
+    public function getEstadoAttribute()
+    {
+        $estado = DB::table('pacientes')
+            ->join('municipios', 'pacientes.municipio_id', '=', 'municipios.id')
+            ->join('estados', 'municipios.estado_id', '=', 'estados.id')
+            ->select('estados.nome')
+            ->where('pacientes.id', '=', $this->id)
+            ->first();
+
+        return $estado->nome;
+    }
+
+    public function getTelefonesAttribute()
+    {
+        return Telefone::where([
+            ['paciente_id', '=', $this->id]
+        ])->get();
+    }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
@@ -53,7 +118,8 @@ class Paciente extends Model
         if (is_array($postData->tipos_suporte_respiratorio)) {
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
                 TipoSuporteRespitarioPaciente::firstOrCreate([
-                    'tipo_suporte_id' => $suporte_id['id']
+                    'tipo_suporte_id' => $suporte_id['id'],
+                    'paciente_id' => $this->id
                 ]);
             }
         }
@@ -86,12 +152,28 @@ class Paciente extends Model
             Telefone::firstOrCreate([
                 'numero' => $telefone,
                 'paciente_id' => $this->id,
-                'tipo' => 1    
+                'tipo' => 1
             ]);
         }
-
     }
 
+    public function verificaSeExisteIdentificacaoPaciente()
+    {
+        try {
+            $paciente = Paciente::where([
+                ['qtd_pessoas_domicilio', '!=', null],
+            ])->exists();
+
+            if($paciente){
+                return true;
+            }
+
+            return false;
+
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 
     public function tiposuporterespiratorio()
     {
@@ -101,5 +183,40 @@ class Paciente extends Model
     public function historico()
     {
         return $this->hasOne(Historico::class);
+    }
+
+    public function instituicaoPrimeiroAtendimento()
+    {
+        return $this->hasOne(Instituicao::class, 'id', 'instituicao_primeiro_atendimento_id');
+    }
+
+    public function cor()
+    {
+        return $this->hasOne(Cor::class, 'id', 'cor_id');
+    }
+
+    public function estadoCivil()
+    {
+        return $this->hasOne(EstadoCivil::class, 'id', 'estadocivil_id');
+    }
+
+    public function escolaridade()
+    {
+        return $this->hasOne(Escolaridade::class, 'id', 'escolaridade_id');
+    }
+
+    public function atividadeProfissional()
+    {
+        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividadeprofissional_id');
+    }
+
+    public function municipio()
+    {
+        return $this->hasOne(Municipio::class, 'id', 'municipio_id', 'id');
+    }
+
+    public function instituicaoReferencia()
+    {
+        return $this->hasOne(Instituicao::class, 'id', 'instituicao_refererencia_id');
     }
 }

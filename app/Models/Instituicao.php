@@ -8,8 +8,8 @@ class Instituicao extends Model
 {
     protected $table = 'instituicoes';
 
-    public function paciente()
+    public function paciente_instituicao_primeiro_atendimento()
     {
-       return $this->belongsTo(Paciente::class); 
+       return $this->belongsTo(Paciente::class, 'id', 'instituicao_primeiro_atendimento_id'); 
     }
 }
