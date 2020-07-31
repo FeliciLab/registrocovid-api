@@ -26,18 +26,24 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('profile', 'Api\JWTAuthController@profile');
 });
 
-Route::group(['middleware' => ['apiJwt']], function ($router) { 
-    Route::get('/pacientes', 'Api\Paciente\PacienteController@index');
-    Route::post('/pacientes', 'Api\Paciente\PacienteController@store');
-    Route::get('/historico/{paciente_id}', 'Api\HistoricoController@show');
-    Route::post('/historico/{paciente_id}', 'Api\HistoricoController@store');
-    Route::put('/historico/{id}', 'Api\HistoricoController@update');    
-    Route::get('/situacao-uso-drogas', 'Api\SituacaoUsoDrogasController@index');
-    Route::get('/drogas', 'Api\DrogaController@index');
-    Route::post('/drogas', 'Api\DrogaController@store');
-    Route::get('estados', 'Api\EstadoController@index');
-    Route::get('municipios', 'Api\MunicipioController@index');
+Route::group(['middleware' => ['apiJwt']], function ($router) {
+    Route::namespace('Api')->group(function () {
+        Route::namespace('Paciente')->group(function () {
+            Route::get('/pacientes', 'PacienteController@index');
+            Route::post('/pacientes', 'PacienteController@store');
 
-    Route::post('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPacienteController@store');
-    Route::get('identificacao/paciente/{id}', 'Api\Paciente\IdentificacaoPacienteController@index');
+            Route::group(['middleware' => ['paciente']], function ($router) {
+                Route::get('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@show');
+                Route::post('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@store');
+
+                Route::get('/pacientes/{pacienteId}/comorbidades', 'Comorbidade\ComorbidadeController@show');
+                Route::post('/pacientes/{pacienteId}/comorbidades', 'Comorbidade\ComorbidadeController@store');
+            });
+        });
+
+        Route::get('/drogas', 'DrogaController@index');
+        Route::post('/drogas', 'DrogaController@store');
+
+        Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
+    });
 });
