@@ -14,7 +14,7 @@ class AddUfEstadosTable extends Migration
     public function up()
     {
         Schema::table('estados', function (Blueprint $table) {
-            $table->string('unidade_federativa', 2);
+            $table->string('unidade_federativa', 2)->nullable();
         });
     }
 

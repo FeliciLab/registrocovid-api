@@ -15,8 +15,8 @@ class CreateTiposSuporterespiratorioPacienteTable extends Migration
     {
         Schema::create('tipo_suporterespiratorio_paciente', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tipo_suporte_id')->references('id')->on('tipos_suporterespiratorio');
-            $table->foreignId('paciente_id')->references('id')->on('pacientes');
+            $table->foreignId('tipo_suporte_id')->nullable()->references('id')->on('tipos_suporterespiratorio');
+            $table->foreignId('paciente_id')->nullable()->references('id')->on('pacientes');
             $table->timestamps();
         });
     }
