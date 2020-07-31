@@ -60,4 +60,9 @@ abstract class AbstractRepository
   {
     return $this->model->get();
   }
+
+  public function getModel()
+  {
+    return $this->model;
+  }
 }
