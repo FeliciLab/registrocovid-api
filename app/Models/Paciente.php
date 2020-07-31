@@ -5,9 +5,11 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Telefone;
+use Illuminate\Support\Facades\DB;
 
 class Paciente extends Model
 {
+
     protected $fillable = [
         'prontuario',
         'data_internacao',
@@ -36,35 +38,9 @@ class Paciente extends Model
         'reinternacao' => 'boolean',
     ];
 
-    protected $appends = [
-        'instituicao',
-        'instituicao_primeiro_atendimento',
-        'bairro',
-        'telefones'
-    ];
-
     protected $hidden = ['created_at', 'updated_at'];
 
-    public function getInstituicaoAttribute()
-    {
-        return $this->instituicao()->first()->nome;
-    }
 
-    public function getInstituicaoPrimeiroAtendimentoAttribute()
-    {
-        return $this->instituicaoPrimeiroAtendimento()->first()->nome;
-    }
-
-    public function gettelefonesAttribute()
-    {
-        return $this->telefones()->first()->nome;
-    }
-
-    public function getBairroAttribute()
-    {
-        return $this->bairro()->first()->nome;
-    }
-    
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
         $postData = is_array($postData) ? (object) $postData : $postData;
@@ -76,8 +52,7 @@ class Paciente extends Model
         if (is_array($postData->tipos_suporte_respiratorio)) {
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
                 TipoSuporteRespitarioPaciente::firstOrCreate([
-                    'tipo_suporte_id' => $suporte_id['id'],
-                    'paciente_id' => $this->id    
+                    'tipo_suporte_id' => $suporte_id['id']
                 ]);
             }
         }
@@ -116,25 +91,6 @@ class Paciente extends Model
 
     }
 
-    public function instituicao()
-    {
-        return $this->hasOne(Instituicao::class, 'id', 'instituicao_id');
-    }
-
-    public function instituicaoPrimeiroAtendimento()
-    {
-        return $this->hasOne(Instituicao::class, 'id', 'instituicao_primeiro_atendimento_id');
-    }
-
-    public function bairro()
-    {
-        return $this->hasOne(Bairro::class, 'id', 'bairro_id');
-    }
-
-    public function telefones()
-    {
-        return $this->hasMany(Bairro::class, 'id', 'bairro_id');
-    }
 
     public function tiposuporterespiratorio()
     {
