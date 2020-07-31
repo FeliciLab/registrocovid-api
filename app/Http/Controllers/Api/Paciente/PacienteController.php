@@ -13,17 +13,6 @@ class PacienteController extends Controller
 {
     public function index(Request $request, Paciente $pacientes)
     {
-        $orderBy = 'created_at';
-        $order = 'DESC';
-
-        if ($request->has('order_by')) {
-            $orderBy = $request->get('order_by');
-        }
-
-        if ($request->has('order')) {
-            $order = $request->get('order');
-        }
-
         $pacienteRepository = new PacienteRepository($pacientes, $request);
 
         return response()->json($pacienteRepository->getResult());
