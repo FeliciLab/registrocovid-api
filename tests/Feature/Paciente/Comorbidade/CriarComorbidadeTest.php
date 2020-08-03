@@ -46,7 +46,8 @@ class CriarComorbidadeTest extends TestCase
       'medicacoes' => true,
       'doencas' => [1,2,3],
       'orgaos' => [1,2],
-      'corticosteroides' => [1,2,3]
+      'corticosteroides' => [1,2,3],
+      'outras_condicoes' => [1,2]
     ];
 
     $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
