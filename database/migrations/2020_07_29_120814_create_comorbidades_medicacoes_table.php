@@ -14,8 +14,9 @@ class CreateComorbidadesMedicacoesTable extends Migration
     public function up()
     {
         Schema::create('comorbidades_medicacoes', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('comorbidade_id')->references('id')->on('comorbidades');
-            $table->foreignId('medicacao_id')->references('id')->on('medicacoes');
+            $table->string('medicacoes', 100);
             $table->timestamps();
         });
     }
