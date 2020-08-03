@@ -51,6 +51,8 @@ class ComorbidadeRequest extends FormRequest
             'doencas.*' => 'int|exists:doencas,id',
             'orgaos' => 'array',
             'orgaos.*' => 'int|exists:orgaos,id',
+            'corticosteroides' => 'array',
+            'corticosteroides.*' => 'int|exists:corticosteroides,id',
         ];
     }
 }

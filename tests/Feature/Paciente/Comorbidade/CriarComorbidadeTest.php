@@ -45,7 +45,8 @@ class CriarComorbidadeTest extends TestCase
       'outras_condicoes' => false,
       'medicacoes' => true,
       'doencas' => [1,2,3],
-      'orgaos' => [1,2]
+      'orgaos' => [1,2],
+      'corticosteroides' => [1,2,3]
     ];
 
     $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
@@ -168,6 +169,42 @@ class CriarComorbidadeTest extends TestCase
 
       // Testa se existe no banco
       [[0], ['orgaos.0' => ['O campo orgaos.0 selecionado é inválido.']]]
+    ];
+  }
+
+  /**
+   * @dataProvider possiveisValoresCorticosteroides
+  */
+  public function testPossiveisValoresCamposCorticosteroide($corticosteroides, $erro)
+  {
+
+    $paciente = factory(Paciente::class)->create([
+      'coletador_id' => $this->currentUser->id,
+    ]);
+
+    $data = [
+      'corticosteroides' => $corticosteroides
+    ];
+
+    $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
+    $response->assertStatus(422);
+    $response->assertJsonFragment([
+      'message' => 'The given data was invalid.',
+      'errors' => $erro
+    ]);
+  }
+
+  public function possiveisValoresCorticosteroides()
+  {
+    return [
+      // Testa se é um array
+      [0, ['corticosteroides' => ['O campo corticosteroides deve ser uma matriz.']]],
+    
+      // Testa se não é inteiro
+      [['a'], ['corticosteroides.0' => ['O campo corticosteroides.0 deve ser um número inteiro.']]],
+
+      // Testa se existe no banco
+      [[0], ['corticosteroides.0' => ['O campo corticosteroides.0 selecionado é inválido.']]]
     ];
   }
 }

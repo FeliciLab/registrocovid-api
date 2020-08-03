@@ -8,7 +8,8 @@ class Comorbidade extends Model
 {
     protected $with = [
         'doencas',
-        'orgaos'
+        'orgaos',
+        'corticosteroides'
     ];
 
     protected $fillable = [
@@ -46,5 +47,10 @@ class Comorbidade extends Model
     public function orgaos()
     {
         return $this->belongsToMany(Orgao::class, 'comorbidades_orgaos');
+    }
+
+    public function corticosteroides()
+    {
+        return $this->belongsToMany(Corticosteroide::class, 'comorbidades_corticosteroides');
     }
 }

@@ -11,7 +11,7 @@ class OrgaosSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('orgaos')->insert(['id' => 1,'descricao' => 'Coração']);
+        DB::table('orgaos')->insert(['id' => 1,'descricao' => 'Coracao']);
         DB::table('orgaos')->insert(['id' => 2,'descricao' => 'Estômago']);
         DB::table('orgaos')->insert(['id' => 3,'descricao' => 'Fígado']);
     }

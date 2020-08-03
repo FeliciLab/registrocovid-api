@@ -62,6 +62,10 @@ class ComorbidadeController extends Controller
             if ($request->has('orgaos')) {
                 $comorbidade->orgaos()->sync($request->get('orgaos'));
             }
+            
+            if ($request->has('corticosteroides')) {
+                $comorbidade->corticosteroides()->sync($request->get('corticosteroides'));
+            }
 
 
             return response()->json($comorbidade, 201);
