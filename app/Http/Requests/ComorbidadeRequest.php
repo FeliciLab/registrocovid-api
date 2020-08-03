@@ -45,14 +45,16 @@ class ComorbidadeRequest extends FormRequest
             'gestacao_semanas'  => 'int',
             'puerperio'  => 'boolean',
             'puerperio_semanas'  => 'int',
-            'outras_condicoes'  => 'boolean',
-            'medicacoes' => 'boolean',
             'doencas' => 'array',
             'doencas.*' => 'int|exists:doencas,id',
             'orgaos' => 'array',
             'orgaos.*' => 'int|exists:orgaos,id',
             'corticosteroides' => 'array',
             'corticosteroides.*' => 'int|exists:corticosteroides,id',
+            'outras_condicoes' => 'array',
+            'outras_condicoes.*' => 'string',
+            'medicacoes' => 'array',
+            'medicacoes.*' => 'string',
         ];
     }
 }

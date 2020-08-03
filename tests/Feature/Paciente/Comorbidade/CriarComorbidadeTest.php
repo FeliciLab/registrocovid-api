@@ -42,15 +42,15 @@ class CriarComorbidadeTest extends TestCase
       'gestacao_semanas' => 12,
       'puerperio' => true,
       'puerperio_semanas' => 15,
-      'outras_condicoes' => false,
-      'medicacoes' => true,
       'doencas' => [1,2,3],
       'orgaos' => [1,2],
       'corticosteroides' => [1,2,3],
-      'outras_condicoes' => [1,2]
+      'outras_condicoes' => ['Teste', 'Teste2'],
+      'medicacoes' => ['Teste', 'Teste2']
     ];
 
     $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
+
     $response->assertStatus(201);
     $response->assertJsonStructure([
       'id',
@@ -206,6 +206,39 @@ class CriarComorbidadeTest extends TestCase
 
       // Testa se existe no banco
       [[0], ['corticosteroides.0' => ['O campo corticosteroides.0 selecionado é inválido.']]]
+    ];
+  }
+  /**
+   * @dataProvider possiveisValoresJson
+  */
+  public function testPossiveisValoresJson($data, $erro)
+  {
+
+    $paciente = factory(Paciente::class)->create([
+      'coletador_id' => $this->currentUser->id,
+    ]);
+
+    $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
+    $response->assertStatus(422);
+    $response->assertJsonFragment([
+      'errors' => $erro
+    ]);
+  }
+
+  public function possiveisValoresJson()
+  {
+    return [
+      // Testa se é um array
+      [['outras_condicoes' => 0], ['outras_condicoes' => ['O campo outras condicoes deve ser uma matriz.']]],
+    
+      // Testa se não é string
+      [['outras_condicoes' => [0]], ['outras_condicoes.0' => ['O campo outras_condicoes.0 deve ser uma string.']]],
+
+      // Testa se é um array
+      [['medicacoes' => 0], ['medicacoes' => ['O campo medicacoes deve ser uma matriz.']]],
+    
+      // Testa se não é string
+      [['medicacoes' => [0]], ['medicacoes.0' => ['O campo medicacoes.0 deve ser uma string.']]],
     ];
   }
 }

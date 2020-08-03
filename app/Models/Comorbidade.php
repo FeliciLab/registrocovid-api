@@ -39,6 +39,11 @@ class Comorbidade extends Model
         'medicacoes',
     ];
 
+    protected $casts = [
+        'outras_condicoes' => 'array',
+        'medicacoes' => 'array',
+    ];
+
     public function doencas()
     {
         return $this->belongsToMany(Doenca::class, 'comorbidades_doencas');

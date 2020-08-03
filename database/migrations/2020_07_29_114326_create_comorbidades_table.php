@@ -37,8 +37,8 @@ class CreateComorbidadesTable extends Migration
             $table->integer('gestacao_semanas')->nullable();
             $table->boolean('puerperio')->nullable();
             $table->integer('puerperio_semanas')->nullable();
-            $table->boolean('outras_condicoes')->nullable();
-            $table->boolean('medicacoes')->nullable();
+            $table->json('outras_condicoes')->nullable();
+            $table->json('medicacoes')->nullable();
             $table->timestamps();
         });
     }
