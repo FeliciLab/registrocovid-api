@@ -59,6 +59,10 @@ class ComorbidadeController extends Controller
                 $comorbidade->doencas()->sync($request->get('doencas'));
             }
 
+            if ($request->has('orgaos')) {
+                $comorbidade->orgaos()->sync($request->get('orgaos'));
+            }
+
 
             return response()->json($comorbidade, 201);
         } catch (\Exception $e) {

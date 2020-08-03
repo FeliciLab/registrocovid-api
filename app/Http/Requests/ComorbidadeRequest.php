@@ -48,7 +48,9 @@ class ComorbidadeRequest extends FormRequest
             'outras_condicoes'  => 'boolean',
             'medicacoes' => 'boolean',
             'doencas' => 'array',
-            'doencas.*' => 'int|exists:doencas,id'
+            'doencas.*' => 'int|exists:doencas,id',
+            'orgaos' => 'array',
+            'orgaos.*' => 'int|exists:orgaos,id',
         ];
     }
 }

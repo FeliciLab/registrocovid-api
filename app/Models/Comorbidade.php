@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comorbidade extends Model
 {
     protected $with = [
-        'doencas'
+        'doencas',
+        'orgaos'
     ];
 
     protected $fillable = [
@@ -40,5 +41,10 @@ class Comorbidade extends Model
     public function doencas()
     {
         return $this->belongsToMany(Doenca::class, 'comorbidades_doencas');
+    }
+
+    public function orgaos()
+    {
+        return $this->belongsToMany(Orgao::class, 'comorbidades_orgaos');
     }
 }

@@ -43,7 +43,9 @@ class CriarComorbidadeTest extends TestCase
       'puerperio' => true,
       'puerperio_semanas' => 15,
       'outras_condicoes' => false,
-      'medicacoes' => true
+      'medicacoes' => true,
+      'doencas' => [1,2,3],
+      'orgaos' => [1,2]
     ];
 
     $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
@@ -130,6 +132,42 @@ class CriarComorbidadeTest extends TestCase
 
       // Testa se existe no banco
       [[0], ['doencas.0' => ['O campo doencas.0 selecionado é inválido.']]]
+    ];
+  }
+
+  /**
+   * @dataProvider possiveisValoresOrgaos
+  */
+  public function testPossiveisValoresCamposOrgao($orgaos, $erro)
+  {
+
+    $paciente = factory(Paciente::class)->create([
+      'coletador_id' => $this->currentUser->id,
+    ]);
+
+    $data = [
+      'orgaos' => $orgaos
+    ];
+
+    $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
+    $response->assertStatus(422);
+    $response->assertJsonFragment([
+      'message' => 'The given data was invalid.',
+      'errors' => $erro
+    ]);
+  }
+
+  public function possiveisValoresOrgaos()
+  {
+    return [
+      // Testa se é um array
+      [0, ['orgaos' => ['O campo orgaos deve ser uma matriz.']]],
+    
+      // Testa se não é inteiro
+      [['a'], ['orgaos.0' => ['O campo orgaos.0 deve ser um número inteiro.']]],
+
+      // Testa se existe no banco
+      [[0], ['orgaos.0' => ['O campo orgaos.0 selecionado é inválido.']]]
     ];
   }
 }
