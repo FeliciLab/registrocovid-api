@@ -23,7 +23,7 @@ class ComorbidadeController extends Controller
             $comorbidade = Comorbidade::where('paciente_id', $pacienteId)->first();
 
             if (!$comorbidade) {
-                return response()->json(['message' => 'Paciente não possui comorbidade cadastrada.'], 400);
+                return response()->json(['message' => 'Paciente não possui comorbidade cadastrada.'], 404);
             }
 
             return response()->json($comorbidade);
@@ -42,7 +42,6 @@ class ComorbidadeController extends Controller
     public function store($pacienteId, ComorbidadeRequest $request)
     {
         try {
-
 
             $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
 

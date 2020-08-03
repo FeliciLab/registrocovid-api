@@ -35,9 +35,7 @@ class MostrarHistoricoTest extends TestCase
         $response->assertNotFound();
         $response->assertJson([
             'message' => 'Histórico não encontrado.',
-            'errors' => [
-                'paciente_id' => ['Não existe histórico para o paciente.']
-            ]
+            'errors' => []
         ]);
     }
 
