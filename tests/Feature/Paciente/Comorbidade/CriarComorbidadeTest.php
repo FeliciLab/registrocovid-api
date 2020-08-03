@@ -43,7 +43,7 @@ class CriarComorbidadeTest extends TestCase
       'puerperio' => true,
       'puerperio_semanas' => 15,
       'outras_condicoes' => false,
-      'medicacoes' => true,
+      'medicacoes' => true
     ];
 
     $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
@@ -95,5 +95,41 @@ class CriarComorbidadeTest extends TestCase
       "message" => "Paciente já possui comorbidade.",
       "errors" => []
     ]);
+  }
+  
+  /**
+   * @dataProvider possiveisValoresDoencas
+  */
+  public function testPossiveisValoresCamposDoenca($doencas, $erro)
+  {
+
+    $paciente = factory(Paciente::class)->create([
+      'coletador_id' => $this->currentUser->id,
+    ]);
+
+    $data = [
+      'doencas' => $doencas
+    ];
+
+    $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
+    $response->assertStatus(422);
+    $response->assertJsonFragment([
+      'message' => 'The given data was invalid.',
+      'errors' => $erro
+    ]);
+  }
+
+  public function possiveisValoresDoencas()
+  {
+    return [
+      // Testa se é um array
+      [0, ['doencas' => ['O campo doencas deve ser uma matriz.']]],
+    
+      // Testa se não é inteiro
+      [['a'], ['doencas.0' => ['O campo doencas.0 deve ser um número inteiro.']]],
+
+      // Testa se existe no banco
+      [[0], ['doencas.0' => ['O campo doencas.0 selecionado é inválido.']]]
+    ];
   }
 }

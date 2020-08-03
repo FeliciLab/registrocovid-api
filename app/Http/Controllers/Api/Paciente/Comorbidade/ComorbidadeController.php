@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Comorbidade;
 use App\Models\Paciente;
 use App\Api\ErrorMessage;
+use App\Http\Requests\ComorbidadeRequest;
 
 class ComorbidadeController extends Controller
 {
@@ -38,7 +39,7 @@ class ComorbidadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($pacienteId, Request $request)
+    public function store($pacienteId, ComorbidadeRequest $request)
     {
         try {
 
