@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comorbidade extends Model
 {
+    protected $with = [
+        'doencas'
+    ];
+
     protected $fillable = [
         'paciente_id',
         'diabetes',
@@ -32,4 +36,9 @@ class Comorbidade extends Model
         'outras_condicoes',
         'medicacoes',
     ];
+
+    public function doencas()
+    {
+        return $this->belongsToMany(Doenca::class, 'comorbidades_doencas');
+    }
 }

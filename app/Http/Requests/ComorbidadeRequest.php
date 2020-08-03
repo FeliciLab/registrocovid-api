@@ -46,7 +46,9 @@ class ComorbidadeRequest extends FormRequest
             'puerperio'  => 'boolean',
             'puerperio_semanas'  => 'int',
             'outras_condicoes'  => 'boolean',
-            'medicacoes' => 'boolean'
+            'medicacoes' => 'boolean',
+            'doencas' => 'array',
+            'doencas.*' => 'int|exists:doencas,id'
         ];
     }
 }

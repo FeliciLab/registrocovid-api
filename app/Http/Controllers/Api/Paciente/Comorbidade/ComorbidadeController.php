@@ -10,27 +10,19 @@ use App\Api\ErrorMessage;
 
 class ComorbidadeController extends Controller
 {
-
-    private $comorbidade;
-
-    public function __construct(Comorbidade $comorbidade)
-    {
-        $this->comorbidade = $comorbidade;
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($paciente_id)
+    public function show($pacienteId)
     {
         try {
 
-            $comorbidade = $this->comorbidade->where('paciente_id', $paciente_id)->first();
+            $comorbidade = Comorbidade::where('paciente_id', $pacienteId)->first();
 
-            if (!isset($comorbidade)) {
-                return response()->json(['message' => 'Paciente não possui histórico cadastrado'], 400);
+            if (!$comorbidade) {
+                return response()->json(['message' => 'Paciente não possui comorbidade cadastrada.'], 400);
             }
 
             return response()->json($comorbidade);
@@ -46,19 +38,26 @@ class ComorbidadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($paciente_id, Request $request)
+    public function store($pacienteId, Request $request)
     {
         try {
 
-            $data = $request->all();
 
-            $data["paciente_id"] = $paciente_id;
+            $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
 
-            if (Comorbidade::where('paciente_id', $paciente_id)->exists()) {
-                return response()->json(['message' => 'Paciente já possui comorbidade'], 400);
+            if (Comorbidade::where('paciente_id', $pacienteId)->exists()) {
+                return response()->json(
+                    (new ErrorMessage('Paciente já possui comorbidade.'))->toArray(),
+                    400
+                );
             }
 
-            $comorbidade = $this->comorbidade->create($data);
+            $comorbidade = Comorbidade::create($data);
+
+            if ($request->has('doencas')) {
+                $comorbidade->doencas()->sync($request->get('doencas'));
+            }
+
 
             return response()->json($comorbidade, 201);
         } catch (\Exception $e) {

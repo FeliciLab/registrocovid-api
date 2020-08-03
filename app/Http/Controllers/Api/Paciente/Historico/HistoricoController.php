@@ -35,7 +35,7 @@ class HistoricoController extends Controller
                 ], 404);
             }
 
-            return response()->json($historico->toArray());
+            return response()->json($historico);
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
