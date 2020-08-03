@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             DrogasSeeder::class,
             TiposDoencaSeeder::class,
             DoencasSeeder::class,
+            OrgaosSeeder::class,
         ]);
 
     }
