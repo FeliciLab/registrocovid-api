@@ -46,4 +46,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('/estados-civis', 'Api\EstadoCivilController@index');
 
     Route::get('/escolaridades', 'Api\EscolaridadeController@index');
+
+    Route::get('/atividades-profissionais', 'Api\AtividadeProfissionalController@index');
 });
