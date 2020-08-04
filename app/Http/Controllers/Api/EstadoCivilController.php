@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cor;
 use Illuminate\Http\Request;
+use App\Models\EstadoCivil;
 use App\Api\ErrorMessage;
 
-class CorController extends Controller
+class EstadoCivilController extends Controller
 {
-     /** * Listar todas as cores    
+     /** * Listar todos os estados civis
      * @return JsonResponse  
      */
     public function index()
     {
         try {
 
-          $cores = Cor::all();
+          $estadosCivis = EstadoCivil::all();
         
-          return response()->json($cores);
+          return response()->json($estadosCivis);
 
         } catch(\Exception $e) {
             $message = new ErrorMessage($e->getMessage());

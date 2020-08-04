@@ -42,4 +42,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
     Route::get('instituicoes', 'Api\InstituicaoController@index');
 
     Route::get('/cores', 'Api\CorController@index');
+    
+    Route::get('/estados-civis', 'Api\EstadoCivilController@index');
 });
