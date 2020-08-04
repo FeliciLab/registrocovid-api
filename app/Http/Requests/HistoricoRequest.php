@@ -24,10 +24,11 @@ class HistoricoRequest extends FormRequest
     public function rules()
     {
         return [
-            'paciente_id' => 'int|unique:historico',
-            'situacao_uso_drogas_id' => 'int',
+            'situacao_uso_drogas_id' => 'int|exists:situacao_uso_drogas,id',
             'tabagismo' => 'boolean',
-            'etilismo' => 'boolean'
+            'etilismo' => 'boolean',
+            'drogas' => 'array',
+            'drogas.*' => 'int|exists:drogas,id'
         ];
     }
 }

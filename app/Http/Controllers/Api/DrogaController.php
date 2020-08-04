@@ -3,57 +3,43 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Droga;
 use App\Http\Requests\DrogaRequest;
 use App\Api\ErrorMessage;
+use Illuminate\Http\JsonResponse;
 
 class DrogaController extends Controller
 {
-
-    private $droga;
-
-    public function __construct(Droga $droga)
-    {
-        $this->droga = $droga;
-    }
-
     /**
-     * Display a listing of the resource.
+     * Listar todas as drogas
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         try {
+            $drogas = Droga::all();
 
-            $drogas = $this->droga->all();
-        
             return response()->json($drogas);
-
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Criar novo registro de Droga
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param DrogaRequest $request
+     * @return JsonResponse
      */
-    public function store(DrogaRequest $request)
+    public function store(DrogaRequest $request): JsonResponse
     {
         try {
+            $droga = Droga::create($request->all());
 
-            $data = $request->all();
-
-            $droga = $this->droga->create($data);
-
-            return response()->json($droga);
-
-        } catch(\Exception $e) {
+            return response()->json($droga, 201);
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }

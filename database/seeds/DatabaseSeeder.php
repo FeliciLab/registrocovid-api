@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder
             TiposSuporteRespiratorio::class,
             SituacaoUsoDrogasSeeder::class,
             DrogasSeeder::class,
+            TiposDoencaSeeder::class,
+            DoencasSeeder::class,
+            OrgaosSeeder::class,
+            CorticosteroidesSeeder::class,
         ]);
 
     }

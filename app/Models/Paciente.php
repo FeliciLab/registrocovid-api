@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
@@ -24,6 +25,12 @@ class Paciente extends Model
         'reinternacao' => 'boolean',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('coletador_id', function (Builder $query) {
+            $query->where('coletador_id', auth()->user()->id);
+        });
+    }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
@@ -37,7 +44,7 @@ class Paciente extends Model
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
                 TipoSuporteRespitarioPaciente::firstOrCreate([
                     'tipo_suporte_id' => $suporte_id['id'],
-                    'paciente_id' => $this->id    
+                    'paciente_id' => $this->id
                 ]);
             }
         }
@@ -47,7 +54,7 @@ class Paciente extends Model
     {
         return $this->hasMany(TipoSuporteRespitarioPaciente::class);
     }
-    
+
     public function historico()
     {
         return $this->hasOne(Historico::class);
