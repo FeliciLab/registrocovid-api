@@ -35,57 +35,48 @@ class Paciente extends Model
     ];
 
 
-    protected $appends = [
-        'instituicao_primeiro_atendimento',
-        'instituicao_refererencia',
-        'cor',
-        'estado_civil',
-        'escolaridade',
-        'atividade_profissional',
-        'data_nascimento',
-        'municipio',
-        'estado',
-        'telefones'
+    // protected $appends = [
+    //     'instituicao_primeiro_atendimento',
+    //     'instituicao_refererencia',
+    //     'cor',
+    //     'estado_civil',
+    //     'escolaridade',
+    //     'atividade_profissional',
+    //     'data_nascimento',
+    //     'municipio',
+    //     'estado',
+    //     'telefones'
+    // ];
+
+    protected $with = [
+        'instituicao_primeiro_atendimento'
     ];
 
-    public function getinstituicaoPrimeiroAtendimentoAttribute()
-    {
-        return $this->instituicaoPrimeiroAtendimento()->first()->nome;
-    }
 
-    public function getInstituicaoRefererenciaAttribute()
-    {
-        return $this->instituicaoReferencia()->first()->nome;
-    }
-
-    public function getCorAttribute()
-    {
-        return $this->cor()->first()->nome;
-    }
 
     public function getEstadoCivilAttribute()
     {
-        return $this->estadoCivil()->first()->nome;
+        return $this->estadoCivil()->first()->nome ?? "";
     }
 
     public function getEscolaridadeAttribute()
     {
-        return $this->escolaridade()->first()->nome;
+        return $this->escolaridade()->first()->nome ?? "";
     }
 
     public function getAtividadeProfissionalAttribute()
     {
-        return $this->atividadeProfissional()->first()->nome;
+        return $this->atividadeProfissional()->first()->nome ?? "";
     }
 
     public function getDataNascimentoAttribute()
     {
-        return date('d-m-Y', strtotime($this->attributes['data_nascimento']));
+        return date('d-m-Y', strtotime($this->attributes['data_nascimento'])) ?? "";
     }
 
     public function getMunicipioAttribute()
     {
-        return $this->municipio()->first()->nome;
+        return $this->municipio()->first()->nome ?? "";
     }
 
     public function getEstadoAttribute()

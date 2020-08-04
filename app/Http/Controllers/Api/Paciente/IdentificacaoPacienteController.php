@@ -9,6 +9,7 @@ use App\Http\Resources\Paciente as PacienteResource;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\IdentificacaoPacienteRequest;
 
 class IdentificacaoPacienteController extends Controller
 {
@@ -19,11 +20,13 @@ class IdentificacaoPacienteController extends Controller
         $this->paciente = $paciente;
     }
 
-    public function index($id)
+    public function index($pacienteId)
     {
         try {
 
-            return new PacienteResource($this->paciente->findOrFail($id));
+            $paciente = Paciente::whereId($pacienteId)->first();
+
+            return response()->json($paciente->toArray());
 
         }catch (ModelNotFoundException $e) {
             return response()->json([
@@ -37,37 +40,21 @@ class IdentificacaoPacienteController extends Controller
         }
     }
 
-    public function store(Request $request, $id)
+    public function store(IdentificacaoPacienteRequest $request, $pacienteId)
     {
         try {
-            $dataValidated = Validator::make($request->all(), [
-                'bairro_id' => 'integer',
-                'data_internacao' => 'integer',
-                'sexo' => 'max:1',
-                'data_nascimento' => 'date',
-                'estado_nascimento_id' => 'integer',
-                'escolaridade_id' => 'integer',
-                'atividadeprofissional_id' => 'integer',
-                'qtd_pessoas_domicilio' => 'integer' 
-            ]);
-
-            if ($dataValidated->fails()) {
-                $errors = $dataValidated->errors();
-                return response()->json($errors, 400);
-            }
+            $paciente = Paciente::whereId($pacienteId)->first();
             
-            $pacienteInstance = $this->paciente->find($id);
-
-            $verificaIdentificacao =  $pacienteInstance->verificaSeExisteIdentificacaoPaciente();
-
-            if($verificaIdentificacao)
+            if($paciente->verificaSeExisteIdentificacaoPaciente())
             {
                 return response()->json(['message' => 'Identificação do paciente já existe'], 403);
             }
 
-            $pacienteInstanceUpdated = $this->paciente->where('id', $id)->update($request->except('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho'));
+            $dadosAtualizar = $request->except('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho');
             
-            $pacienteInstance->associarTelefonesPaciente($request->post());
+            $paciente->update($dadosAtualizar);
+            
+            $paciente->associarTelefonesPaciente($request->post());
 
             return response()->json(
                 [
@@ -75,7 +62,7 @@ class IdentificacaoPacienteController extends Controller
                 ], 201);
 
         } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], $e->getCode());
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
