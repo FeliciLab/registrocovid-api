@@ -40,4 +40,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
     Route::get('suportes/respiratorios', 'Api\SuporteRespiratorioController@index');
     Route::get('instituicoes', 'Api\InstituicaoController@index');
+
+    Route::get('/cores', 'Api\CorController@index');
 });
