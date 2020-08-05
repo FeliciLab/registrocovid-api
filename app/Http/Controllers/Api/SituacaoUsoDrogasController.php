@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Api\ErrorMessage;
 use App\Models\SituacaoUsoDrogas;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SituacaoUsoDrogasController extends Controller
 {
@@ -26,10 +26,9 @@ class SituacaoUsoDrogasController extends Controller
         try {
 
             $situacoes = $this->situacao->all();
-        
-            return response()->json($situacoes);
 
-        } catch(\Exception $e) {
+            return response()->json($situacoes);
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }

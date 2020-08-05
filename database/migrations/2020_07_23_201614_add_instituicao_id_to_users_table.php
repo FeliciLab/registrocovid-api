@@ -14,7 +14,7 @@ class AddInstituicaoIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('instituicao_id')->references('id')->on('instituicoes');
+            $table->foreignId('instituicao_id')->nullable()->references('id')->on('instituicoes');
         });
     }
 
