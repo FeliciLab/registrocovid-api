@@ -13,14 +13,27 @@ abstract class AbstractRepository
    */
   protected $model;
 
-  public function __construct(Model $model)
+  public function __construct(Model $model, Request $request)
   {
     $this->model = $model;
+
+    if ($request->has('conditions')) {
+      $this->selectConditions($request->get('conditions'));
+    }
+
+    if ($request->has('fields')) {
+      $this->selectFields($request->get('fields'));
+    }
+
+    $this->order(
+      $request->get('order_by', 'created_at'),
+      $request->get('order', 'DESC')
+    );
   }
 
   public function selectFields($fields)
   {
-    return $this->model->selectRaw($fields);
+    $this->model = $this->model->selectRaw($fields);
   }
 
   public function selectConditions($conditions)
@@ -35,10 +48,20 @@ abstract class AbstractRepository
 
   public function buildWhere($x, $operator, $y)
   {
-    return $this->model = $this->model->where($x, $operator, $y);
+    $this->model = $this->model->where($x, $operator, $y);
+  }
+
+  public function order($orderBy, $order)
+  {
+    $this->model = $this->model->orderBy($orderBy, $order);
   }
 
   public function getResult()
+  {
+    return $this->model->get();
+  }
+
+  public function getModel()
   {
     return $this->model;
   }

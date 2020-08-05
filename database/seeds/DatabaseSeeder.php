@@ -22,7 +22,11 @@ class DatabaseSeeder extends Seeder
             SituacaoUsoDrogasSeeder::class,
             DrogasSeeder::class,
             EscolaridadesSeeder::class,
-            AtividadesProfissionaisSeeder::class
+            AtividadesProfissionaisSeeder::class,
+            TiposDoencaSeeder::class,
+            DoencasSeeder::class,
+            OrgaosSeeder::class,
+            CorticosteroidesSeeder::class,
         ]);
 
     }

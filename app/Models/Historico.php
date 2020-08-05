@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Historico extends Model
 {
+    protected $with = [
+        'drogas'
+    ];
+
     protected $table = 'historico';
 
     protected $fillable = [

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -11,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Paciente extends Model
 {
-
     protected $fillable = [
         'prontuario',
         'data_internacao',
@@ -20,7 +20,6 @@ class Paciente extends Model
         'data_atendimento_referencia',
         'suporte_respiratorio',
         'reinternacao',
-
         'bairro_id',
         'sexo',
         'data_nascimento',
@@ -30,7 +29,6 @@ class Paciente extends Model
         'escolaridade_id',
         'atividadeprofissional_id',
         'qtd_pessoas_domicilio',
-
         'coletador_id',
         'instituicao_id',
         'municipio_id'
@@ -70,6 +68,13 @@ class Paciente extends Model
         'municipio_id'
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('coletador_id', function (Builder $query) {
+            $query->where('coletador_id', auth()->user()->id);
+        });
+    }
+  
     public function getEstadoAttribute()
     {
         return $this->municipio->estado ?? null;
