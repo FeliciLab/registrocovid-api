@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            RtPcrResultadoSeeder::class,
             SitioTipoSeeder::class,
             CoresSeeder::class,
             EstadoCivisSeeder::class,
