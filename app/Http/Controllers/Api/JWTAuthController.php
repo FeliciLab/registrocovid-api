@@ -22,6 +22,7 @@ class JWTAuthController extends Controller
             'cpf' => 'required|unique:users|max:11',
             'email' => 'required|email|unique:users|max:50',
             'password' => 'required|string|min:6',
+            'instituicao_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -32,6 +33,7 @@ class JWTAuthController extends Controller
         $user->name = $request->name;
         $user->cpf = $request->cpf;
         $user->email = $request->email;
+        $user->instituicao_id = $request->instituicao_id;
         $user->password = bcrypt($request->password);
         $user->save();
 
@@ -108,7 +110,7 @@ class JWTAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60 * 4
         ]);
     }
 }
