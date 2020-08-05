@@ -91,8 +91,6 @@ class CadastroDePacienteTest extends TestCase
             'message',
             'paciente' => [
                 'prontuario',
-                'coletador_id',
-                'instituicao_id',
                 'updated_at',
                 'created_at',
                 'id'
