@@ -69,14 +69,6 @@ class CadastroDeIdentificacaoTest extends TestCase
                 [ 'data_nascimento' => ['O campo data nascimento não é uma data válida.'] ],
             ],
             [
-                [ 'estado_nascimento_id' => 'teste' ],
-                [ 'estado_nascimento_id' => ['O campo estado nascimento id deve ser um número inteiro.'] ],
-            ],
-            [
-                [ 'estado_nascimento_id' => 0 ],
-                [ 'estado_nascimento_id' => ['O campo estado nascimento id selecionado é inválido.'] ],
-            ],
-            [
                 [ 'escolaridade_id' => 'teste' ],
                 [ 'escolaridade_id' => ['O campo escolaridade id deve ser um número inteiro.'] ],
             ],
@@ -84,8 +76,22 @@ class CadastroDeIdentificacaoTest extends TestCase
                 [ 'escolaridade_id' => 0 ],
                 [ 'escolaridade_id' => ['O campo escolaridade id selecionado é inválido.'] ],
             ],
-            
-            
+            [
+                [ 'atividadeprofissional_id' => 0 ],
+                [ 'atividadeprofissional_id' => ['O campo atividadeprofissional id selecionado é inválido.'] ],
+            ],
+            [
+                [ 'atividadeprofissional_id' => 'teste' ],
+                [ 'atividadeprofissional_id' => ['O campo atividadeprofissional id deve ser um número inteiro.'] ],
+            ],
+            [
+                [ 'qtd_pessoas_domicilio' => 'teste' ],
+                [ 'qtd_pessoas_domicilio' => ['O campo qtd pessoas domicilio deve ser um número inteiro.'] ],
+            ],
+            [
+                [ 'cor_id' => 0 ],
+                [ 'cor_id' => ['O campo cor id selecionado é inválido.'] ],
+            ],
         ];
     }
 }
