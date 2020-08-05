@@ -3,7 +3,6 @@
 namespace Tests\Feature\Corticosteroides;
 
 use App\Models\Corticosteroide;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class ListaDeCorticosteroidesCadastradasTest extends TestCase

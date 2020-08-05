@@ -6,7 +6,7 @@ use App\Models\Paciente;
 use Carbon\Carbon;
 use Tests\TestCase;
 
-class CadastroDoPacienteTest extends TestCase
+class CadastroDePacienteTest extends TestCase
 {
     public function setUp(): void
     {
