@@ -38,14 +38,19 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::get('/pacientes/{pacienteId}/comorbidades', 'Comorbidade\ComorbidadeController@show');
                 Route::post('/pacientes/{pacienteId}/comorbidades', 'Comorbidade\ComorbidadeController@store');
+
+                Route::post('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@store');
+                Route::get('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@index');
             });
         });
 
+        Route::get('/estados', 'EstadoController@index');
+        Route::get('/municipios', 'MunicipioController@index');
+        Route::get('/instituicoes', 'InstituicaoController@index');
+        Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/drogas', 'DrogaController@index');
         Route::post('/drogas', 'DrogaController@store');
-
         Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
-
         Route::get('/doencas', 'DoencaController@index');
         Route::get('/orgaos', 'OrgaoController@index');
         Route::get('/corticosteroides', 'CorticosteroideController@index');

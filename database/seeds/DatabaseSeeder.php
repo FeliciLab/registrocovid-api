@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             TiposSuporteRespiratorio::class,
             SituacaoUsoDrogasSeeder::class,
             DrogasSeeder::class,
+            EscolaridadesSeeder::class,
+            AtividadesProfissionaisSeeder::class,
             TiposDoencaSeeder::class,
             DoencasSeeder::class,
             OrgaosSeeder::class,
