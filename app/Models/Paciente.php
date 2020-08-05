@@ -63,8 +63,6 @@ class Paciente extends Model
         'estadocivil_id',
         'escolaridade_id',
         'atividadeprofissional_id',
-        'created_at',
-        'updated_at',
         'municipio_id'
     ];
 
@@ -74,7 +72,7 @@ class Paciente extends Model
             $query->where('coletador_id', auth()->user()->id);
         });
     }
-  
+
     public function getEstadoAttribute()
     {
         return $this->municipio->estado ?? null;
@@ -101,7 +99,7 @@ class Paciente extends Model
     public function associarTelefonesPaciente(array $telefones)
     {
         foreach ($telefones as $telefone) {
-            if($telefone) {
+            if ($telefone) {
                 Telefone::firstOrCreate([
                     'numero' => $telefone,
                     'paciente_id' => $this->id,
@@ -124,7 +122,8 @@ class Paciente extends Model
             'paciente_id',
             'id',
             'id',
-            'tipo_suporte_id');
+            'tipo_suporte_id'
+        );
     }
 
     public function historico()
@@ -176,5 +175,4 @@ class Paciente extends Model
     {
         return $this->hasMany(Telefone::class);
     }
-
 }
