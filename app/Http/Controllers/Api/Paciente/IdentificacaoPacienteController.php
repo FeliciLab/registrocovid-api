@@ -23,7 +23,6 @@ class IdentificacaoPacienteController extends Controller
     public function index($pacienteId)
     {
         try {
-
             $paciente = Paciente::whereId($pacienteId)->first();
 
             return response()->json($paciente->toArray());
@@ -54,7 +53,7 @@ class IdentificacaoPacienteController extends Controller
             
             $paciente->update($dadosAtualizar);
             
-            $paciente->associarTelefonesPaciente($request->post());
+            $paciente->associarTelefonesPaciente($request->only('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho'));
 
             return response()->json(
                 [

@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Escolaridade extends Model
 {
     protected $table = 'escolaridades';
+
+    protected $hidden = ['created_at', 'updated_at'];
 }

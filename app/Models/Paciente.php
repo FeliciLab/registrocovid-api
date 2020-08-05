@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Telefone;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * Class Paciente
+ * @package App\Models
+ */
 class Paciente extends Model
 {
 
@@ -35,72 +37,47 @@ class Paciente extends Model
     ];
 
 
-    // protected $appends = [
-    //     'instituicao_primeiro_atendimento',
-    //     'instituicao_refererencia',
-    //     'cor',
-    //     'estado_civil',
-    //     'escolaridade',
-    //     'atividade_profissional',
-    //     'data_nascimento',
-    //     'municipio',
-    //     'estado',
-    //     'telefones'
-    // ];
-
-    protected $with = [
-        'instituicao_primeiro_atendimento'
+    protected $appends = [
+        'estado'
     ];
 
+    protected $with = [
+        'instituicaoPrimeiroAtendimento',
+        'cor',
+        'estadoCivil',
+        'escolaridade',
+        'atividadeProfissional',
+        'instituicaoReferencia',
+        'municipio',
+        'estadoNascimento',
+        'tipoSuporteRespiratorios',
+        'telefones'
+    ];
 
-
-    public function getEstadoCivilAttribute()
-    {
-        return $this->estadoCivil()->first()->nome ?? "";
-    }
-
-    public function getEscolaridadeAttribute()
-    {
-        return $this->escolaridade()->first()->nome ?? "";
-    }
-
-    public function getAtividadeProfissionalAttribute()
-    {
-        return $this->atividadeProfissional()->first()->nome ?? "";
-    }
-
-    public function getDataNascimentoAttribute()
-    {
-        return date('d-m-Y', strtotime($this->attributes['data_nascimento'])) ?? "";
-    }
-
-    public function getMunicipioAttribute()
-    {
-        return $this->municipio()->first()->nome ?? "";
-    }
+    protected $hidden = [
+        'instituicao_id',
+        'instituicao_primeiro_atendimento_id',
+        'instituicao_refererencia_id',
+        'coletador_id',
+        'bairro_id',
+        'estado_nascimento_id',
+        'cor_id',
+        'estadocivil_id',
+        'escolaridade_id',
+        'atividadeprofissional_id',
+        'created_at',
+        'updated_at',
+        'municipio_id'
+    ];
 
     public function getEstadoAttribute()
     {
-        $estado = DB::table('pacientes')
-            ->join('municipios', 'pacientes.municipio_id', '=', 'municipios.id')
-            ->join('estados', 'municipios.estado_id', '=', 'estados.id')
-            ->select('estados.nome')
-            ->where('pacientes.id', '=', $this->id)
-            ->first();
-
-        return $estado->nome;
-    }
-
-    public function getTelefonesAttribute()
-    {
-        return Telefone::where([
-            ['paciente_id', '=', $this->id]
-        ])->get();
+        return $this->municipio->estado ?? null;
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
     {
-        $postData = is_array($postData) ? (object) $postData : $postData;
+        $postData = is_array($postData) ? (object)$postData : $postData;
 
         if (!isset($postData->tipos_suporte_respiratorio)) {
             return [];
@@ -116,61 +93,35 @@ class Paciente extends Model
         }
     }
 
-    public function associarTelefonesPaciente($postData)
+    public function associarTelefonesPaciente(array $telefones)
     {
-        
-        $postData = is_array($postData) ? (object) $postData : $postData;
-
-        $telefones = [];
-
-        if(!is_null($postData->telefone_casa)){
-            array_push($telefones, $postData->telefone_casa);
-        }
-
-        if(!is_null($postData->telefone_celular)){
-            array_push($telefones, $postData->telefone_celular);
-        }
-
-        if(!is_null($postData->telefone_trabalho)){
-            array_push($telefones, $postData->telefone_trabalho);
-        }
-
-        if(!is_null($postData->telefone_vizinho)){
-            array_push($telefones, $postData->telefone_vizinho);
-        }
-
         foreach ($telefones as $telefone) {
-            Telefone::firstOrCreate([
-                'numero' => $telefone,
-                'paciente_id' => $this->id,
-                'tipo' => 1
-            ]);
+            if($telefone) {
+                Telefone::firstOrCreate([
+                    'numero' => $telefone,
+                    'paciente_id' => $this->id,
+                    'tipo' => 1
+                ]);
+            }
         }
     }
 
     public function verificaSeExisteIdentificacaoPaciente()
     {
-        try {
-            $paciente = Paciente::where([
-                ['qtd_pessoas_domicilio', '!=', null],
-            ])->exists();
-
-            if($paciente){
-                return true;
-            }
-
-            return false;
-
-        } catch (Exception $e) {
-            return false;
-        }
+        return $this->qtd_pessoas_domicilio != null;
     }
 
-    public function tiposuporterespiratorio()
+    public function tipoSuporteRespiratorios()
     {
-        return $this->hasMany(TipoSuporteRespitarioPaciente::class);
+        return $this->hasManyThrough(
+            TipoSuporteRespiratorio::class,
+            TipoSuporteRespitarioPaciente::class,
+            'paciente_id',
+            'id',
+            'id',
+            'tipo_suporte_id');
     }
-    
+
     public function historico()
     {
         return $this->hasOne(Historico::class);
@@ -203,11 +154,22 @@ class Paciente extends Model
 
     public function municipio()
     {
-        return $this->hasOne(Municipio::class, 'id', 'municipio_id', 'id');
+        return $this->hasOne(Municipio::class, 'id', 'municipio_id');
     }
 
     public function instituicaoReferencia()
     {
         return $this->hasOne(Instituicao::class, 'id', 'instituicao_refererencia_id');
     }
+
+    public function estadoNascimento()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado_nascimento_id');
+    }
+
+    public function telefones()
+    {
+        return $this->hasMany(Telefone::class);
+    }
+
 }

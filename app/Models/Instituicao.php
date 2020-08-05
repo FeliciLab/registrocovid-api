@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Instituicao extends Model
 {
     protected $table = 'instituicoes';
 
-    public function paciente_instituicao_primeiro_atendimento()
+    protected $hidden = ['created_at', 'updated_at', 'estudo'];
+    /**
+     * @return BelongsTo
+     */
+    public function pacienteInstituicaoPrimeiroAtendimento()
     {
-       return $this->belongsTo(Paciente::class, 'id', 'instituicao_primeiro_atendimento_id'); 
+       return $this->belongsTo(Paciente::class);
     }
 }

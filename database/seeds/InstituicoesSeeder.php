@@ -41,5 +41,7 @@ class InstituicoesSeeder extends Seeder
         DB::table('instituicoes')->insert(['nome' => 'UPA - Praia do Futuro', 'estudo' => false]);
         DB::table('instituicoes')->insert(['nome' => 'UPA - São Gonçalo do Amarante', 'estudo' => false]);
         DB::table('instituicoes')->insert(['nome' => 'UPA - Vila Velha', 'estudo' => false]);
+        DB::table('instituicoes')->insert(['nome' => 'Outro hospital', 'estudo' => false]);
+        DB::table('instituicoes')->insert(['nome' => 'Outra unidade de saúde', 'estudo' => false]);
     }
 }

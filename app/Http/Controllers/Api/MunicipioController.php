@@ -21,14 +21,12 @@ class MunicipioController extends Controller
         try{
             $municipio = $this->municipio->all();
 
-            return response()->json([
-                "docs" => $municipio->toArray()
-            ], 200);
+            return response()->json($municipio->toArray(), 200);
         }
         catch(Exception $e){
             return response()->json([
                 'message' => 'Não foi possivel retornar os municipios',
-            ], $e->getCode());
+            ], 500);
         }
     }
 }

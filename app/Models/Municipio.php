@@ -8,10 +8,10 @@ class Municipio extends Model
 {
     protected $table = 'municipios';
 
-    protected $hidden = ['created_at', 'updated_at', 'estado_id'];
+    protected $hidden = ['created_at', 'updated_at', 'estado', 'estado_id'];
 
-    public function estados()
+    public function estado()
     {
-        return $this->belongsTo(Estado::class);
+        return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
 }

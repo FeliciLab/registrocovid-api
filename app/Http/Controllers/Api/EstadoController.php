@@ -21,14 +21,12 @@ class EstadoController extends Controller
         try{
             $estados = $this->estado->all();
 
-            return response()->json([
-                "docs" => $estados->toArray()
-            ], 200);
+            return response()->json($estados->toArray(), 200);
         }
         catch(Exception $e){
             return response()->json([
                 'message' => 'Não foi possivel retornar os estados',
-            ], $e->getCode());
+            ], 500);
         }
 
     }
