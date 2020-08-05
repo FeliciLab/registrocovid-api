@@ -27,15 +27,13 @@ class HistoricoController extends Controller
             $historico = Historico::where('paciente_id', $pacienteId)->first();
 
             if (!$historico) {
-                return response()->json([
-                    'message' => 'Histórico não encontrado.',
-                    'errors' => [
-                        'paciente_id' => ['Não existe histórico para o paciente.']
-                    ]
-                ], 404);
+                return response()->json(
+                    (new ErrorMessage('Histórico não encontrado.'))->toArray(),
+                    404
+                );
             }
 
-            return response()->json($historico->toArray());
+            return response()->json($historico);
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
