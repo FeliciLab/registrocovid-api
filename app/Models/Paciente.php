@@ -31,7 +31,11 @@ class Paciente extends Model
         'qtd_pessoas_domicilio',
         'coletador_id',
         'instituicao_id',
-        'municipio_id'
+        'municipio_id',
+        'outros_sintomas',
+        'data_inicio_sintomas',
+        'caso_confirmado'
+
     ];
 
 

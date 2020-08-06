@@ -17,5 +17,7 @@ $factory->define(Paciente::class, function (Faker $faker) {
         'reinternacao' => false,
         'coletador_id' => 1,
         'instituicao_id' => 1,
+        'caso_confirmado' => false,
+        'data_inicio_sintomas' => Carbon::now()
     ];
 });
