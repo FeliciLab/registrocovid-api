@@ -10,16 +10,40 @@ use Illuminate\Http\JsonResponse;
 class OrgaoController extends Controller
 {
     /**
-     * Listar todas as orgaos
+     * Display a listing of the resource.
+     * 
+     * @OA\Get(
+     *      path="/api/orgaos",
+     *      operationId="getOrgaos",
+     *      tags={"Recursos"},
+     *      summary="Lista orgãos",
+     *      description="Retorna todos orgãos cadastrados no sistema",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "descricao": "Coração" 
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public function index(): JsonResponse
+    public function index()
     {
         try {
-            $orgaos = Orgao::all();
-
-            return response()->json($orgaos);
+            return Orgao::all();
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
