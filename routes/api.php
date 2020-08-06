@@ -41,6 +41,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::post('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@store');
                 Route::get('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@index');
+
+                Route::post('/pacientes/{pacienteId}/exames-rt-pcr', 'ExameRtPcr\ExameRtPcrController@store');
             });
         });
 
