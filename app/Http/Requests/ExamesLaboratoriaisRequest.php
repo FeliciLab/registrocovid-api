@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExameRtPcrRequest extends FormRequest
+class ExamesLaboratoriaisRequest extends FormRequest
 {
 
     /**
@@ -18,7 +18,9 @@ class ExameRtPcrRequest extends FormRequest
             'data_coleta' => 'date',
             'sitio_tipo_id' => 'integer|exists:sitio_tipo,id',
             'data_resultado' => 'date',
-            'rt_pcr_resultado_id' => 'integer|exists:rt_pcr_resultado,id'
+            'rt_pcr_resultado_id' => 'integer|exists:rt_pcr_resultado,id',
+            'resultado' => 'bool',
+            'data_realizacao' => 'date'
         ];
     }
 }
