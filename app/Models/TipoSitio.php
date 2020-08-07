@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AtividadeProfissional extends Model
+class TipoSitio extends Model
 {
-    protected $table = 'atividadesprofissionais';
+    protected $table = 'sitio_tipo';
+
     protected $hidden = ['created_at', 'updated_at'];
 }

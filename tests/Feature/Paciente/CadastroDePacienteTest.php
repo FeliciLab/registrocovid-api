@@ -6,7 +6,7 @@ use App\Models\Paciente;
 use Carbon\Carbon;
 use Tests\TestCase;
 
-class CadastroDoPacienteTest extends TestCase
+class CadastroDePacienteTest extends TestCase
 {
     public function setUp(): void
     {
@@ -91,8 +91,6 @@ class CadastroDoPacienteTest extends TestCase
             'message',
             'paciente' => [
                 'prontuario',
-                'coletador_id',
-                'instituicao_id',
                 'updated_at',
                 'created_at',
                 'id'
