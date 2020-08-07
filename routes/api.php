@@ -34,7 +34,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
           
 
             Route::group(['middleware' => ['paciente']], function ($router) {
-                Route::put('/pacientes/{pacienteId}', 'PacienteController@update');
+                Route::patch('/pacientes/{pacienteId}', 'PacienteController@update');
 
                 Route::get('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@show');
                 Route::post('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@store');
@@ -62,16 +62,13 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/doencas', 'DoencaController@index');
         Route::get('/orgaos', 'OrgaoController@index');
         Route::get('/corticosteroides', 'CorticosteroideController@index');
-<<<<<<< HEAD
         Route::get('/sintomas', 'SintomaController@index');
-=======
         Route::get('/sitios-rt-pcr', 'TipoSitiosController@index');
         Route::get('/pcr-resultado', 'ResultadoPcrController@index');
         Route::get('/cores', 'CorController@index');
         Route::get('/estados-civis', 'EstadoCivilController@index');
         Route::get('/escolaridades', 'EscolaridadeController@index');
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
->>>>>>> 9f54f1615be81ffdb87d93e6d00a4b2d75a95f49
     });
 
 });

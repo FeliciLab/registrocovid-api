@@ -22,7 +22,11 @@ class PacienteUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-          
+           
+            'data_inicio_sintomas' => 'date',
+            'caso_confirmado' => 'bool',
+            'outros_sintomas' => 'array',
+            'outros_sintomas.*' => 'string'
         ];
     }
 }

@@ -35,7 +35,6 @@ class Paciente extends Model
         'outros_sintomas',
         'data_inicio_sintomas',
         'caso_confirmado'
-
     ];
 
 
@@ -68,6 +67,10 @@ class Paciente extends Model
         'escolaridade_id',
         'atividadeprofissional_id',
         'municipio_id'
+    ];
+
+    protected $casts = [
+        'outros_sintomas' => 'array'
     ];
 
     protected static function booted()

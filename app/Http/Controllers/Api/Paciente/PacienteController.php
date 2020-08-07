@@ -48,8 +48,9 @@ class PacienteController extends Controller
     {
         try {
             $paciente = Paciente::find($pacienteId);
-            $paciente->update($request->all());
-            return response()->json(['message'=> 'Paciente atualizado com sucesso.'], 201);
+            $paciente->update($request->only('caso_confirmado', 'outros_sintomas', 'data_inicio_sintomas'));
+            $paciente->refresh();
+            return $paciente->toArray();
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
