@@ -37,6 +37,6 @@ class ExamesLaboratoriaisController extends Controller
 
         return response()->json([
             "message" => "Exames laboratóriais específicos cadastrado com sucesso",
-        ]);
+        ], 201);
     }
 }
