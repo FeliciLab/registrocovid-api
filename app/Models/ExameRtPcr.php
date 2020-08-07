@@ -25,14 +25,12 @@ class ExameRtPcr extends Model
 
     public function criarExameTesteRapido($data, $pacienteId)
     {
-        ExameTesteRapido::create(array_merge(
+        return ExameTesteRapido::create(array_merge(
             $data,
             [
                 'paciente_id' => $pacienteId
             ]
         ));
-
-        return;
     }
 
     public function sitioTipo()

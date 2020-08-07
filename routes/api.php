@@ -44,8 +44,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::group(['middleware' => ['verifica.coletador']], function () {
                     Route::post('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@store');
-                    Route::get('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@index');
                 });
+
+                Route::get('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@index');
             });
         });
 
