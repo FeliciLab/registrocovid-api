@@ -57,7 +57,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/doencas', 'DoencaController@index');
         Route::get('/orgaos', 'OrgaoController@index');
         Route::get('/corticosteroides', 'CorticosteroideController@index');
-        Route::get('/sitios', 'TipoSitiosController@index');
+        Route::get('/sitios-rt-pcr', 'TipoSitiosController@index');
         Route::get('/pcr-resultado', 'ResultadoPcrController@index');
     });
 });
