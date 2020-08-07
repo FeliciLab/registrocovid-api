@@ -5,19 +5,24 @@ namespace App\Http\Controllers\Api\Paciente\ExamesLaboratoriais;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExamesLaboratoriaisRequest;
 use App\Models\ExameRtPcr;
+use App\Models\ExameTesteRapido;
 use Illuminate\Http\Request;
 
 class ExamesLaboratoriaisController extends Controller
 {
     public function index($pacienteId)
     {
-        $exames =  ExameRtPcr::where('paciente_id', $pacienteId)->get();
+        $examesPcr =  ExameRtPcr::where('paciente_id', $pacienteId)->get();
+        $examesTesteRapido = ExameTesteRapido::where('paciente_id', $pacienteId)->get();
 
-        if(!count($exames)){
+        if(!count($examesPcr)){
             return response()->json(['message' => 'Paciente não possui exames laboratóriais cadastrada'], 404);
         }
 
-        return $exames->toArray();
+        return response()->json([
+            'exames_pcr' => $examesPcr->toArray(),
+            'exames_teste_rapido' => $examesTesteRapido->toArray()
+        ]);
     }
     public function store(ExamesLaboratoriaisRequest $request, $pacienteId)
     {
