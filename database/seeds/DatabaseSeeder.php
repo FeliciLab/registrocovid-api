@@ -30,6 +30,5 @@ class DatabaseSeeder extends Seeder
             OrgaosSeeder::class,
             CorticosteroideSeeder::class
         ]);
-
     }
 }
