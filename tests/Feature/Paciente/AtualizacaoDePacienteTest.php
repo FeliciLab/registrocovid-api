@@ -15,7 +15,6 @@ class AtualizacaoDePacienteTest extends TestCase
         $this->authenticated();
     }
 
-
     public function testAtualizarPacienteComSucesso()
     {
         
@@ -46,6 +45,28 @@ class AtualizacaoDePacienteTest extends TestCase
         
     }
 
+    public function testAtualizarSintomasDoPacienteComSucesso()
+    {
+        
+        $paciente = factory(Paciente::class)->create([
+            'coletador_id' => $this->currentUser->id,
+        ]);
+
+        $paciente->sintomas()->sync([1, 2]);
+
+        $response = $this->patchJson("api/pacientes/$paciente->id", []);
+       
+        $response->assertJsonFragment([
+          'id' => 1,
+          'nome' => 'Coriza'
+        ]);
+
+        $response->assertJsonFragment([
+          'id' => 2,
+          'nome' => 'Tosse (seca ou produtiva)'
+        ]);
+    }
+
   /**
    * @dataProvider possiveisValoresPacientes
   */
@@ -74,13 +95,19 @@ class AtualizacaoDePacienteTest extends TestCase
       [['data_inicio_sintomas'=> 31], ['data_inicio_sintomas' => ['O campo data inicio sintomas não é uma data válida.']]],
     
       // Testa se caso confirmado é booleano
-      [['caso_confirmado'=> "teste"], ['caso_confirmado' => ['O campo caso confirmado deve ser verdadeiro ou falso.']]],
+      [['caso_confirmado'=> 'teste'], ['caso_confirmado' => ['O campo caso confirmado deve ser verdadeiro ou falso.']]],
 
-      // Testa se outros sintormas é array
+      // Testa se outros sintomas é array
       [['outros_sintomas'=> 1], ['outros_sintomas' => ['O campo outros sintomas deve ser uma matriz.']]],
 
-      // Testa se outros sintormas é array de string
+      // Testa se outros sintomas é array de string
       [['outros_sintomas'=> [1]], ['outros_sintomas.0' => ['O campo outros_sintomas.0 deve ser uma string.']]],
+
+      // Testa se sintomas é array
+      [['sintomas'=> 1], ['sintomas' => ['O campo sintomas deve ser uma matriz.']]],
+
+      // Testa se sintomas é array de int
+      [['sintomas'=> ['teste']], ['sintomas.0' => ['O campo sintomas.0 deve ser um número inteiro.']]],
     ];
   }
 }

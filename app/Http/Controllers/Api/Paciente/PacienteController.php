@@ -48,8 +48,16 @@ class PacienteController extends Controller
     {
         try {
             $paciente = Paciente::find($pacienteId);
+
             $paciente->update($request->only('caso_confirmado', 'outros_sintomas', 'data_inicio_sintomas'));
+
             $paciente->refresh();
+
+            if ($request->has('sintomas')) {
+                $paciente->sintomas()->sync($request->get('sintomas'));
+                $paciente->refresh();
+            }
+
             return $paciente->toArray();
         } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());

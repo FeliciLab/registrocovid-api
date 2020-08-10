@@ -26,7 +26,9 @@ class PacienteUpdateRequest extends FormRequest
             'data_inicio_sintomas' => 'date',
             'caso_confirmado' => 'bool',
             'outros_sintomas' => 'array',
-            'outros_sintomas.*' => 'string'
+            'outros_sintomas.*' => 'string',
+            'sintomas' => 'array',
+            'sintomas.*' => 'int|exists:sintomas,id',
         ];
     }
 }

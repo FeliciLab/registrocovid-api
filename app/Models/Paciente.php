@@ -52,7 +52,8 @@ class Paciente extends Model
         'municipio',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
-        'telefones'
+        'telefones',
+        'sintomas'
     ];
 
     protected $hidden = [
@@ -181,5 +182,10 @@ class Paciente extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class);
+    }
+
+    public function sintomas()
+    {
+        return $this->belongsToMany(Sintoma::class, 'pacientessintomas');
     }
 }
