@@ -33,6 +33,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
             Route::post('/pacientes', 'PacienteController@store');
 
             Route::group(['middleware' => ['paciente']], function ($router) {
+                Route::get('/pacientes/{pacienteId}', 'PacienteController@show');
+
                 Route::get('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@show');
                 Route::post('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@store');
 
@@ -67,5 +69,4 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/escolaridades', 'EscolaridadeController@index');
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
     });
-
 });
