@@ -33,10 +33,12 @@ class ExamesLaboratoriaisController extends Controller
             ]
         ));
 
-        $exameRtPcr->criarExameTesteRapido($request->only(['data_realizacao', 'resultado']), $pacienteId);
+        $exameTestRapido = $exameRtPcr->criarExameTesteRapido($request->only(['data_realizacao', 'resultado']), $pacienteId);
 
         return response()->json([
             "message" => "Exames laboratóriais específicos cadastrado com sucesso",
+            "exame_rt_pcr" => $exameRtPcr->toArray(),
+            "exame_teste_rapido" => $exameTestRapido->toArray()
         ], 201);
     }
 }
