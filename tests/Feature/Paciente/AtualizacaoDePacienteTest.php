@@ -70,11 +70,17 @@ class AtualizacaoDePacienteTest extends TestCase
   public function possiveisValoresPacientes()
   {
     return [
-      // Testa se é um array
+      // Testa se data é string
       [['data_inicio_sintomas'=> 31], ['data_inicio_sintomas' => ['O campo data inicio sintomas não é uma data válida.']]],
     
-      // Testa se não é inteiro
-      //[['a'], ['drogas.0' => ['O campo drogas.0 deve ser um número inteiro.']]],     
+      // Testa se caso confirmado é booleano
+      [['caso_confirmado'=> "teste"], ['caso_confirmado' => ['O campo caso confirmado deve ser verdadeiro ou falso.']]],
+
+      // Testa se outros sintormas é array
+      [['outros_sintomas'=> 1], ['outros_sintomas' => ['O campo outros sintomas deve ser uma matriz.']]],
+
+      // Testa se outros sintormas é array de string
+      [['outros_sintomas'=> [1]], ['outros_sintomas.0' => ['O campo outros_sintomas.0 deve ser uma string.']]],
     ];
   }
 }
