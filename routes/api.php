@@ -52,6 +52,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
         Route::get('/estados', 'EstadoController@index');
         Route::get('/municipios', 'MunicipioController@index');
+        Route::get('/bairros', 'BairroController@index');
         Route::get('/instituicoes', 'InstituicaoController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/drogas', 'DrogaController@index');
@@ -67,5 +68,4 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/escolaridades', 'EscolaridadeController@index');
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
     });
-
 });
