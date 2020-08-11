@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             TiposDoencaSeeder::class,
             DoencasSeeder::class,
             OrgaosSeeder::class,
-            CorticosteroidesSeeder::class
+            CorticosteroidesSeeder::class,
+            SintomasSeeder::class            
         ]);
 
     }

@@ -31,7 +31,10 @@ class Paciente extends Model
         'qtd_pessoas_domicilio',
         'coletador_id',
         'instituicao_id',
-        'municipio_id'
+        'municipio_id',
+        'outros_sintomas',
+        'data_inicio_sintomas',
+        'caso_confirmado'
     ];
 
 
@@ -49,7 +52,8 @@ class Paciente extends Model
         'municipio',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
-        'telefones'
+        'telefones',
+        'sintomas'
     ];
 
     protected $hidden = [
@@ -64,6 +68,10 @@ class Paciente extends Model
         'escolaridade_id',
         'atividadeprofissional_id',
         'municipio_id'
+    ];
+
+    protected $casts = [
+        'outros_sintomas' => 'array'
     ];
 
     protected static function booted()
@@ -174,5 +182,10 @@ class Paciente extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class);
+    }
+
+    public function sintomas()
+    {
+        return $this->belongsToMany(Sintoma::class, 'pacientes_sintomas');
     }
 }
