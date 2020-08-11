@@ -26,10 +26,10 @@ class IdentificacaoPacienteRequest extends FormRequest
             'data_nascimento' => 'date',
             'estado_nascimento_id' => 'integer|exists:estados,id',
             'escolaridade_id' => 'integer|exists:escolaridades,id',
-            'atividadeprofissional_id' => 'integer|exists:atividadesprofissionais,id',
+            'atividadeprofissional_id' => 'integer|exists:atividades_profissionais,id',
             'qtd_pessoas_domicilio' => 'integer',
             'cor_id' => 'exists:cores,id',
-            'estadocivil_id' => 'exists:estadocivis,id'
+            'estadocivil_id' => 'exists:estados_civis,id'
         ];
     }
 }
