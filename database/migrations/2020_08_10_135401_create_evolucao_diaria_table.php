@@ -13,7 +13,7 @@ class CreateEvolucaoDiariaTable extends Migration
      */
     public function up()
     {
-        Schema::create('evolucao_diaria', function (Blueprint $table) {
+        Schema::create('evolucoes_diarias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->date('data_evolucao');
@@ -38,6 +38,6 @@ class CreateEvolucaoDiariaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evolucao_diaria');
+        Schema::dropIfExists('evolucoes_diarias');
     }
 }

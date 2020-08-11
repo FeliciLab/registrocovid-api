@@ -20,6 +20,6 @@ class EvolucaoDiaria extends Model
         'oximetria',
         'escala_glasgow',
     ];
-    
-    protected $table = 'evolucao_diaria'; 
+
+    protected $table = 'evolucoes_diarias'; 
 }
