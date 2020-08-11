@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Paciente\Paciente;
+namespace Tests\Feature\Paciente;
 
 use App\Models\Paciente;
 use Tests\TestCase;
