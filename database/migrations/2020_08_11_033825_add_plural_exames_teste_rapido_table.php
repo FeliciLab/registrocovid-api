@@ -23,9 +23,6 @@ class AddPluralExamesTesteRapidoTable extends Migration
      */
     public function down()
     {
-        Schema::table('exames_testes_rapidos', function (Blueprint $table) {
-            $table->dropForeign(['paciente_id']);
-        });
         Schema::dropIfExists('exames_testes_rapidos');
     }
 }

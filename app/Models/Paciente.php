@@ -25,9 +25,9 @@ class Paciente extends Model
         'data_nascimento',
         'estado_nascimento_id',
         'cor_id',
-        'estadocivil_id',
+        'estado_civil_id',
         'escolaridade_id',
-        'atividadeprofissional_id',
+        'atividade_profissional_id',
         'qtd_pessoas_domicilio',
         'coletador_id',
         'instituicao_id',
@@ -143,7 +143,7 @@ class Paciente extends Model
 
     public function estadoCivil()
     {
-        return $this->hasOne(EstadoCivil::class, 'id', 'estadocivil_id');
+        return $this->hasOne(EstadoCivil::class, 'id', 'estado_civil_id');
     }
 
     public function escolaridade()
@@ -153,7 +153,7 @@ class Paciente extends Model
 
     public function atividadeProfissional()
     {
-        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividadeprofissional_id');
+        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividade_profissional_id');
     }
 
     public function municipio()

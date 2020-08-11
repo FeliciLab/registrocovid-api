@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPluralRtPcrResultadoTable extends Migration
+class AddSnakeCasePacientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class AddPluralRtPcrResultadoTable extends Migration
      */
     public function up()
     {
-        Schema::rename('rt_pcr_resultado', 'rt_pcr_resultados');
+        Schema::table('pacientes', function (Blueprint $table) {
+            $table->renameColumn('estadocivil_id', 'estado_civil_id');
+            $table->renameColumn('atividadeprofissional_id', 'atividade_profissional_id');
+        });
     }
 
     /**
@@ -23,9 +26,6 @@ class AddPluralRtPcrResultadoTable extends Migration
      */
     public function down()
     {
-        Schema::table('exames_rt_pcr', function (Blueprint $table) {
-            $table->dropForeign(['rt_pcr_resultado_id']);
-        });
-        Schema::dropIfExists('rt_pcr_resultados');
+        //
     }
 }

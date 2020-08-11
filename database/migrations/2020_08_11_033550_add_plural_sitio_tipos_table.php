@@ -23,6 +23,9 @@ class AddPluralSitioTiposTable extends Migration
      */
     public function down()
     {
+        Schema::table('exames_rt_pcr', function (Blueprint $table) {
+            $table->dropForeign(['sitio_tipo_id']);
+        });
         Schema::dropIfExists('sitios_tipos');
     }
 }
