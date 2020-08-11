@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Paciente;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\EvolucaoDiariaRequest;
 use App\Models\EvolucaoDiaria;
 use App\Api\ErrorMessage;
 
@@ -16,7 +16,7 @@ class EvolucaoDiariaController extends Controller
          return response()->json($evolucoesDiarias);
     }
 
-    public function store($pacienteId, Request $request)
+    public function store($pacienteId, EvolucaoDiariaRequest $request)
     {
         $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
         

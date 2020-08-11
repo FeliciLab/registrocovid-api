@@ -55,72 +55,35 @@ class CriarEvolucaoDiariaTest extends TestCase
     ]);
   }
 
-  // /**
-  //  * @dataProvider possiveisValoresCorticosteroides
-  // */
-  // public function testPossiveisValoresCamposCorticosteroide($corticosteroides, $erro)
-  // {
+  /**
+   * @dataProvider possiveisValoresEvolucaoDiaria
+  */
+  public function testPossiveisValoresCamposEvolucaoDiaria($data, $erro)
+  {
 
-  //   $paciente = factory(Paciente::class)->create([
-  //     'coletador_id' => $this->currentUser->id,
-  //   ]);
+    $paciente = factory(Paciente::class)->create([
+      'coletador_id' => $this->currentUser->id,
+    ]);
 
-  //   $data = [
-  //     'corticosteroides' => $corticosteroides
-  //   ];
+    $response = $this->postJson("api/pacientes/{$paciente->id}/evolucoes-diarias", $data);
+    $response->assertStatus(422);
+    $response->assertJsonFragment([
+      'message' => 'The given data was invalid.',
+      'errors' => $erro
+    ]);
+  }
 
-  //   $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
-  //   $response->assertStatus(422);
-  //   $response->assertJsonFragment([
-  //     'message' => 'The given data was invalid.',
-  //     'errors' => $erro
-  //   ]);
-  // }
+  public function possiveisValoresEvolucaoDiaria()
+  {
+    return [
+      // Testa se o valor está entre 3 e 15
+      [[
+        'escala_glasgow' => 2,
+        'data_evolucao' => '2020-04-14'
+      ], ['escala_glasgow' => ['O campo escala glasgow deve ser entre 3 e 15.']]],
 
-  // public function possiveisValoresCorticosteroides()
-  // {
-  //   return [
-  //     // Testa se é um array
-  //     [0, ['corticosteroides' => ['O campo corticosteroides deve ser uma matriz.']]],
-    
-  //     // Testa se não é inteiro
-  //     [['a'], ['corticosteroides.0' => ['O campo corticosteroides.0 deve ser um número inteiro.']]],
-
-  //     // Testa se existe no banco
-  //     [[0], ['corticosteroides.0' => ['O campo corticosteroides.0 selecionado é inválido.']]]
-  //   ];
-  // }
-  // /**
-  //  * @dataProvider possiveisValoresJson
-  // */
-  // public function testPossiveisValoresJson($data, $erro)
-  // {
-
-  //   $paciente = factory(Paciente::class)->create([
-  //     'coletador_id' => $this->currentUser->id,
-  //   ]);
-
-  //   $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades", $data);
-  //   $response->assertStatus(422);
-  //   $response->assertJsonFragment([
-  //     'errors' => $erro
-  //   ]);
-  // }
-
-  // public function possiveisValoresJson()
-  // {
-  //   return [
-  //     // Testa se é um array
-  //     [['outras_condicoes' => 0], ['outras_condicoes' => ['O campo outras condicoes deve ser uma matriz.']]],
-    
-  //     // Testa se não é string
-  //     [['outras_condicoes' => [0]], ['outras_condicoes.0' => ['O campo outras_condicoes.0 deve ser uma string.']]],
-
-  //     // Testa se é um array
-  //     [['medicacoes' => 0], ['medicacoes' => ['O campo medicacoes deve ser uma matriz.']]],
-    
-  //     // Testa se não é string
-  //     [['medicacoes' => [0]], ['medicacoes.0' => ['O campo medicacoes.0 deve ser uma string.']]],
-  //   ];
-  // }
+      // Testa se existe a data de evolucao
+      [[], ['data_evolucao' => ['O campo data evolucao é obrigatório.']]],
+    ];
+  }
 }
