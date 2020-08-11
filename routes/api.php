@@ -50,7 +50,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 });
 
                 Route::get('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@index');
-                Route::get('/pacientes/{pacienteId}/evolucao-diaria', 'EvolucaoDiariaController@index');
+
+                Route::get('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@index');
             });
         });
 

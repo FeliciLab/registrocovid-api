@@ -9,17 +9,10 @@ use App\Api\ErrorMessage;
 
 class EvolucaoDiariaController extends Controller
 {
-    /**
-     * Listar todas as evoluções diárias
-     *
-     */
     public function index($pacienteId)
     {
-      
-        $comorbidade = EvolucaoDiaria::where('paciente_id', $pacienteId)->first();
-         //return EvolucaoDiaria::all()->toArray(); //('paciente_id', $pacienteId))
+        $comorbidade = EvolucaoDiaria::where('paciente_id', $pacienteId)->get();
 
          return response()->json($comorbidade);
-        
     }
 }
