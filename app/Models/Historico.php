@@ -10,8 +10,6 @@ class Historico extends Model
         'drogas'
     ];
 
-    protected $table = 'historicos';
-
     protected $fillable = [
         'paciente_id', 'situacao_uso_drogas_id', 'tabagismo', 'etilismo'
     ];
