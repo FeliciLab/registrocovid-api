@@ -17,8 +17,8 @@ class ExameRtPcr extends Model
     ];
 
     protected $with = [
-        'sitioTipo',
-        'rtPcrResultado'
+        'sitiosTipos',
+        'rtPcrResultados'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'sitio_tipo_id', 'rt_pcr_resultado_id', 'paciente_id'];
@@ -33,12 +33,12 @@ class ExameRtPcr extends Model
         ));
     }
 
-    public function sitioTipo()
+    public function sitiosTipos()
     {
         return $this->hasOne(TipoSitio::class, 'id', 'sitio_tipo_id');
     }
 
-    public function rtPcrResultado()
+    public function rtPcrResultados()
     {
         return $this->hasOne(RtPcrResultado::class, 'id', 'rt_pcr_resultado_id');
     }

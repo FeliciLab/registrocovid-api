@@ -4,26 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Municipio;
+use App\Repositories\MunicipioRepository;
 use Illuminate\Http\Request;
 use Exception;
 
 class MunicipioController extends Controller
 {
-    private $municipio;
-
-    public function __construct(Municipio $municipio)
+    public function index(Request $request, Municipio $municipio)
     {
-        $this->municipio = $municipio;
-    }
+        try {
+            $repository = new MunicipioRepository($municipio, $request);
+            $municipios = $repository->getResult();
 
-    public function index()
-    {
-        try{
-            $municipio = $this->municipio->all();
-
-            return response()->json($municipio->toArray(), 200);
-        }
-        catch(Exception $e){
+            return response()->json($municipios->toArray(), 200);
+        } catch (Exception $e) {
             return response()->json([
                 'message' => 'Não foi possivel retornar os municipios',
             ], 500);
