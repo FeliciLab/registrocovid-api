@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TiposDoencaSeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class TiposDoencaSeeder extends Seeder
         DB::table('tipos_doencas')->insert(['id' => 7,'descricao' => 'Doença renal crônica']);
         DB::table('tipos_doencas')->insert(['id' => 8,'descricao' => 'Doença hepática crônica']);
         DB::table('tipos_doencas')->insert(['id' => 9,'descricao' => 'Doença neurológica']);
+        DB::table('tipos_doencas')->insert(['id' => 10,'descricao' => 'Doença psiquiátrica']);
     }
 }
