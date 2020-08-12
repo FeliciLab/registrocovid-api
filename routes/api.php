@@ -31,9 +31,10 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::namespace('Paciente')->group(function () {
             Route::get('/pacientes', 'PacienteController@index');
             Route::post('/pacientes', 'PacienteController@store');
-          
+
 
             Route::group(['middleware' => ['paciente']], function ($router) {
+                Route::get('/pacientes/{pacienteId}', 'PacienteController@show');
                 Route::patch('/pacientes/{pacienteId}', 'PacienteController@update');
 
                 Route::get('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@show');
