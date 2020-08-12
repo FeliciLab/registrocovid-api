@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:7000/api/",
+            "url": "http://localhost:7000/",
             "description": "Registro Covid API"
         }
     ],
@@ -539,6 +539,22 @@
                         "description": "Unauthorized"
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Password Based": {
+                "type": "oauth2",
+                "flows": {
+                    "clientCredentials": {
+                        "authorizationUrl": "/api/auth/login",
+                        "tokenUrl": "/api/auth/login",
+                        "refreshUrl": "/refresh",
+                        "scopes": {}
+                    }
+                },
+                "scheme": "https"
             }
         }
     },

@@ -22,14 +22,26 @@ class Controller extends BaseController
      *          name="Apache 2.0",
      *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
      *      )
-     * )
+     * ),
      *
      * @OA\Server(
      *      url=L5_SWAGGER_CONST_HOST,
      *      description="Registro Covid API"
-     * )
-
-     *
+     * ),
+     * 
+     * @OA\SecurityScheme(
+     *     type="oauth2",
+     *     scheme="https",
+     *     securityScheme="Password Based",
+     *     @OA\Flow(
+     *         flow="clientCredentials",
+     *         authorizationUrl="/api/auth/login",
+     *         tokenUrl="/api/auth/login",
+     *         refreshUrl="/refresh",
+     *         scopes={}
+     *     )
+     * ),
+     * 
      * @OA\Tag(
      *     name="Recursos",
      *     description="API Endpoints de recursos do projeto"
