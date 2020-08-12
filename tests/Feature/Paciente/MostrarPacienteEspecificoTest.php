@@ -5,6 +5,7 @@ namespace Tests\Feature\Paciente;
 use App\Models\Paciente;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class MostrarPacienteEspecificoTest extends TestCase
@@ -36,12 +37,16 @@ class MostrarPacienteEspecificoTest extends TestCase
         ]);
 
         $response = $this->getJson("/api/pacientes/{$paciente->id}");
-        $response->assertNotFound();
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
         $response->assertJsonStructure([
-            'message'
+            'message',
+            'errors' => [
+                'paciente_id'
+            ]
         ]);
         $response->assertJsonFragment([
-            'message' => 'Paciente não encontrado.'
+            'message' => 'Permissões insuficientes.',
+            'errors' => ['paciente_id' => 'Esse paciente não pertence a você.']
         ]);
     }
 
