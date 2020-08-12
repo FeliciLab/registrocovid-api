@@ -12,10 +12,6 @@ class AtividadesProfissionaisSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('atividadesprofissionais')->insert([
-        //     'id'   => 1,
-        //     'nome' => 'Sem Nenhuma Atividade',
-        // ]);
         DB::table('atividades_profissionais')->insert(['id' => 1,'nome' => 'Sem Nenhuma Atividade']);
         DB::table('atividades_profissionais')->insert(['id' => 2,'nome' => 'Estudante']);
         DB::table('atividades_profissionais')->insert(['id' => 3,'nome' => 'Funcionário Público']);
@@ -29,7 +25,6 @@ class AtividadesProfissionaisSeeder extends Seeder
         DB::table('atividades_profissionais')->insert(['id' => 11,'nome' => 'Voluntário(a)']);
         DB::table('atividades_profissionais')->insert(['id' => 12,'nome' => 'Licenciado por outros motivos']);
         DB::table('atividades_profissionais')->insert(['id' => 13,'nome' => 'Profissional de Saúde']);
-
-        
+        DB::table('atividades_profissionais')->insert(['id' => 14, 'nome' => 'Outra']);
     }
 }
