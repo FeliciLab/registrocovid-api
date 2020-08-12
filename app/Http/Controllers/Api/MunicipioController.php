@@ -18,7 +18,6 @@ class MunicipioController extends Controller
 
             return response()->json($municipios->toArray(), 200);
         } catch (Exception $e) {
-            dd($e);
             return response()->json([
                 'message' => 'Não foi possivel retornar os municipios',
             ], 500);

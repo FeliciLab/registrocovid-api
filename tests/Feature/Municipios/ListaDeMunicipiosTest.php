@@ -28,7 +28,8 @@ class ListaDeMunicipiosTest extends TestCase
 
     public function testRetornoMunicipiosEstadoEspecifico()
     {
-        $response = $this->getJson('api/municipios?conditions=estado_id%3A%3D%3A4');
+        $data = http_build_query(['conditions' => 'estado_id:=:4']);
+        $response = $this->getJson("api/municipios?{$data}");
         $response->assertOk();
         $response->assertJsonCount(15);
     }

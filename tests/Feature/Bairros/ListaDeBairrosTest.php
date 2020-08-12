@@ -26,7 +26,8 @@ class ListaDeBairrosTest extends TestCase
 
     public function testRetornoBairrosDeMunicipioEspecifico()
     {
-        $response = $this->getJson('api/bairros?conditions=municipio_id%3A%3D%3A16');
+        $data = http_build_query(['conditions' => 'municipio_id:=:16']);
+        $response = $this->getJson("api/bairros?{$data}");
         $response->assertOk();
         $response->assertJsonCount(47);
     }
