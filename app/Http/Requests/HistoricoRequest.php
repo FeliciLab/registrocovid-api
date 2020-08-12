@@ -24,7 +24,7 @@ class HistoricoRequest extends FormRequest
     public function rules()
     {
         return [
-            'situacao_uso_drogas_id' => 'int|exists:situacao_uso_drogas,id',
+            'situacao_uso_drogas_id' => 'int|exists:situacoes_uso_drogas,id',
             'tabagismo' => 'boolean',
             'etilismo' => 'boolean',
             'drogas' => 'array',

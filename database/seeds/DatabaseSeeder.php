@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            RtPcrResultadoSeeder::class,
+            SitioTipoSeeder::class,
             CoresSeeder::class,
             EstadoCivisSeeder::class,
             EstadosSeeder::class,
@@ -27,6 +29,7 @@ class DatabaseSeeder extends Seeder
             DoencasSeeder::class,
             OrgaosSeeder::class,
             CorticosteroidesSeeder::class,
+            SintomasSeeder::class            
         ]);
 
     }

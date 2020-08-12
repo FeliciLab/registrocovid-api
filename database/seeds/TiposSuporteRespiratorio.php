@@ -12,17 +12,17 @@ class TiposSuporteRespiratorio extends Seeder
      */
     public function run()
     {
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 1,
             'nome' => 'Máscara de reservatório',
         ]);
 
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 2,
             'nome' => 'Catéter 02',
         ]);
 
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 3,
             'nome' => 'Ventilação invasiva',
         ]);

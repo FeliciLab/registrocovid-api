@@ -25,13 +25,16 @@ class Paciente extends Model
         'data_nascimento',
         'estado_nascimento_id',
         'cor_id',
-        'estadocivil_id',
+        'estado_civil_id',
         'escolaridade_id',
-        'atividadeprofissional_id',
+        'atividade_profissional_id',
         'qtd_pessoas_domicilio',
         'coletador_id',
         'instituicao_id',
-        'municipio_id'
+        'municipio_id',
+        'outros_sintomas',
+        'data_inicio_sintomas',
+        'caso_confirmado'
     ];
 
 
@@ -49,7 +52,8 @@ class Paciente extends Model
         'municipio',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
-        'telefones'
+        'telefones',
+        'sintomas'
     ];
 
     protected $hidden = [
@@ -64,6 +68,10 @@ class Paciente extends Model
         'escolaridade_id',
         'atividadeprofissional_id',
         'municipio_id'
+    ];
+
+    protected $casts = [
+        'outros_sintomas' => 'array'
     ];
 
     protected static function booted()
@@ -143,7 +151,7 @@ class Paciente extends Model
 
     public function estadoCivil()
     {
-        return $this->hasOne(EstadoCivil::class, 'id', 'estadocivil_id');
+        return $this->hasOne(EstadoCivil::class, 'id', 'estado_civil_id');
     }
 
     public function escolaridade()
@@ -153,7 +161,7 @@ class Paciente extends Model
 
     public function atividadeProfissional()
     {
-        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividadeprofissional_id');
+        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividade_profissional_id');
     }
 
     public function municipio()
@@ -174,5 +182,10 @@ class Paciente extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class);
+    }
+
+    public function sintomas()
+    {
+        return $this->belongsToMany(Sintoma::class, 'pacientes_sintomas');
     }
 }
