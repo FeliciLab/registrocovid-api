@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\Paciente;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PacienteStoreRequest;
+use App\Http\Requests\PacienteUpdateRequest;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Exception;
+use App\Api\ErrorMessage;
 use App\Repositories\PacienteRepository;
 
 class PacienteController extends Controller
@@ -52,6 +54,27 @@ class PacienteController extends Controller
             );
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function update(int $pacienteId, PacienteUpdateRequest $request)
+    {
+        try {
+            $paciente = Paciente::find($pacienteId);
+
+            $paciente->update($request->only('caso_confirmado', 'outros_sintomas', 'data_inicio_sintomas'));
+
+            $paciente->refresh();
+
+            if ($request->has('sintomas')) {
+                $paciente->sintomas()->sync($request->get('sintomas'));
+                $paciente->refresh();
+            }
+
+            return $paciente->toArray();
+        } catch (\Exception $e) {
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), 500);
         }
     }
 }

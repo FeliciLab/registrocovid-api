@@ -12,42 +12,42 @@ class EstadoCivisSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 1,
             'nome' => 'CASADO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 2,
             'nome' => 'DIVORCIADO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 3,
             'nome' => 'NAO INFORMADO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 4,
             'nome' => 'SEPARADO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 5,
             'nome' => 'SOLTEIRO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 6,
             'nome' => 'SOLTEIRO  EMANCIPADO',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 7,
             'nome' => 'UNIAO ESTAVEL',
         ]);
 
-        DB::table('estadocivis')->insert([
+        DB::table('estados_civis')->insert([
             'id'   => 8,
             'nome' => 'VIUVO',
         ]);

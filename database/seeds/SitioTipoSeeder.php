@@ -12,10 +12,10 @@ class SitioTipoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sitio_tipo')->insert(['id' => 1, 'descricao' => 'Swab de nasofaringe/orofaringe']);
-        DB::table('sitio_tipo')->insert(['id' => 2, 'descricao' => 'Escarro']);
-        DB::table('sitio_tipo')->insert(['id' => 3, 'descricao' => 'Secreção traqueal']);
-        DB::table('sitio_tipo')->insert(['id' => 4, 'descricao' => 'Lavado broncoalveolar']);
-        DB::table('sitio_tipo')->insert(['id' => 5, 'descricao' => 'Outros']);
+        DB::table('sitios_tipos')->insert(['id' => 1, 'descricao' => 'Swab de nasofaringe/orofaringe']);
+        DB::table('sitios_tipos')->insert(['id' => 2, 'descricao' => 'Escarro']);
+        DB::table('sitios_tipos')->insert(['id' => 3, 'descricao' => 'Secreção traqueal']);
+        DB::table('sitios_tipos')->insert(['id' => 4, 'descricao' => 'Lavado broncoalveolar']);
+        DB::table('sitios_tipos')->insert(['id' => 5, 'descricao' => 'Outros']);
     }
 }

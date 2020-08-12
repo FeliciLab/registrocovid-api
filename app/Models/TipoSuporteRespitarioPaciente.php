@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoSuporteRespitarioPaciente extends Model
 {
-    protected $table = 'tipo_suporterespiratorio_paciente';
+    protected $table = 'tipos_suportes_respiratorios_pacientes';
 
     protected $hidden = ['created_at', 'updated_at', 'paciente_id'];
     
