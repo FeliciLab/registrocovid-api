@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 
 class SituacaoUsoDrogasController extends Controller
 {
-
     private $situacao;
 
     public function __construct(SituacaoUsoDrogas $situacao)
@@ -24,7 +23,6 @@ class SituacaoUsoDrogasController extends Controller
     public function index()
     {
         try {
-
             $situacoes = $this->situacao->all();
 
             return response()->json($situacoes);

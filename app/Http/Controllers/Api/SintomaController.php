@@ -10,11 +10,11 @@ use Illuminate\Http\JsonResponse;
 
 class SintomaController extends Controller
 {
-     /**
-     * Listar todas os sintomas
-     *
-     * @return JsonResponse
-     */
+    /**
+    * Listar todas os sintomas
+    *
+    * @return JsonResponse
+    */
     public function index(): JsonResponse
     {
         try {

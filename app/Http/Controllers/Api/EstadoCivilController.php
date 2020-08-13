@@ -9,18 +9,16 @@ use App\Api\ErrorMessage;
 
 class EstadoCivilController extends Controller
 {
-     /** * Listar todos os estados civis
-     * @return JsonResponse  
-     */
+    /** * Listar todos os estados civis
+    * @return JsonResponse
+    */
     public function index()
     {
         try {
-
-          $estadosCivis = EstadoCivil::all();
+            $estadosCivis = EstadoCivil::all();
         
-          return response()->json($estadosCivis);
-
-        } catch(\Exception $e) {
+            return response()->json($estadosCivis);
+        } catch (\Exception $e) {
             $message = new ErrorMessage($e->getMessage());
             return response()->json($message->getMessage(), 500);
         }

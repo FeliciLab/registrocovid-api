@@ -21,8 +21,8 @@ class ExameLaboratorial
                 ['id', '=', $request->route('pacienteId')]
             ])->exists();
 
-        if(!$coletador) {
-            return response()->json([ 'message' => 'Coletador inválido' ],401);
+        if (!$coletador) {
+            return response()->json([ 'message' => 'Coletador inválido' ], 401);
         }
 
         return $next($request);

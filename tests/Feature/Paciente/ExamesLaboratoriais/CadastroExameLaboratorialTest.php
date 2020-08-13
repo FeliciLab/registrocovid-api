@@ -93,5 +93,4 @@ class CadastroExameLaboratorialTest extends TestCase
             ],
         ];
     }
-
 }

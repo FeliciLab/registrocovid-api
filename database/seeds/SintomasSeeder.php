@@ -30,6 +30,5 @@ class SintomasSeeder extends Seeder
         DB::table('sintomas')->insert(['id' => 16,'nome' => 'Anosmia']);
         DB::table('sintomas')->insert(['id' => 17,'nome' => 'Ageusia']);
         DB::table('sintomas')->insert(['id' => 18,'nome' => 'Síndrome Gripal']);
-
     }
 }

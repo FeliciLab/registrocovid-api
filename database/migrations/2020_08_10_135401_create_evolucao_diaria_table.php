@@ -17,9 +17,9 @@ class CreateEvolucaoDiariaTable extends Migration
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->date('data_evolucao');
-            $table->float('temperatura' , 4, 2)->nullable();
+            $table->float('temperatura', 4, 2)->nullable();
             $table->integer('frequencia_respiratoria')->nullable();
-            $table->float('peso' , 5, 2)->nullable();
+            $table->float('peso', 5, 2)->nullable();
             $table->integer('altura')->nullable();
             $table->integer('pressao_sistolica')->nullable();
             $table->integer('pressao_diastolica')->nullable();

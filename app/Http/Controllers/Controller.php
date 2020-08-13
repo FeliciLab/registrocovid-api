@@ -12,7 +12,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public static function paginationResolver($data, $step, $total, $current_page) {
+    public static function paginationResolver($data, $step, $total, $current_page)
+    {
         $starting_point = ($current_page * $step) - $step;
         $data_sliced = array_slice($data, $starting_point, $step);
         $paginate = new LengthAwarePaginator($data_sliced, $total, $step, $current_page);

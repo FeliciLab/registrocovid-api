@@ -15,7 +15,7 @@ class ExamesLaboratoriaisController extends Controller
         $examesPcr =  ExameRtPcr::where('paciente_id', $pacienteId)->get();
         $examesTesteRapido = ExameTesteRapido::where('paciente_id', $pacienteId)->get();
 
-        if(!count($examesPcr)){
+        if (!count($examesPcr)) {
             return response()->json(['message' => 'Paciente não possui exames laboratóriais cadastrada'], 404);
         }
 

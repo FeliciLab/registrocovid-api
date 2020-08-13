@@ -6,17 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class IdentificacaoPacienteRequest extends FormRequest
 {
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    // public function authorize()
-    // {
-    //     return true;
-    // }
-
     public function rules()
     {
         return [
@@ -29,7 +18,11 @@ class IdentificacaoPacienteRequest extends FormRequest
             'atividadeprofissional_id' => 'integer|exists:atividades_profissionais,id',
             'qtd_pessoas_domicilio' => 'integer',
             'cor_id' => 'exists:cores,id',
-            'estadocivil_id' => 'exists:estados_civis,id'
+            'estadocivil_id' => 'exists:estados_civis,id',
+            'telefone_de_casa' => 'string|max:15',
+            'telefone_celular' => 'string|max:15',
+            'telefone_do_trabalho' => 'string|max:15',
+            'telefone_de_vizinho' => 'string|max:15'
         ];
     }
 }

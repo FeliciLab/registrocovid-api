@@ -7,11 +7,11 @@ use App\Models\AtividadeProfissional;
 
 class AtividadeProfissionalController extends Controller
 {
-  /**
-   * Listar todas as atividades profissionais
-   */
-  public function index()
-  {
-    return AtividadeProfissional::all();
-  }
+    /**
+     * Listar todas as atividades profissionais
+     */
+    public function index()
+    {
+        return AtividadeProfissional::all();
+    }
 }

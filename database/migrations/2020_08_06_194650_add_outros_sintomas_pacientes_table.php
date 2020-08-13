@@ -27,6 +27,6 @@ class AddOutrosSintomasPacientesTable extends Migration
     {
         Schema::table('pacientes', function (Blueprint $table) {
             $table->dropColumn('outros_sintomas');
-        });    
+        });
     }
 }

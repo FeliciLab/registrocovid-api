@@ -15,6 +15,6 @@ class Instituicao extends Model
      */
     public function pacienteInstituicaoPrimeiroAtendimento()
     {
-       return $this->belongsTo(Paciente::class);
+        return $this->belongsTo(Paciente::class);
     }
 }
