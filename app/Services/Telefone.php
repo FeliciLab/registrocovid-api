@@ -42,7 +42,7 @@ class Telefone
 
     public function associarTelefone(Paciente $paciente, string $tipo, string $numero): TelefoneModel
     {
-        return TelefoneModel::findOrCreate([
+        return TelefoneModel::firstOrCreate([
             'paciente_id' => $paciente->id,
             'tipo' => $tipo,
             'numero' => $numero
