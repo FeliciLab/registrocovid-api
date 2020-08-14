@@ -97,19 +97,6 @@ class Paciente extends Model
         }
     }
 
-    public function associarTelefonesPaciente(array $telefones)
-    {
-        foreach ($telefones as $telefone) {
-            if ($telefone) {
-                Telefone::firstOrCreate([
-                    'numero' => $telefone,
-                    'paciente_id' => $this->id,
-                    'tipo' => 1
-                ]);
-            }
-        }
-    }
-
     public function verificaSeExisteIdentificacaoPaciente()
     {
         return $this->qtd_pessoas_domicilio != null;

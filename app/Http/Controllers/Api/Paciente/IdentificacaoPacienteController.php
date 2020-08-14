@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Paciente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IdentificacaoPacienteRequest;
 use App\Models\Paciente;
+use App\Services\Telefone as TelefoneService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
@@ -35,7 +36,7 @@ class IdentificacaoPacienteController extends Controller
         }
     }
 
-    public function store(IdentificacaoPacienteRequest $request, $pacienteId)
+    public function store(IdentificacaoPacienteRequest $request, $pacienteId, TelefoneService $telefoneService)
     {
         try {
             $paciente = Paciente::whereId($pacienteId)->first();
@@ -47,14 +48,15 @@ class IdentificacaoPacienteController extends Controller
             $dadosAtualizar = $request->validated();
             $paciente->update($dadosAtualizar);
 
-            $paciente->associarTelefonesPaciente(
+            $telefoneService->associarTelefones(
+                $paciente,
                 Arr::only(
                     $dadosAtualizar,
                     [
-                        'telefone_casa',
+                        'telefone_de_casa',
                         'telefone_celular',
-                        'telefone_trabalho',
-                        'telefone_vizinho'
+                        'telefone_do_trabalho',
+                        'telefone_de_vizinho'
                     ]
                 )
             );
