@@ -37,11 +37,6 @@ class Paciente extends Model
         'caso_confirmado'
     ];
 
-
-    protected $appends = [
-        'estado'
-    ];
-
     protected $with = [
         'instituicaoPrimeiroAtendimento',
         'cor',
@@ -50,6 +45,7 @@ class Paciente extends Model
         'atividadeProfissional',
         'instituicaoReferencia',
         'municipio',
+        'estado',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
         'telefones',
@@ -67,6 +63,7 @@ class Paciente extends Model
         'estadocivil_id',
         'escolaridade_id',
         'atividadeprofissional_id',
+        'estado_id',
         'municipio_id'
     ];
 
@@ -79,11 +76,6 @@ class Paciente extends Model
         static::addGlobalScope('coletador_id', function (Builder $query) {
             $query->where('coletador_id', auth()->user()->id);
         });
-    }
-
-    public function getEstadoAttribute()
-    {
-        return $this->municipio->estado ?? null;
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
@@ -167,6 +159,11 @@ class Paciente extends Model
     public function municipio()
     {
         return $this->hasOne(Municipio::class, 'id', 'municipio_id');
+    }
+
+    public function estado()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
 
     public function instituicaoReferencia()

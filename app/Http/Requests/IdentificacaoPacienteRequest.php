@@ -10,6 +10,8 @@ class IdentificacaoPacienteRequest extends FormRequest
     {
         return [
             'bairro_id' => 'integer|exists:bairros,id',
+            'municipio_id' => 'integer|exists:municipios,id',
+            'estado_id' => 'integer|exists:estados,id',
             'data_internacao' => 'date',
             'sexo' => 'max:1|in:M,F',
             'data_nascimento' => 'date',
