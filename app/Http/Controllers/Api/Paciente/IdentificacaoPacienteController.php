@@ -47,7 +47,17 @@ class IdentificacaoPacienteController extends Controller
             $dadosAtualizar = $request->validated();
             $paciente->update($dadosAtualizar);
 
-            $paciente->associarTelefonesPaciente(Arr::only($dadosAtualizar, ['telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho']));
+            $paciente->associarTelefonesPaciente(
+                Arr::only(
+                    $dadosAtualizar,
+                    [
+                        'telefone_casa',
+                        'telefone_celular',
+                        'telefone_trabalho',
+                        'telefone_vizinho'
+                    ]
+                )
+            );
 
             return response()->json(
                 [
