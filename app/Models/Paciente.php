@@ -45,6 +45,7 @@ class Paciente extends Model
         'escolaridade',
         'atividadeProfissional',
         'instituicaoReferencia',
+        'bairro',
         'municipio',
         'estado',
         'estadoNascimento',
@@ -142,6 +143,11 @@ class Paciente extends Model
     public function atividadeProfissional()
     {
         return $this->hasOne(AtividadeProfissional::class, 'id', 'atividade_profissional_id');
+    }
+
+    public function bairro()
+    {
+        return $this->hasOne(Bairro::class, 'id', 'bairro_id');
     }
 
     public function municipio()
