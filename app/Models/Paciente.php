@@ -32,6 +32,7 @@ class Paciente extends Model
         'coletador_id',
         'instituicao_id',
         'municipio_id',
+        'estado_id',
         'outros_sintomas',
         'data_inicio_sintomas',
         'caso_confirmado'
