@@ -16,6 +16,44 @@ class CadastroExameLaboratorialTest extends TestCase
         $this->authenticated();
     }
 
+    public function testValidacaoCamposRtPcr()
+    {
+        $paciente = factory(Paciente::class)->create([
+            'coletador_id' => $this->currentUser->id
+        ]);
+
+        $data = [
+            "data_coleta" => null,
+            "sitio_tipo_id" => null,
+            "data_resultado" => "2020-08-10",
+            "rt_pcr_resultado_id" => 3
+        ];
+
+        $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
+        $response->assertStatus(401);
+        $response->assertJsonFragment([
+            "message" => "Os campos data_coleta e sitio_tipo_id são obrigatórios",
+        ]);
+    }
+
+    public function testValidaCamposExameTesteRapido()
+    {
+        $paciente = factory(Paciente::class)->create([
+            'coletador_id' => $this->currentUser->id
+        ]);
+
+        $data = [
+            "resultado" => null,
+            "data_realizacao" => null
+        ];
+
+        $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
+        $response->assertStatus(401);
+        $response->assertJsonFragment([
+            "message" => "Os campos resultado e data_realizacao são obrigatórios",
+        ]);
+    }
+
     public function testExameLaboratorialComSucesso()
     {
         $paciente = factory(Paciente::class)->create([
@@ -25,8 +63,8 @@ class CadastroExameLaboratorialTest extends TestCase
         $data = [
             "data_coleta" => "2020-08-08",
             "sitio_tipo_id" => 2,
-            "data_resultado" => "2020-08-10",
-            "rt_pcr_resultado_id" => 3,
+            "data_resultado" => null,
+            "rt_pcr_resultado_id" => null,
             "resultado" => false,
             "data_realizacao" => "2020-08-15"
         ];

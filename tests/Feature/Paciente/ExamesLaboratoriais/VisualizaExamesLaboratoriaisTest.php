@@ -56,5 +56,8 @@ class VisualizaExamesLaboratoriaisTest extends TestCase
         $response->assertJsonStructure([
             "exames_pcr"
         ]);
+        $response->assertJsonStructure([
+            "exames_teste_rapido"
+        ]);
     }
 }
