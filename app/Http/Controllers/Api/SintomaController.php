@@ -10,10 +10,37 @@ use Illuminate\Http\JsonResponse;
 
 class SintomaController extends Controller
 {
-     /**
-     * Listar todas os sintomas
+    /**
+     * List sintomas
+     * 
+     * @OA\Get(
+     *      path="/api/sintomas",
+     *      operationId="getSintomas",
+     *      tags={"Recursos"},
+     *      summary="Lista orgãos",
+     *      description="Retorna todos sintomas cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "nome": "Coriza"
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index(): JsonResponse
     {

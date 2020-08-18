@@ -20,6 +20,16 @@ class MunicipioController extends Controller
      *      summary="Lista de municípios",
      *      description="Retorna todos municípios cadastrados no sistema",
      *      security={{"apiAuth":{}}},
+     *      @OA\Parameter(
+     *          name="conditions",
+     *          description="Filtros a serem aplicados",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="estado_id:=:16"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",
