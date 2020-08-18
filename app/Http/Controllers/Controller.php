@@ -31,13 +31,13 @@ class Controller extends BaseController
      * 
      * @OA\SecurityScheme(
      *     type="oauth2",
-     *     scheme="https",
-     *     securityScheme="Password Based",
+     *     in="header",
+     *     scheme="bearer",
+     *     securityScheme="apiAuth",
+     *     bearerFormat="JWT",
      *     @OA\Flow(
      *         flow="clientCredentials",
-     *         authorizationUrl="/api/auth/login",
-     *         tokenUrl="/api/auth/login",
-     *         refreshUrl="/refresh",
+     *         tokenUrl="/api/auth/auth",
      *         scopes={}
      *     )
      * ),

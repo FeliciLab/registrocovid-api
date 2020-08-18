@@ -18,6 +18,7 @@ class OrgaoController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista orgãos",
      *      description="Retorna todos orgãos cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

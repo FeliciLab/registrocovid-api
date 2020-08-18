@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('register', 'Api\JWTAuthController@register');
     Route::post('login', 'Api\JWTAuthController@login');
+    Route::post('auth', 'Api\JWTAuthController@auth');
 });
 
 Route::group(['middleware' => ['apiJwt']], function ($router) {
@@ -31,7 +32,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::namespace('Paciente')->group(function () {
             Route::get('/pacientes', 'PacienteController@index');
             Route::post('/pacientes', 'PacienteController@store');
-          
+
 
             Route::group(['middleware' => ['paciente']], function ($router) {
                 Route::patch('/pacientes/{pacienteId}', 'PacienteController@update');
@@ -74,5 +75,4 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/escolaridades', 'EscolaridadeController@index');
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
     });
-
 });
