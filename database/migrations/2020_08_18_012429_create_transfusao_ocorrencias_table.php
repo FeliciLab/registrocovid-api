@@ -17,7 +17,7 @@ class CreateTransfusaoOcorrenciasTable extends Migration
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->foreignId('tipo_transfusao_id')->references('id')->on('tipos_transfusao');
-            $table->date('data');
+            $table->date('data_transfusao');
             $table->float('volume_transfusao')->nullable();
             $table->timestamps();
         });

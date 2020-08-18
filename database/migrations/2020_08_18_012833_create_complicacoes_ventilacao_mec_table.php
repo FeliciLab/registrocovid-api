@@ -17,7 +17,7 @@ class CreateComplicacoesVentilacaoMecTable extends Migration
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->foreignId('tipo_complicacao_id')->references('id')->on('tipos_complicacao_vm');
-            $table->date('data');
+            $table->date('data_ventilacao_mec');
             $table->string('descricao')->nullable();
             $table->timestamps();
         });
