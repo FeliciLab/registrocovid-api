@@ -14,6 +14,7 @@ class InstituicaoController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista instituições",
      *      description="Retorna todas instituições cadastradas no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

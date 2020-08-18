@@ -17,6 +17,7 @@ class SituacaoUsoDrogasController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista situação uso drogas",
      *      description="Retorna todos as situações de uso de drogas cadastrado no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

@@ -19,6 +19,7 @@ class DrogaController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista drogas",
      *      description="Retorna todas drogas cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",
@@ -55,6 +56,7 @@ class DrogaController extends Controller
      *      tags={"Recursos"},
      *      summary="Cadastra drogas",
      *      description="Cadastra droga no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\RequestBody(
      *          description="",
      *          required=true,

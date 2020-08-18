@@ -16,6 +16,7 @@ class EstadoController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista estados",
      *      description="Retorna todos estados cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

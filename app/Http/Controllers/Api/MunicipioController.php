@@ -19,6 +19,7 @@ class MunicipioController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista de municípios",
      *      description="Retorna todos municípios cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

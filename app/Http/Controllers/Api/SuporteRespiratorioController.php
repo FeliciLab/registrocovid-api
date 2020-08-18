@@ -14,6 +14,7 @@ class SuporteRespiratorioController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista suportes respiratórios",
      *      description="Retorna todos os suportes respiratórios cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

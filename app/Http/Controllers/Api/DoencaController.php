@@ -16,6 +16,7 @@ class DoencaController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista doenças",
      *      description="Retorna todas doenças cadastradas no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",

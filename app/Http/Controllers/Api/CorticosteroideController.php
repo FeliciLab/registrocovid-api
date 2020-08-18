@@ -16,6 +16,7 @@ class CorticosteroideController extends Controller
      *      tags={"Recursos"},
      *      summary="Lista corticosteroides",
      *      description="Retorna todos corticosteroides cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Executado com sucesso",
