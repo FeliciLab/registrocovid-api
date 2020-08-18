@@ -20,6 +20,19 @@ class PacienteController extends Controller
         return response()->json($pacienteRepository->getResult());
     }
 
+    public function show(string $pacienteId)
+    {
+        $paciente = Paciente::whereId($pacienteId)->first();
+
+        if (!$paciente) {
+            return response()->json([
+                'message' => 'Paciente não encontrado.'
+            ], 404);
+        }
+
+        return $paciente->toArray();
+    }
+
     public function store(PacienteStoreRequest $request)
     {
         try {

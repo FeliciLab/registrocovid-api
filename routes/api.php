@@ -35,6 +35,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
 
             Route::group(['middleware' => ['paciente']], function ($router) {
+                Route::get('/pacientes/{pacienteId}', 'PacienteController@show');
                 Route::patch('/pacientes/{pacienteId}', 'PacienteController@update');
 
                 Route::get('/pacientes/{pacienteId}/historico', 'Historico\HistoricoController@show');
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
         Route::get('/estados', 'EstadoController@index');
         Route::get('/municipios', 'MunicipioController@index');
+        Route::get('/bairros', 'BairroController@index');
         Route::get('/instituicoes', 'InstituicaoController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/drogas', 'DrogaController@index');

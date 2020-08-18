@@ -31,6 +31,5 @@ class DatabaseSeeder extends Seeder
             CorticosteroidesSeeder::class,
             SintomasSeeder::class            
         ]);
-
     }
 }
