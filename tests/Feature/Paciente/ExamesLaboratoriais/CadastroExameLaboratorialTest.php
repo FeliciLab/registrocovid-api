@@ -3,6 +3,7 @@
 namespace Tests\Feature\Paciente\ExamesLaboratoriais;
 
 use App\Models\Paciente;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -23,16 +24,16 @@ class CadastroExameLaboratorialTest extends TestCase
         ]);
 
         $data = [
-            "data_coleta" => null,
+            "data_coleta" => Carbon::now()->toString(),
             "sitio_tipo_id" => null,
-            "data_resultado" => "2020-08-10",
+            "data_resultado" => Carbon::now()->toString(),
             "rt_pcr_resultado_id" => 3
         ];
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
-        $response->assertStatus(401);
+        $response->assertStatus(422);
         $response->assertJsonFragment([
-            "message" => "Os campos data_coleta e sitio_tipo_id são obrigatórios",
+            "O campo sitio tipo id é obrigatório quando data coleta está presente."
         ]);
     }
 
@@ -43,14 +44,14 @@ class CadastroExameLaboratorialTest extends TestCase
         ]);
 
         $data = [
-            "resultado" => null,
+            "resultado" => false,
             "data_realizacao" => null
         ];
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
-        $response->assertStatus(401);
+        $response->assertStatus(422);
         $response->assertJsonFragment([
-            "message" => "Os campos resultado e data_realizacao são obrigatórios",
+            "O campo data realizacao é obrigatório quando resultado está presente."
         ]);
     }
 

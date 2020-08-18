@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ExameLaboratorial
 {
@@ -25,17 +26,23 @@ class ExameLaboratorial
             return response()->json([ 'message' => 'Coletador inválido' ],401);
         }
 
+        $rules = [
+            'data_coleta' => 'date',
+            'sitio_tipo_id' => 'required_with:data_coleta|integer|exists:sitios_tipos,id',
+            'resultado' => 'bool',
+            'data_realizacao' => 'required_with:resultado|date'
+        ];
 
-        if($request->has(['data_resultado', 'rt_pcr_resultado_id'])) {
-            if(is_null($request->input('data_coleta')) || is_null($request->input('sitio_tipo_id'))) {
-                return response()->json([ 'message' => 'Os campos data_coleta e sitio_tipo_id são obrigatórios'],401);
-            }
-        }
+        $validator = Validator::make($request->post(), $rules);
 
-        if($request->has(['resultado', 'data_realizacao'])) {
-            if(is_null($request->input('resultado')) || is_null($request->input('data_realizacao'))) {
-                return response()->json([ 'message' => 'Os campos resultado e data_realizacao são obrigatórios'],401);
-            }
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'message' => 'Campos inválidos.',
+                    'errors' => $validator->errors()
+                ],
+                422
+            );
         }
 
         return $next($request);
