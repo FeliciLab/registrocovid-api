@@ -75,5 +75,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/estados-civis', 'EstadoCivilController@index');
         Route::get('/escolaridades', 'EscolaridadeController@index');
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
+        Route::get('/tipos-transfusao', 'TipoTransfusaoController@index');
+        Route::get('/tipos-complicacao-vm', 'TipoComplicacaoVMController@index');
     });
 });
