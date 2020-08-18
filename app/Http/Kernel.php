@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ComplicacaoVentilacaoMecanica;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'apiJwt' => \App\Http\Middleware\ApiProtectedRoute::class,
         'paciente' => \App\Http\Middleware\Paciente::class,
-        'verifica.coletador' => \App\Http\Middleware\ExameLaboratorial::class
+        'verifica.coletador' => \App\Http\Middleware\ExameLaboratorial::class,
+        'ventilacao.mecanica' => \App\Http\Middleware\ComplicacaoVentilacaoMecanica::class
     ];
 }
