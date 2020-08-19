@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('register', 'Api\JWTAuthController@register');
     Route::post('login', 'Api\JWTAuthController@login');
+    Route::post('auth', 'Api\JWTAuthController@auth');
 });
 
 Route::group(['middleware' => ['apiJwt']], function ($router) {
@@ -57,23 +58,24 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
             });
         });
 
-        Route::get('/estados', 'EstadoController@index');
-        Route::get('/municipios', 'MunicipioController@index');
+        Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
         Route::get('/bairros', 'BairroController@index');
-        Route::get('/instituicoes', 'InstituicaoController@index');
-        Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
-        Route::get('/drogas', 'DrogaController@index');
-        Route::post('/drogas', 'DrogaController@store');
-        Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
-        Route::get('/doencas', 'DoencaController@index');
-        Route::get('/orgaos', 'OrgaoController@index');
+        Route::get('/cores', 'CorController@index');
         Route::get('/corticosteroides', 'CorticosteroideController@index');
+        Route::get('/doencas', 'DoencaController@index');
+        Route::get('/drogas', 'DrogaController@index');
+        Route::get('/escolaridades', 'EscolaridadeController@index');
+        Route::get('/estados-civis', 'EstadoCivilController@index');
+        Route::get('/estados', 'EstadoController@index');
+        Route::get('/instituicoes', 'InstituicaoController@index');
+        Route::get('/municipios', 'MunicipioController@index');
+        Route::get('/orgaos', 'OrgaoController@index');
+        Route::get('/pcr-resultado', 'ResultadoPcrController@index');
         Route::get('/sintomas', 'SintomaController@index');
         Route::get('/sitios-rt-pcr', 'TipoSitiosController@index');
-        Route::get('/pcr-resultado', 'ResultadoPcrController@index');
-        Route::get('/cores', 'CorController@index');
-        Route::get('/estados-civis', 'EstadoCivilController@index');
-        Route::get('/escolaridades', 'EscolaridadeController@index');
-        Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
+        Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
+        Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
+        Route::get('/tipos-doencas', 'TipoDoencaController@index');
+        Route::post('/drogas', 'DrogaController@store');
     });
 });

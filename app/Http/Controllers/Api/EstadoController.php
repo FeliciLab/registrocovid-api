@@ -4,28 +4,44 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Estado;
-use Exception;
-use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
-    private $estado;
-
-    public function __construct(Estado $estado)
-    {
-        $this->estado = $estado;
-    }
-
+    /**
+     * Display a listing of the resource.
+     * 
+     * @OA\Get(
+     *      path="/api/estados",
+     *      operationId="getEstados",
+     *      tags={"Recursos"},
+     *      summary="Lista estados",
+     *      description="Retorna todos estados cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "nome": "Acre",
+     *                              "unidade_federativa": "AC" 
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        try {
-            $estados = $this->estado->all();
-
-            return response()->json($estados->toArray(), 200);
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Não foi possivel retornar os estados',
-            ], 500);
-        }
+        return Estado::all();
     }
 }
