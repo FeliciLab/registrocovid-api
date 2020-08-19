@@ -24,4 +24,12 @@ class EvolucaoDiariaController extends Controller
 
          return response()->json($evolucoesDiarias, 201);
     }
+
+    public function show($pacienteId, $evolucaoId)
+    {
+        $evolucaoDiaria = EvolucaoDiaria::where('paciente_id',$pacienteId)->where('id', $evolucaoId)->first();
+
+        if(!$evolucaoDiaria) return response()->json('', 404);
+        return response()->json($evolucaoDiaria);
+    }
 }
