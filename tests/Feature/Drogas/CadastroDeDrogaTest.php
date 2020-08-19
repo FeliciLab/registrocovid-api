@@ -90,8 +90,6 @@ class CadastroDeDrogaTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'descricao',
-            'created_at',
-            'updated_at'
         ]);
         $response->assertJsonFragment([
             'descricao' => 'droga de teste'
