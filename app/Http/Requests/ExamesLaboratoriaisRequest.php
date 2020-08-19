@@ -15,12 +15,12 @@ class ExamesLaboratoriaisRequest extends FormRequest
     public function rules()
     {
         return [
-            'data_coleta' => 'date',
-            'sitio_tipo_id' => 'integer|exists:sitios_tipos,id',
-            'data_resultado' => 'date',
-            'rt_pcr_resultado_id' => 'integer|exists:rt_pcr_resultados,id',
-            'resultado' => 'bool',
-            'data_realizacao' => 'date'
+            'data_coleta' => 'nullable|date',
+            'data_realizacao' => 'nullable|required_with:resultado|date',
+            'data_resultado' => 'nullable|date',
+            'resultado' => 'nullable|bool',
+            'rt_pcr_resultado_id' => 'nullable|integer|exists:rt_pcr_resultados,id',
+            'sitio_tipo_id' => 'nullable|required_with:data_coleta|integer|exists:sitios_tipos,id',
         ];
     }
 }
