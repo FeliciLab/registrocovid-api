@@ -16,10 +16,12 @@ class CreateTransfusaoOcorrenciasTable extends Migration
         Schema::create('transfusao_ocorrencias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('paciente_id')->references('id')->on('pacientes');
-            $table->foreignId('tipo_transfusao_id')->references('id')->on('tipos_transfusao');
+            $table->unsignedBigInteger('tipo_transfusao_id')->nullable();
             $table->date('data_transfusao');
             $table->float('volume_transfusao')->nullable();
             $table->timestamps();
+
+            $table->foreign('tipo_transfusao_id')->references('id')->on('tipos_transfusao');
         });
     }
 
