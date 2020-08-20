@@ -13,5 +13,14 @@ class TransfusaoOcorrencia extends Model
         'volume_transfusao'
     ];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at', 'tipo_transfusao_id', 'paciente_id'];
+
+    protected $with = [
+        'tipoTransfussao'
+    ];
+
+    public function tipoTransfussao()
+    {
+        return $this->hasOne(TipoTransfusao::class, 'id', 'tipo_transfusao_id');
+    }
 }
