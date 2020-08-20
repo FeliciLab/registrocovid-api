@@ -13,20 +13,21 @@ class MetodosPadroesAbstractTest extends TestCase
   /**
    * @dataProvider variacoesNaRequest
   */
-  public function testAlteracoesNaQuery($query, $expectedSql)
-  {
-    $this->authenticated();
+    public function testAlteracoesNaQuery($query, $expectedSql)
+    {
+        $this->authenticated();
 
-    $paciente = new Paciente();
-    $request = new Request($query);
-    $repository = new class ($paciente, $request) extends AbstractRepository {};
+        $paciente = new Paciente();
+        $request = new Request($query);
+        $repository = new class($paciente, $request) extends AbstractRepository {
+        };
 
-    $this->assertEquals($expectedSql, $repository->getModel()->toSql());
-  }
+        $this->assertEquals($expectedSql, $repository->getModel()->toSql());
+    }
 
-  public function variacoesNaRequest()
-  {
-    return [
+    public function variacoesNaRequest()
+    {
+        return [
       // Teste uma condicao
       [
         ['conditions' => 'prontuario:like:5544%'],
@@ -60,5 +61,5 @@ class MetodosPadroesAbstractTest extends TestCase
         'select id,prontuario,caso_confirmado from "pacientes" where "prontuario"::text like ? and "id" = ? and "caso_confimado" = ? and "coletador_id" = ? order by "created_at" desc'
       ],
     ];
-  }
+    }
 }

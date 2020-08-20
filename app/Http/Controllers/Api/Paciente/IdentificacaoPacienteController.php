@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api\Paciente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IdentificacaoPacienteRequest;
 use App\Models\Paciente;
+use App\Services\Telefone as TelefoneService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Arr;
 
 class IdentificacaoPacienteController extends Controller
 {
@@ -177,7 +179,7 @@ class IdentificacaoPacienteController extends Controller
      *       ),
      * )
      */
-    public function store(IdentificacaoPacienteRequest $request, $pacienteId)
+    public function store(IdentificacaoPacienteRequest $request, $pacienteId, TelefoneService $telefoneService)
     {
         try {
             $paciente = Paciente::whereId($pacienteId)->first();
@@ -186,11 +188,21 @@ class IdentificacaoPacienteController extends Controller
                 return response()->json(['message' => 'Identificação do paciente já existe'], 403);
             }
 
-            $dadosAtualizar = $request->except('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho');
-
+            $dadosAtualizar = $request->validated();
             $paciente->update($dadosAtualizar);
 
-            $paciente->associarTelefonesPaciente($request->only('telefone_casa', 'telefone_celular', 'telefone_trabalho', 'telefone_vizinho'));
+            $telefoneService->associarTelefones(
+                $paciente,
+                Arr::only(
+                    $dadosAtualizar,
+                    [
+                        'telefone_de_casa',
+                        'telefone_celular',
+                        'telefone_do_trabalho',
+                        'telefone_de_vizinho'
+                    ]
+                )
+            );
 
             return response()->json(
                 [

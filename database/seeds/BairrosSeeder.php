@@ -1011,6 +1011,5 @@ class BairrosSeeder extends Seeder
         DB::table('bairros')->insert(['id' => 1302, 'nome' => "Monte Cristo", 'municipio_id' => '1839']);
         DB::table('bairros')->insert(['id' => 1304, 'nome' => "Nossa Senhora Aparecida", 'municipio_id' => '1839']);
         DB::table('bairros')->insert(['id' => 1305, 'nome' => "Nossa Senhora da Glória", 'municipio_id' => '1839']);
-
     }
 }

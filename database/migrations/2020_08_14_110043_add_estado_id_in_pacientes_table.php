@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOutrosSintomasPacientesTable extends Migration
+class AddEstadoIdInPacientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddOutrosSintomasPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-            $table->json('outros_sintomas')->nullable();
+            $table->foreignId('estado_id')->nullable()->references('id')->on('estados');
         });
     }
 
@@ -26,7 +26,7 @@ class AddOutrosSintomasPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-            $table->dropColumn('outros_sintomas');
+            $table->dropColumn('estado_id');
         });
     }
 }

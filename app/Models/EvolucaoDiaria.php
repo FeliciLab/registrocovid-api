@@ -21,5 +21,5 @@ class EvolucaoDiaria extends Model
         'escala_glasgow',
     ];
 
-    protected $table = 'evolucoes_diarias'; 
+    protected $table = 'evolucoes_diarias';
 }

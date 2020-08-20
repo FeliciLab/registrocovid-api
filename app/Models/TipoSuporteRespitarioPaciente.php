@@ -14,5 +14,4 @@ class TipoSuporteRespitarioPaciente extends Model
         'tipo_suporte_id',
         'paciente_id'
     ];
-
 }

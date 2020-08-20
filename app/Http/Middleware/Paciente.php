@@ -18,11 +18,11 @@ class Paciente
 
         if ($validator->fails()) {
             return response()->json(
-              [
+                [
                   'message' => 'Campos inválidos.',
                   'errors' => $validator->errors()
               ],
-              422
+                422
             );
         }
 

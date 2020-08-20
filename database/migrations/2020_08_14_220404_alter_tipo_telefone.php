@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOutrosSintomasPacientesTable extends Migration
+class AlterTipoTelefone extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddOutrosSintomasPacientesTable extends Migration
      */
     public function up()
     {
-        Schema::table('pacientes', function (Blueprint $table) {
-            $table->json('outros_sintomas')->nullable();
+        Schema::table('telefones', function (Blueprint $table) {
+            $table->string('tipo', 8)->change();
         });
     }
 
@@ -25,8 +25,8 @@ class AddOutrosSintomasPacientesTable extends Migration
      */
     public function down()
     {
-        Schema::table('pacientes', function (Blueprint $table) {
-            $table->dropColumn('outros_sintomas');
+        Schema::table('telefones', function (Blueprint $table) {
+            $table->char('tipo', 1)->change();
         });
     }
 }

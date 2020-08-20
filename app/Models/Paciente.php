@@ -32,14 +32,10 @@ class Paciente extends Model
         'coletador_id',
         'instituicao_id',
         'municipio_id',
+        'estado_id',
         'outros_sintomas',
         'data_inicio_sintomas',
         'caso_confirmado'
-    ];
-
-
-    protected $appends = [
-        'estado'
     ];
 
     protected $with = [
@@ -49,7 +45,9 @@ class Paciente extends Model
         'escolaridade',
         'atividadeProfissional',
         'instituicaoReferencia',
+        'bairro',
         'municipio',
+        'estado',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
         'telefones',
@@ -67,6 +65,7 @@ class Paciente extends Model
         'estadocivil_id',
         'escolaridade_id',
         'atividadeprofissional_id',
+        'estado_id',
         'municipio_id'
     ];
 
@@ -79,11 +78,6 @@ class Paciente extends Model
         static::addGlobalScope('coletador_id', function (Builder $query) {
             $query->where('coletador_id', auth()->user()->id);
         });
-    }
-
-    public function getEstadoAttribute()
-    {
-        return $this->municipio->estado ?? null;
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
@@ -99,19 +93,6 @@ class Paciente extends Model
                 TipoSuporteRespitarioPaciente::firstOrCreate([
                     'tipo_suporte_id' => $suporte_id['id'],
                     'paciente_id' => $this->id
-                ]);
-            }
-        }
-    }
-
-    public function associarTelefonesPaciente(array $telefones)
-    {
-        foreach ($telefones as $telefone) {
-            if ($telefone) {
-                Telefone::firstOrCreate([
-                    'numero' => $telefone,
-                    'paciente_id' => $this->id,
-                    'tipo' => 1
                 ]);
             }
         }
@@ -164,9 +145,19 @@ class Paciente extends Model
         return $this->hasOne(AtividadeProfissional::class, 'id', 'atividade_profissional_id');
     }
 
+    public function bairro()
+    {
+        return $this->hasOne(Bairro::class, 'id', 'bairro_id');
+    }
+
     public function municipio()
     {
         return $this->hasOne(Municipio::class, 'id', 'municipio_id');
+    }
+
+    public function estado()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
 
     public function instituicaoReferencia()

@@ -43,14 +43,6 @@ class EstadoCivilController extends Controller
      */
     public function index()
     {
-        try {
-
-            $estadosCivis = EstadoCivil::all();
-
-            return response()->json($estadosCivis);
-        } catch (\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return EstadoCivil::all();
     }
 }

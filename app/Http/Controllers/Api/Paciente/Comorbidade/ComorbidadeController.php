@@ -19,7 +19,6 @@ class ComorbidadeController extends Controller
     public function show($pacienteId)
     {
         try {
-
             $comorbidade = Comorbidade::where('paciente_id', $pacienteId)->first();
 
             if (!$comorbidade) {
@@ -42,7 +41,6 @@ class ComorbidadeController extends Controller
     public function store($pacienteId, ComorbidadeRequest $request)
     {
         try {
-
             $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
 
             if (Comorbidade::where('paciente_id', $pacienteId)->exists()) {
