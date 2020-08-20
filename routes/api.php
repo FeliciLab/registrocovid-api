@@ -47,10 +47,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::post('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@store');
                 Route::get('/pacientes/{pacienteId}/identificacao', 'IdentificacaoPacienteController@index');
 
-                Route::group(['middleware' => ['verifica.coletador']], function () {
-                    Route::post('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@store');
-                });
-
+                Route::post('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@store');
                 Route::get('/pacientes/{pacienteId}/exames-laboratoriais', 'ExamesLaboratoriais\ExamesLaboratoriaisController@index');
 
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@index');
