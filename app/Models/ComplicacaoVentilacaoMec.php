@@ -11,9 +11,18 @@ class ComplicacaoVentilacaoMec extends Model
     protected $fillable = [
         'paciente_id',
         'tipo_complicacao_id',
-        'data_ventilacao_mec',
+        'data_complicacao',
         'descricao'
     ];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at', 'paciente_id', 'tipo_complicacao_id'];
+
+    protected $with = [
+        'tipoComplicacao'
+    ];
+
+    public function tipoComplicacao()
+    {
+        return $this->hasOne(TipoComplicacaoVM::class, 'id', 'tipo_complicacao_id');
+    }
 }
