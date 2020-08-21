@@ -1,5 +1,5 @@
 name: Registro covid API
-on: [push]
+on: [push, pull_request]
 
 jobs:
   container-job:
