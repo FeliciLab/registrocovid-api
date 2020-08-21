@@ -8,19 +8,19 @@ use Tests\TestCase;
 
 class CriarEvolucaoDiariaTest extends TestCase
 {
-  public function setUp(): void
-  {
-      parent::setUp();
-      $this->authenticated();
-  }
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->authenticated();
+    }
 
-  public function testEvolucaoDiariaCriadaComSucesso()
-  {
-    $paciente = factory(Paciente::class)->create([
+    public function testEvolucaoDiariaCriadaComSucesso()
+    {
+        $paciente = factory(Paciente::class)->create([
       'coletador_id' => $this->currentUser->id,
     ]);
 
-    $data = [
+        $data = [
       'paciente_id' => $paciente->id,
       'data_evolucao' => '2020-05-23',
       'temperatura' => 32.0,
@@ -35,10 +35,10 @@ class CriarEvolucaoDiariaTest extends TestCase
       'escala_glasgow' => 4,
     ];
 
-    $response = $this->postJson("api/pacientes/{$paciente->id}/evolucoes-diarias", $data);
+        $response = $this->postJson("api/pacientes/{$paciente->id}/evolucoes-diarias", $data);
 
-    $response->assertStatus(201);
-    $response->assertJsonStructure([
+        $response->assertStatus(201);
+        $response->assertJsonStructure([
       'id',
       'paciente_id',
       'data_evolucao',
@@ -53,29 +53,28 @@ class CriarEvolucaoDiariaTest extends TestCase
       'oximetria',
       'escala_glasgow',
     ]);
-  }
+    }
 
-  /**
-   * @dataProvider possiveisValoresEvolucaoDiaria
-  */
-  public function testPossiveisValoresCamposEvolucaoDiaria($data, $erro)
-  {
-
-    $paciente = factory(Paciente::class)->create([
+    /**
+     * @dataProvider possiveisValoresEvolucaoDiaria
+    */
+    public function testPossiveisValoresCamposEvolucaoDiaria($data, $erro)
+    {
+        $paciente = factory(Paciente::class)->create([
       'coletador_id' => $this->currentUser->id,
     ]);
 
-    $response = $this->postJson("api/pacientes/{$paciente->id}/evolucoes-diarias", $data);
-    $response->assertStatus(422);
-    $response->assertJsonFragment([
+        $response = $this->postJson("api/pacientes/{$paciente->id}/evolucoes-diarias", $data);
+        $response->assertStatus(422);
+        $response->assertJsonFragment([
       'message' => 'The given data was invalid.',
       'errors' => $erro
     ]);
-  }
+    }
 
-  public function possiveisValoresEvolucaoDiaria()
-  {
-    return [
+    public function possiveisValoresEvolucaoDiaria()
+    {
+        return [
       // Testa se o valor está entre 3 e 15
       [[
         'escala_glasgow' => 2,
@@ -85,5 +84,5 @@ class CriarEvolucaoDiariaTest extends TestCase
       // Testa se existe a data de evolucao
       [[], ['data_evolucao' => ['O campo data evolucao é obrigatório.']]],
     ];
-  }
+    }
 }

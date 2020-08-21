@@ -17,7 +17,6 @@ class AtualizacaoDePacienteTest extends TestCase
 
     public function testAtualizarPacienteComSucesso()
     {
-        
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id,
             'caso_confirmado' => true,
@@ -25,7 +24,7 @@ class AtualizacaoDePacienteTest extends TestCase
             'outros_sintomas' => null
         ]);
 
-       $dataPaciente = [ 
+        $dataPaciente = [
         'caso_confirmado' => false,
         'data_inicio_sintomas' => "2020-06-20",
         'outros_sintomas' => ["outroSintoma"]
@@ -37,17 +36,15 @@ class AtualizacaoDePacienteTest extends TestCase
 
         unset($dataPaciente['outros_sintomas']);
         $this->assertDatabaseHas("pacientes", array_merge($dataPaciente, [
-            'id'=> $paciente->id, 
+            'id'=> $paciente->id,
         ]));
 
         $paciente->refresh();
         $this->assertSame(["outroSintoma"], $paciente->outros_sintomas);
-        
     }
 
     public function testAtualizarSintomasDoPacienteComSucesso()
     {
-        
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id,
         ]);
@@ -67,30 +64,29 @@ class AtualizacaoDePacienteTest extends TestCase
         ]);
     }
 
-  /**
-   * @dataProvider possiveisValoresPacientes
-  */
-  public function testPossiveisValoresCamposPaciente($data, $erro)
-  {
-
-    $paciente = factory(Paciente::class)->create([
+    /**
+     * @dataProvider possiveisValoresPacientes
+    */
+    public function testPossiveisValoresCamposPaciente($data, $erro)
+    {
+        $paciente = factory(Paciente::class)->create([
         'coletador_id' => $this->currentUser->id,
         'caso_confirmado' => true,
         'data_inicio_sintomas' => "2020-06-18",
         'outros_sintomas' => null
     ]);
 
-    $response = $this->patchJson("api/pacientes/{$paciente->id}", $data);
-    $response->assertStatus(422);
-    $response->assertJsonFragment([
+        $response = $this->patchJson("api/pacientes/{$paciente->id}", $data);
+        $response->assertStatus(422);
+        $response->assertJsonFragment([
       'message' => 'The given data was invalid.',
       'errors' => $erro
     ]);
-  }
+    }
 
-  public function possiveisValoresPacientes()
-  {
-    return [
+    public function possiveisValoresPacientes()
+    {
+        return [
       // Testa se data é string
       [['data_inicio_sintomas'=> 31], ['data_inicio_sintomas' => ['O campo data inicio sintomas não é uma data válida.']]],
     
@@ -109,5 +105,5 @@ class AtualizacaoDePacienteTest extends TestCase
       // Testa se sintomas é array de int
       [['sintomas'=> ['teste']], ['sintomas.0' => ['O campo sintomas.0 deve ser um número inteiro.']]],
     ];
-  }
+    }
 }

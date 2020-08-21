@@ -4,25 +4,44 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doenca;
-use App\Api\ErrorMessage;
-use Illuminate\Http\JsonResponse;
 
 class DoencaController extends Controller
 {
     /**
      * Listar todas as doencas
+     * 
+     * @OA\Get(
+     *      path="/api/doencas",
+     *      operationId="getDoencas",
+     *      tags={"Recursos"},
+     *      summary="Lista doenças",
+     *      description="Retorna todas doenças cadastradas no sistema",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "tipo_doenca": 1,
+     *                              "descricao": "Doença arterial coronariana" 
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        try {
-            $doencas = Doenca::all();
-
-            return response()->json($doencas);
-        } catch (\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return Doenca::all();
     }
 }

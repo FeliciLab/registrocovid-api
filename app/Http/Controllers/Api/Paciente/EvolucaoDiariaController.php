@@ -13,7 +13,7 @@ class EvolucaoDiariaController extends Controller
     {
         $evolucoesDiarias = EvolucaoDiaria::where('paciente_id', $pacienteId)->get();
 
-         return response()->json($evolucoesDiarias);
+        return response()->json($evolucoesDiarias);
     }
 
     public function store($pacienteId, EvolucaoDiariaRequest $request)
@@ -22,6 +22,6 @@ class EvolucaoDiariaController extends Controller
         
         $evolucoesDiarias = EvolucaoDiaria::create($data);
 
-         return response()->json($evolucoesDiarias, 201);
+        return response()->json($evolucoesDiarias, 201);
     }
 }

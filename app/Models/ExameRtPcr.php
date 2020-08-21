@@ -21,17 +21,7 @@ class ExameRtPcr extends Model
         'rtPcrResultados'
     ];
 
-    protected $hidden = ['created_at', 'updated_at', 'sitio_tipo_id', 'rt_pcr_resultado_id', 'paciente_id'];
-
-    public function criarExameTesteRapido($data, $pacienteId)
-    {
-        return ExameTesteRapido::create(array_merge(
-            $data,
-            [
-                'paciente_id' => $pacienteId
-            ]
-        ));
-    }
+    protected $hidden = ['created_at', 'updated_at','paciente_id'];
 
     public function sitiosTipos()
     {

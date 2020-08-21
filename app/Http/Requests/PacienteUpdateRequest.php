@@ -16,7 +16,7 @@ class PacienteUpdateRequest extends FormRequest
 
     /**
      * Validação de paciente
-     * 
+     *
      * @return array
      */
     public function rules()
