@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: Check PHP CS
-        run: composer run php-cs-check
+      # - name: Check PHP CS
+      #   run: composer run php-cs-check
 
       - name: Migrate and seed
         run: php artisan migrate --seed
