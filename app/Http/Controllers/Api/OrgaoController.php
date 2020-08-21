@@ -11,7 +11,7 @@ class OrgaoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @OA\Get(
      *      path="/api/orgaos",
      *      operationId="getOrgaos",
@@ -29,7 +29,7 @@ class OrgaoController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Coração" 
+     *                              "descricao": "Coração"
      *                          }
      *                      }
      *                  )

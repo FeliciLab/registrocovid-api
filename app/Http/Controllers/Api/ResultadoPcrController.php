@@ -10,7 +10,7 @@ class ResultadoPcrController extends Controller
 {
     /**
      * Lista todos os resulta PCR possíveis
-     * 
+     *
      * @OA\Get(
      *      path="/api/pcr-resultado",
      *      operationId="getPcrResultado",
@@ -28,7 +28,7 @@ class ResultadoPcrController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Detectável" 
+     *                              "descricao": "Detectável"
      *                          }
      *                      }
      *                  )

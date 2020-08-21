@@ -28,7 +28,7 @@ class Controller extends BaseController
      *      url=L5_SWAGGER_CONST_HOST,
      *      description="Registro Covid API"
      * ),
-     * 
+     *
      * @OA\SecurityScheme(
      *     type="oauth2",
      *     in="header",
@@ -41,7 +41,7 @@ class Controller extends BaseController
      *         scopes={}
      *     )
      * ),
-     * 
+     *
      * @OA\Tag(
      *     name="Recursos",
      *     description="API Endpoints de recursos do projeto"

@@ -9,7 +9,7 @@ class TipoSitiosController extends Controller
 {
     /**
      * Lista tipos de sitio rt pcr
-     * 
+     *
      * @OA\Get(
      *      path="/api/sitios-rt-pcr",
      *      operationId="getTipoSitios",
@@ -27,7 +27,7 @@ class TipoSitiosController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Swab de nasofaringe/orofaringe" 
+     *                              "descricao": "Swab de nasofaringe/orofaringe"
      *                          }
      *                      }
      *                  )
