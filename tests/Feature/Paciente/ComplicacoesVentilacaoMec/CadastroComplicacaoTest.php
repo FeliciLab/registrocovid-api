@@ -65,7 +65,7 @@ class CadastroComplicacaoTest extends TestCase
         return [
             [
                 [ 'tipo_complicacao_id' => 'teste'],
-                [ 'errors' => ['data_complicacao' => ['O campo data complicacao é obrigatório quando tipo complicacao id está presente.'], 'tipo_complicacao_id' => ['O campo tipo complicacao id deve ser um número inteiro.']], 'message' => 'Campos inválidos.' ]
+                [ 'errors' => ['data_complicacao' => ['O campo data complicacao é obrigatório quando tipo complicacao id está presente.'], 'tipo_complicacao_id' => ['O campo tipo complicacao id deve ser um número inteiro.']]]
             ],
             [
                 [ 'data_complicacao' => 0],
@@ -77,7 +77,7 @@ class CadastroComplicacaoTest extends TestCase
             ],
             [
                 [ 'tipo_transfusao_id' => 0],
-                [ 'errors' => ['data_transfusao' => ['O campo data transfusao é obrigatório quando tipo transfusao id está presente.'], 'tipo_transfusao_id' => ['O campo tipo transfusao id selecionado é inválido.']], 'message' => 'Campos inválidos.' ]
+                [ 'errors' => ['data_transfusao' => ['O campo data transfusao é obrigatório quando tipo transfusao id está presente.'], 'tipo_transfusao_id' => ['O campo tipo transfusao id selecionado é inválido.']]]
             ],
             [
                 [ 'data_transfusao' => 'teste'],
@@ -85,7 +85,7 @@ class CadastroComplicacaoTest extends TestCase
             ],
             [
                 [ 'volume_transfusao' => 'teste'],
-                [ 'errors' => ['volume_transfusao' => ['O campo volume transfusao tem um formato inválido.']], 'message' => 'Campos inválidos.' ]
+                [ 'errors' => ['volume_transfusao' => ['O campo volume transfusao tem um formato inválido.']]]
             ]
         ];
     }

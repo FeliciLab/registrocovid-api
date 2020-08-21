@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Paciente\ComplicacoesVentilacaoMec;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComplicacaoVentilacaoMecanicaRequest;
 use App\Http\Requests\ComplicacoesVentilacaoMecRequest;
 use App\Models\ComplicacaoVentilacaoMec;
 use App\Models\TransfusaoOcorrencia;
@@ -24,7 +25,7 @@ class ComplicacoesVentilacaoMecController extends Controller
             'transfussoes_ocorrencia' => $transfusaoOcorrencia
         ]);
     }
-    public function store(Request $request, $pacienteId)
+    public function store(ComplicacaoVentilacaoMecanicaRequest $request, $pacienteId)
     {
         if($request->has(['tipo_complicacao_id', 'data_complicacao'])) {
             $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
