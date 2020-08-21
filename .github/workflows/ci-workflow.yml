@@ -31,7 +31,13 @@ jobs:
       #   run: composer run php-cs-check
 
       - name: Migrate and seed
-        run: php artisan migrate --seed
+        run: php artisan migrate --seed --database=pgsql_test
+        env:
+          DB_HOST_TEST: db
+          DB_PORT_TEST: 5432
+          DB_DATABASE_TEST: registrocovid
+          DB_USERNAME_TEST: postgres
+          DB_PASSWORD_TEST: postgres
 
       - name: Run tests
         run: composer test
