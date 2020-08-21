@@ -25,16 +25,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        uses: composer install
+        run: composer install
 
       - name: Check PHP CS
-        uses: composer run php-cs-check
+        run: composer run php-cs-check
 
       - name: Migrate and seed
-        uses: php artisan migrate --seed
+        run: php artisan migrate --seed
 
       - name: Run tests
-        uses: composer test
+        run: composer test
         env:
           DB_HOST_TEST: db
           DB_PORT_TEST: 5432
