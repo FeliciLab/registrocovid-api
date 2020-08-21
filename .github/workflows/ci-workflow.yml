@@ -11,7 +11,6 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
           POSTGRES_DB: registrocovid
           POSTGRES_PASSWORD: postgres
@@ -42,4 +41,3 @@ jobs:
           DB_DATABASE_TEST: registrocovid
           DB_USERNAME_TEST: postgres
           DB_PASSWORD_TEST: postgres
-          
