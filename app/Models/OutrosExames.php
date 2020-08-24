@@ -8,6 +8,8 @@ class OutrosExames extends Model
 {
     protected $table = 'outros_exames';
 
+    protected $fillable = ['paciente_id'];
+
     protected $hidden = ['created_at', 'updated_at'];
 
     public function paciente()
