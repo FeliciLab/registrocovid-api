@@ -35,6 +35,24 @@ class EvolucaoDiariaController extends Controller
    *      summary="Lista evolução diária pelo ID",
    *      description="Retorna uma evolução diária se a evolução com id existir e seja do paciente",
    *      security={{"apiAuth":{}}},
+   *      @OA\Parameter(
+   *          name="pacienteId",
+   *          description="ID do paciente previamente cadastrado",
+   *          required=true,
+   *          in="path",
+   *          @OA\Schema(
+   *              type="string"
+   *          )
+   *      ),
+   *      @OA\Parameter(
+   *          name="evolucaoId",
+   *          description="ID da evolução diaria",
+   *          required=true,
+   *          in="path",
+   *          @OA\Schema(
+   *              type="string"
+   *          )
+   *      ),
    *      @OA\Response(
    *          response=200,
    *          description="Executado com sucesso",
