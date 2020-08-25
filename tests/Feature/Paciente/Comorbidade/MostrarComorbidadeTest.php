@@ -21,10 +21,7 @@ class MostrarComorbidadeTest extends TestCase
     ]);
 
         $response = $this->getJson("api/pacientes/{$paciente->id}/comorbidades");
-        $response->assertNotFound();
-        $response->assertJson([
-        'message' => 'Paciente não possui comorbidade cadastrada.'
-    ]);
+        $response->assertNoContent();
     }
 
     public function testMostrarComorbidadeComSucesso()
