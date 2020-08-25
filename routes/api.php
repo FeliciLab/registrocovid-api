@@ -73,6 +73,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
+        Route::get('/tipos-complicacoes', 'TipoComplicacaoController@index');
         Route::post('/drogas', 'DrogaController@store');
     });
 });
