@@ -9,7 +9,7 @@ class EscolaridadeController extends Controller
 {
     /**
      * Listar escolaridades
-     * 
+     *
      * @OA\Get(
      *      path="/api/escolaridades",
      *      operationId="getCores",
@@ -27,7 +27,7 @@ class EscolaridadeController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "nome": "Analfabeto" 
+     *                              "nome": "Analfabeto"
      *                          }
      *                      }
      *                  )
