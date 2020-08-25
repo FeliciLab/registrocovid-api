@@ -16,7 +16,7 @@ class ComplicacoesVentilacaoMecController extends Controller
         $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::where('paciente_id', $pacienteId)->get()->toArray();
         $transfusaoOcorrencia = TransfusaoOcorrencia::where('paciente_id', $pacienteId)->get()->toArray();
 
-        if(!count($complicacaoVentilacaoMec) && !count($transfusaoOcorrencia)){
+        if (!count($complicacaoVentilacaoMec) && !count($transfusaoOcorrencia)) {
             return response()->json(['message' => 'Paciente não possui complicações cadastradas'], 404);
         }
 
@@ -25,9 +25,10 @@ class ComplicacoesVentilacaoMecController extends Controller
             'transfussoes_ocorrencia' => $transfusaoOcorrencia
         ]);
     }
+
     public function store(ComplicacaoVentilacaoMecanicaRequest $request, $pacienteId)
     {
-        if($request->has(['tipo_complicacao_id', 'data_complicacao'])) {
+        if ($request->has(['tipo_complicacao_id', 'data_complicacao'])) {
             $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
                 $request->only(['tipo_complicacao_id', 'data_complicacao', 'descricao']),
                 [
@@ -35,7 +36,7 @@ class ComplicacoesVentilacaoMecController extends Controller
                 ]
             ));
 
-            if($request->input('tipo_complicacao_id') == 4) {
+            if ($request->input('tipo_complicacao_id') == 4) {
                 $transfusaoOcorrencia = new TransfusaoOcorrencia();
                 $transfusaoOcorrencia->data_transfusao = $request->data_complicacao;
                 $transfusaoOcorrencia->volume_transfusao = $request->volume_transfusao;
@@ -44,7 +45,7 @@ class ComplicacoesVentilacaoMecController extends Controller
             }
         }
 
-        if($request->has(['tipo_transfusao_id', 'data_transfusao', 'volume_transfusao'])) {
+        if ($request->has(['tipo_transfusao_id', 'data_transfusao', 'volume_transfusao'])) {
             $transfusaoOcorrencia = TransfusaoOcorrencia::create(array_merge(
                 $request->only(['tipo_transfusao_id', 'data_transfusao', 'volume_transfusao']),
                 [
