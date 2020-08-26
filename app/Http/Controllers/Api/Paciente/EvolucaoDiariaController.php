@@ -27,7 +27,7 @@ class EvolucaoDiariaController extends Controller
 
     /**
    * Listar Uma Evolucação Diaria a partir do ID
-   * 
+   *
    * @OA\Get(
    *      path="/pacientes/{pacienteId}/evolucoes-diarias/{evolucaoId}",
    *      operationId="getEvolucaoDiariaEspecifica",
@@ -92,9 +92,11 @@ class EvolucaoDiariaController extends Controller
 
     public function show($pacienteId, $evolucaoId)
     {
-        $evolucaoDiaria = EvolucaoDiaria::where('paciente_id',$pacienteId)->where('id', $evolucaoId)->first();
+        $evolucaoDiaria = EvolucaoDiaria::where('paciente_id', $pacienteId)->where('id', $evolucaoId)->first();
 
-        if(!$evolucaoDiaria) return response()->json('', 404);
+        if (!$evolucaoDiaria) {
+            return response()->json('', 404);
+        }
         return response()->json($evolucaoDiaria);
     }
 }

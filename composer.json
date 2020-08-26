@@ -66,8 +66,11 @@
     "test": [
       "phpunit"
     ],
-    "php-cs-check": [
+    "php-cs:check": [
       "php-cs-fixer fix --dry-run --diff ./app"
+    ],
+    "php-cs:fix": [
+      "php-cs-fixer fix ./app"
     ]
   }
 }
