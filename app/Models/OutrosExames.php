@@ -8,7 +8,7 @@ class OutrosExames extends Model
 {
     protected $table = 'outros_exames';
 
-    protected $fillable = ['paciente_id'];
+    protected $fillable = ['paciente_id', 'tipo_outro_exame_id', 'data', 'resultado'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

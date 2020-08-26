@@ -15,7 +15,7 @@ class OutrosExamesRequest extends FormRequest
     public function rules()
     {
         return [
-            'outrosexames.*.tipo' => 'integer',
+            'outrosexames.*.tipo_outro_exame_id' => 'integer',
             'outrosexames.*.data' => 'date',
             'outrosexames.*.resultado' => 'string',
         ];

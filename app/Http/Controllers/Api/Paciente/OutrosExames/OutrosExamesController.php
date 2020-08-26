@@ -10,9 +10,12 @@ class OutrosExamesController extends Controller
 {
     public function store(OutrosExamesRequest $request, $pacienteId)
     {
-        $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
-        $outrosexames = OutrosExames::create($data);
+        $resultadosExames = [];
+        foreach ($request->outrosexames as $exame) {;
+            $data = array_merge($exame, ['paciente_id' => $pacienteId]);
+            array_push($resultadosExames, OutrosExames::create($data));
+        }
 
-        return response()->json($outrosexames, 201);
+        return response()->json($resultadosExames, 201);
     }
 }
