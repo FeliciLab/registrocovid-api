@@ -15,6 +15,13 @@ class ComplicacaoController extends Controller
         return response()->json($complicacoes);
     }
 
+    public function show($complicacoId)
+    {
+        $complicacao = Complicacao::where('id', $complicacoId)->first();
+
+        return response()->json($complicacao);
+    }
+
     public function store($pacienteId, ComplicacaoRequest $request)
     {
         $complicacoesData = $request->all();
