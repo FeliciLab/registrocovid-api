@@ -23,7 +23,9 @@ class ExamesLaboratoriaisController extends Controller
                     'message' => 'Paciente não possui exames laboratóriais cadastrada',
                     'exames_pcr' => [],
                     'exames_teste_rapido' => []
-                ], 200);
+                ],
+                200
+            );
         }
 
         return response()->json([
