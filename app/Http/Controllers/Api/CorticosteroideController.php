@@ -9,7 +9,7 @@ class CorticosteroideController extends Controller
 {
     /**
      * Listar corticosteroides
-     * 
+     *
      * @OA\Get(
      *      path="/api/corticosteroides",
      *      operationId="getCorticosteroides",
@@ -27,7 +27,7 @@ class CorticosteroideController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Prednisona > 40 mg/dia" 
+     *                              "descricao": "Prednisona > 40 mg/dia"
      *                          }
      *                      }
      *                  )

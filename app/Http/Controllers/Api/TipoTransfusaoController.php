@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\RtPcrResultado;
+use App\Models\TipoTransfusao;
 use Illuminate\Http\Request;
 
-class ResultadoPcrController extends Controller
+class TipoTransfusaoController extends Controller
 {
+
     /**
-     * Lista todos os resulta PCR possíveis
+     * Listar tipos de transfussões
      *
      * @OA\Get(
-     *      path="/api/pcr-resultado",
-     *      operationId="getPcrResultado",
+     *      path="/api/tipos-transfusao",
+     *      operationId="getTiposTransfussoes",
      *      tags={"Recursos"},
-     *      summary="Lista resultados pcr",
-     *      description="Retorna todos resultados pcr cadastrados no sistema",
+     *      summary="Lista tipos de transfussões",
+     *      description="Retorna todos os tipos de transfussões",
      *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
@@ -28,8 +29,12 @@ class ResultadoPcrController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Detectável"
-     *                          }
+     *                              "descricao": "Sangue total"
+     *                          },
+     *                          {
+     *                              "id": 2,
+     *                              "descricao": "Concentrado de hemácias"
+     *                          },
      *                      }
      *                  )
      *              )
@@ -38,10 +43,10 @@ class ResultadoPcrController extends Controller
      *      @OA\Response(response=401, description="Unauthorized"),
      * )
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return RtPcrResultado::all();
+        return TipoTransfusao::all()->toArray();
     }
 }

@@ -25,7 +25,7 @@ class InstituicaoController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "nome": "Hospital Leonardo da Vinci" 
+     *                              "nome": "Hospital Leonardo da Vinci"
      *                          }
      *                      }
      *                  )

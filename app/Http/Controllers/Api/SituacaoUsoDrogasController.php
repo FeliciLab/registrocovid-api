@@ -10,7 +10,7 @@ class SituacaoUsoDrogasController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @OA\Get(
      *      path="/api/situacao-uso-drogas",
      *      operationId="getSituacaoUsoDrogas",
@@ -28,7 +28,7 @@ class SituacaoUsoDrogasController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "É usuário" 
+     *                              "descricao": "É usuário"
      *                          }
      *                      }
      *                  )

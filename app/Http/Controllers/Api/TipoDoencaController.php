@@ -9,7 +9,7 @@ class TipoDoencaController extends Controller
 {
     /**
      * Listar Estado civil
-     * 
+     *
      * @OA\Get(
      *      path="/api/tipos-doencas",
      *      operationId="getTiposDoencas",
@@ -27,7 +27,7 @@ class TipoDoencaController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Doença cardíaca" 
+     *                              "descricao": "Doença cardíaca"
      *                          }
      *                      }
      *                  )

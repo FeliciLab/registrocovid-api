@@ -13,7 +13,7 @@ class BairroController extends Controller
 {
     /**
      * Listar todas as atividades profissionais
-     * 
+     *
      * @OA\Get(
      *      path="/api/bairros",
      *      operationId="getBairros",
