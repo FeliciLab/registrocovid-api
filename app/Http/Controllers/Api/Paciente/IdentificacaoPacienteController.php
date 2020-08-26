@@ -14,7 +14,7 @@ class IdentificacaoPacienteController extends Controller
 {
     /**
      * Mostra identificação do paciente
-     * 
+     *
      * @OA\Get(
      *      path="/api/paciente/{id}/identificacao",
      *      operationId="getIdentificacao",
@@ -113,7 +113,7 @@ class IdentificacaoPacienteController extends Controller
 
     /**
      * Cadastra de identificação do paciente no sistema
-     * 
+     *
      * @OA\Post(
      *      path="/api/paciente/{id}/identificacao",
      *      operationId="storeIdentificacao",

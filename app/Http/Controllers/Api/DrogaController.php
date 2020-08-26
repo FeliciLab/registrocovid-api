@@ -12,7 +12,7 @@ class DrogaController extends Controller
 {
     /**
      * Lista todas as drogas cadastradas no sistema
-     * 
+     *
      * @OA\Get(
      *      path="/api/drogas",
      *      operationId="getDrogas",
@@ -30,7 +30,7 @@ class DrogaController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Maconha" 
+     *                              "descricao": "Maconha"
      *                          }
      *                      }
      *                  )
@@ -49,7 +49,7 @@ class DrogaController extends Controller
 
     /**
      * Cadastra droga no sistema
-     * 
+     *
      * @OA\Post(
      *      path="/api/drogas",
      *      operationId="storeDrogas",
@@ -74,7 +74,7 @@ class DrogaController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Maconha" 
+     *                              "descricao": "Maconha"
      *                          }
      *                      }
      *                  )

@@ -9,7 +9,7 @@ class EstadoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @OA\Get(
      *      path="/api/estados",
      *      operationId="getEstados",
@@ -28,7 +28,7 @@ class EstadoController extends Controller
      *                          {
      *                              "id": 1,
      *                              "nome": "Acre",
-     *                              "unidade_federativa": "AC" 
+     *                              "unidade_federativa": "AC"
      *                          }
      *                      }
      *                  )

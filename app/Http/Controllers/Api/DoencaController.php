@@ -9,7 +9,7 @@ class DoencaController extends Controller
 {
     /**
      * Listar todas as doencas
-     * 
+     *
      * @OA\Get(
      *      path="/api/doencas",
      *      operationId="getDoencas",
@@ -28,7 +28,7 @@ class DoencaController extends Controller
      *                          {
      *                              "id": 1,
      *                              "tipo_doenca": 1,
-     *                              "descricao": "Doença arterial coronariana" 
+     *                              "descricao": "Doença arterial coronariana"
      *                          }
      *                      }
      *                  )

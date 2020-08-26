@@ -66,7 +66,7 @@ class JWTAuthController extends Controller
 
     /**
      * Auth for the Swagger
-     * 
+     *
      * @return JsonResponse
      */
     public function auth(Request $request)

@@ -55,6 +55,11 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::get('/pacientes/{pacienteId}/complicacoes', 'ComplicacaoController@index');
                 Route::post('/pacientes/{pacienteId}/complicacoes', 'ComplicacaoController@store');
+              
+                Route::post('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@store');
+                Route::get('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@index');
+
+                Route::get('/pacientes/{pacienteId}/evolucoes-diarias/{evolucaoId}', 'EvolucaoDiariaController@show');
             });
         });
         Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
@@ -74,6 +79,13 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/pcr-resultado', 'ResultadoPcrController@index');
         Route::get('/sintomas', 'SintomaController@index');
         Route::get('/sitios-rt-pcr', 'TipoSitiosController@index');
+        Route::get('/pcr-resultado', 'ResultadoPcrController@index');
+        Route::get('/cores', 'CorController@index');
+        Route::get('/estados-civis', 'EstadoCivilController@index');
+        Route::get('/escolaridades', 'EscolaridadeController@index');
+        Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
+        Route::get('/tipos-transfusao', 'TipoTransfusaoController@index');
+        Route::get('/tipos-complicacao-vm', 'TipoComplicacaoVMController@index');
         Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');

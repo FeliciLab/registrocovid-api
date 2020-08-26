@@ -30,7 +30,9 @@ class DatabaseSeeder extends Seeder
             OrgaosSeeder::class,
             CorticosteroidesSeeder::class,
             SintomasSeeder::class,
-            TiposComplicacoesSeeder::class
+            TiposComplicacoesSeeder::class,
+            TipoComplicacaoVMSeeder::class,
+            TipoTransfusaoSeeder::class
         ]);
     }
 }
