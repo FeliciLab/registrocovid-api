@@ -15,12 +15,17 @@ class ComplicacaoController extends Controller
         return response()->json($complicacoes);
     }
 
-    // public function store($pacienteId, Request $request)
-    // {
-    //     $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
-        
-    //     $evolucoesDiarias = EvolucaoDiaria::create($data);
+    public function store($pacienteId, Request $request)
+    {
+        $complicacoesData = $request->all();
+        $complicacoes = [];
 
-    //     return response()->json($evolucoesDiarias, 201);
-    // }
+        foreach ($complicacoesData as $complicacaoData) {
+            $data = array_merge($complicacaoData, ['paciente_id' => $pacienteId]);
+            $complicacao = Complicacao::create($data);
+            array_push($complicacoes, $complicacao);
+        }
+
+        return response()->json($complicacoes, 201);
+    }
 }

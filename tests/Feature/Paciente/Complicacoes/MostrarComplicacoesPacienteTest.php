@@ -49,7 +49,7 @@ class MostrarComplicacoesPacienteTest extends TestCase
         $response->assertJsonStructure([[
             'id',
             'paciente_id',
-            'tipo_complicacao_id',
+            'tipo_complicacao',
             'data',
             'data_termino',
             'descricao',
@@ -58,5 +58,12 @@ class MostrarComplicacoesPacienteTest extends TestCase
             'created_at',
             'updated_at',
         ]]);
+
+        $response->assertJsonFragment([
+            'tipo_complicacao' => [
+                'id' => 1,
+                'descricao' => 'UTI'
+            ]
+        ]);
     }
 }

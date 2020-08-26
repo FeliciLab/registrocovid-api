@@ -10,8 +10,8 @@ class TipoComplicacao extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    // public function complicacoes()
-    // {
-    //     return $this->hasMany(Complicacao::class);
-    // }
+    public function complicacoes()
+    {
+        return $this->hasMany(Complicacao::class);
+    }
 }
