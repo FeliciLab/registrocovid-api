@@ -22,7 +22,7 @@ class ComorbidadeController extends Controller
             $comorbidade = Comorbidade::where('paciente_id', $pacienteId)->first();
 
             if (!$comorbidade) {
-                return response()->json(['message' => 'Paciente não possui comorbidade cadastrada.'], 404);
+                return response()->json(['message' => 'Paciente não possui comorbidade cadastrada.'], 204);
             }
 
             return response()->json($comorbidade);
