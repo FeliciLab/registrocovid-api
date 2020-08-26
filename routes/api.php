@@ -52,6 +52,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@index');
                 Route::post('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@store');
+
+                Route::post('/pacientes/{pacienteId}/tratamentos-suportes', 'TratamentoSuporte\TratamentoSuporteController@store');
+                Route::get('/pacientes/{pacienteId}/tratamentos-suportes', 'TratamentoSuporte\TratamentoSuporteController@index');
             });
         });
 
