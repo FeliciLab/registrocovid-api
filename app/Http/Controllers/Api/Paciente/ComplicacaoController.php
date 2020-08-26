@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Paciente;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComplicacaoRequest;
 use App\Models\Complicacao;
-use Illuminate\Http\Request;
 
 class ComplicacaoController extends Controller
 {
@@ -15,7 +15,7 @@ class ComplicacaoController extends Controller
         return response()->json($complicacoes);
     }
 
-    public function store($pacienteId, Request $request)
+    public function store($pacienteId, ComplicacaoRequest $request)
     {
         $complicacoesData = $request->all();
         $complicacoes = [];
