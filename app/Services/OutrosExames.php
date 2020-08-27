@@ -10,9 +10,13 @@ class OutrosExames
     public static function salvaOutrosExames($outrosexames, $pacienteId){
         $resultadosExames = [];
         foreach ($outrosexames as $exame) {
-            $data = array_merge($exame, ['paciente_id' => $pacienteId]);
-            array_push($resultadosExames, OutrosExamesModel::create($data));
+            array_push($resultadosExames, self::registra($exame, $pacienteId));
         }
         return $resultadosExames;
+    }
+
+    private static function registra($exame, $pacienteId){
+        $data = array_merge($exame, ['paciente_id' => $pacienteId]);
+        return OutrosExamesModel::create($data);
     }
 }

@@ -8,9 +8,10 @@ use App\Services\OutrosExames;
 
 class OutrosExamesController extends Controller
 {
+
     public function store(OutrosExamesRequest $request, $pacienteId)
     {
         $resultadosExames = OutrosExames::salvaOutrosExames($request->outrosexames, $pacienteId);
-        return response()->json($resultadosExames, 201);
+        return response()->json(["message" => "Exames cadastrados com sucesso."], 201);
     }
 }
