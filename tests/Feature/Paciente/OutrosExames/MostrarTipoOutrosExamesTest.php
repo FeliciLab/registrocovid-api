@@ -16,20 +16,19 @@ class MostrarTipoOutrosExamesTest extends TestCase
 
     public function testMostrarTipoOutrosExames()
     {
-        $response = $this->getJson("api/tipo-exames-complementares");
+        $response = $this->getJson("api/tipos-exames-complementares");
         $response->assertOk();
 
         $response->assertJsonFragment([
-            "tipo_outro_exame" => [
                 [   
                     'id' => 1,
-                    'descricao' => 'Coriza'
+                    'descricao' => 'Tomografia computadorizada de tórax'
                 ],
                 [   
                     'id' => 2,
-                    'descricao' => 'Coriza'
+                    'descricao' => 'Eletrocardiograma'
                 ]
             ] 
-        ]);
+        );
     }
 }
