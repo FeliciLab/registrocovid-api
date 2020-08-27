@@ -54,7 +54,7 @@ class CadastroOutrosExamesTest extends TestCase
             ]
         ];
         
-        $response = $this->postJson("api/pacientes/{$paciente->id}/outros-exames", $data);
+        $response = $this->postJson("api/pacientes/{$paciente->id}/exames-complementares", $data);
         $response->assertStatus(422);
         $response->assertJsonFragment($jsonFragment);
         
@@ -85,7 +85,7 @@ class CadastroOutrosExamesTest extends TestCase
 
         $jsonFragment = ["message" => "Exames cadastrados com sucesso."];
         
-        $response = $this->postJson("api/pacientes/{$paciente->id}/outros-exames", $data);
+        $response = $this->postJson("api/pacientes/{$paciente->id}/exames-complementares", $data);
         $response->assertStatus(201);
         $response->assertJsonFragment($jsonFragment);
         
