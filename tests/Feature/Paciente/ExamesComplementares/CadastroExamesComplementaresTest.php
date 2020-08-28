@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Paciente\OutrosExames;
+namespace Tests\Feature\Paciente\ExamesComplementares;
 
 use App\Models\Paciente;
 use Carbon\Carbon;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CadastroOutrosExamesTest extends TestCase
+class CadastroExamesComplementaresTest extends TestCase
 {
     public function setUp(): void
     {
@@ -25,14 +25,14 @@ class CadastroOutrosExamesTest extends TestCase
 
 
         $data  = [
-            "outrosexames" => [
+            "examescomplementares" => [
                 [
-                    "tipo_outro_exame_id" => 2,
+                    "tipo_exames_complementares_id" => 2,
                     "data" => "2020-04-01",
                     "resultado" => "Texto do Resultado"
                 ],
                 [
-                    "tipo_outro_exame_id" => False,
+                    "tipo_exames_complementares_id" => False,
                     "data" => "2020",
                     "resultado" => ''
                 ]
@@ -42,14 +42,11 @@ class CadastroOutrosExamesTest extends TestCase
         $jsonFragment = [ 
             "message" => "The given data was invalid.",
             "errors" => [
-                "outrosexames.1.tipo_outro_exame_id" => [
-                    "O campo outrosexames.1.tipo_outro_exame_id deve ser um número inteiro."
+                "examescomplementares.1.data" => [
+                    "O campo examescomplementares.1.data não é uma data válida."
                 ],
-                "outrosexames.1.data" => [
-                    "O campo outrosexames.1.data não é uma data válida."
-                ],
-                "outrosexames.1.resultado" => [
-                    "O campo outrosexames.1.resultado deve ser uma string."
+                "examescomplementares.1.resultado" => [
+                    "O campo examescomplementares.1.resultado deve ser uma string."
                 ]
             ]
         ];
@@ -69,14 +66,14 @@ class CadastroOutrosExamesTest extends TestCase
 
 
         $data  = [
-            "outrosexames" => [
+            "examescomplementares" => [
                 [
-                    "tipo_outro_exame_id" => 2,
+                    "tipo_exames_complementares_id" => 2,
                     "data" => "2020-04-01",
                     "resultado" => "Texto do Resultado"
                 ],
                 [
-                    "tipo_outro_exame_id" => 1,
+                    "tipo_exames_complementares_id" => 1,
                     "data" => "2019-03-07",
                     "resultado" => 'Texto do Resultado'
                 ]

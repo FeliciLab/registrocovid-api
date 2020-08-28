@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoOutroExame extends Model
+class TipoExameComplementar extends Model
 {
-    protected $table = 'tipo_outro_exame';
+    protected $table = 'tipo_exames_complementares';
 
     protected $hidden = ['created_at', 'updated_at'];
 }

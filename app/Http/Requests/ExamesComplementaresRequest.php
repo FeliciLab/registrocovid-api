@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OutrosExamesRequest extends FormRequest
+class ExamesComplementaresRequest extends FormRequest
 {
 
     /**
@@ -15,9 +15,9 @@ class OutrosExamesRequest extends FormRequest
     public function rules()
     {
         return [
-            'outrosexames.*.tipo_outro_exame_id' => 'integer',
-            'outrosexames.*.data' => 'date',
-            'outrosexames.*.resultado' => 'string',
+            'examescomplementares.*.tipo_outro_exame_id' => 'integer',
+            'examescomplementares.*.data' => 'date',
+            'examescomplementares.*.resultado' => 'string',
         ];
     }
 }

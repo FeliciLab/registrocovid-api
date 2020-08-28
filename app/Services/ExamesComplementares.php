@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\OutrosExames as OutrosExamesModel;
+use App\Models\ExameComplementar as ExameComplementarModel;
 
-class OutrosExames
+class ExamesComplementares
 {
 
-    public static function salvaOutrosExames($outrosexames, $pacienteId){
+    public static function salvaExamesComplementares($examesComplementares, $pacienteId){
         $resultadosExames = [];
-        foreach ($outrosexames as $exame) {
+        foreach ($examesComplementares as $exame) {
             array_push($resultadosExames, self::registra($exame, $pacienteId));
         }
         return $resultadosExames;
@@ -17,6 +17,6 @@ class OutrosExames
 
     private static function registra($exame, $pacienteId){
         $data = array_merge($exame, ['paciente_id' => $pacienteId]);
-        return OutrosExamesModel::create($data);
+        return ExameComplementarModel::create($data);
     }
 }

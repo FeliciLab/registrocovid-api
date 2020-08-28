@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             OrgaosSeeder::class,
             CorticosteroidesSeeder::class,
             SintomasSeeder::class,
-            TipoOutroExame::class
+            TipoExamesComplementaresSeeder::class
         ]);
     }
 }

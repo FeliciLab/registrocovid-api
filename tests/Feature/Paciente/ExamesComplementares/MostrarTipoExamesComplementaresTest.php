@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature\Paciente\OutrosExames;
+namespace Tests\Feature\Paciente\ExamesComplementares;
 
-use App\Models\OutrosExames;
+use App\Models\ExamesComplementares;
 use Tests\TestCase;
 
-class MostrarTipoOutrosExamesTest extends TestCase
+class MostrarTipoExamesComplementaresTest extends TestCase
 {
     public function setUp(): void
     {
@@ -14,7 +14,7 @@ class MostrarTipoOutrosExamesTest extends TestCase
     }
 
 
-    public function testMostrarTipoOutrosExames()
+    public function testMostrarTipoExamesComplementares()
     {
         $response = $this->getJson("api/tipos-exames-complementares");
         $response->assertOk();

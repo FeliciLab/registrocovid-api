@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoOutroExameTable extends Migration
+class CreateTipoExamesComplementaresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTipoOutroExameTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_outro_exame', function (Blueprint $table) {
+        Schema::create('tipo_exames_complementares', function (Blueprint $table) {
             $table->id();
             $table->string('descricao', 100);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTipoOutroExameTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_outro_exame');
+        Schema::dropIfExists('tipo_exames_complementares');
     }
 }
