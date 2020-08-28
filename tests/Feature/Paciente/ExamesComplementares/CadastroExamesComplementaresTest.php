@@ -34,26 +34,20 @@ class CadastroExamesComplementaresTest extends TestCase
                 [
                     "tipo_exames_complementares_id" => False,
                     "data" => "2020",
-                    "resultado" => ''
-                ]
-            ]
-        ];
-
-        $jsonFragment = [ 
-            "message" => "The given data was invalid.",
-            "errors" => [
-                "examescomplementares.1.data" => [
-                    "O campo examescomplementares.1.data não é uma data válida."
-                ],
-                "examescomplementares.1.resultado" => [
-                    "O campo examescomplementares.1.resultado deve ser uma string."
+                    "resultado" => 5
                 ]
             ]
         ];
         
         $response = $this->postJson("api/pacientes/{$paciente->id}/exames-complementares", $data);
         $response->assertStatus(422);
-        $response->assertJsonFragment($jsonFragment);
+
+        $response->assertJsonFragment( ["examescomplementares.1.data" => [
+            "O campo examescomplementares.1.data não é uma data válida."
+        ]]);
+        $response->assertJsonFragment(["examescomplementares.1.resultado" => [
+            "O campo examescomplementares.1.resultado deve ser uma string."
+        ]]);
         
     }
 
@@ -80,11 +74,9 @@ class CadastroExamesComplementaresTest extends TestCase
             ]
         ];
 
-        $jsonFragment = ["message" => "Exames cadastrados com sucesso."];
-        
         $response = $this->postJson("api/pacientes/{$paciente->id}/exames-complementares", $data);
         $response->assertStatus(201);
-        $response->assertJsonFragment($jsonFragment);
+        $response->assertJsonFragment(["message" => "Exames cadastrados com sucesso."]);
         
     }
 

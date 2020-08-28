@@ -20,15 +20,12 @@ class MostrarTipoExamesComplementaresTest extends TestCase
         $response->assertOk();
 
         $response->assertJsonFragment([
-                [   
-                    'id' => 1,
-                    'descricao' => 'Tomografia computadorizada de tórax'
-                ],
-                [   
-                    'id' => 2,
-                    'descricao' => 'Eletrocardiograma'
-                ]
-            ] 
-        );
+            'id' => 1,
+            'descricao' => 'Tomografia computadorizada de tórax'
+        ]);
+        $response->assertJsonFragment([   
+            'id' => 2,
+            'descricao' => 'Eletrocardiograma'
+        ]);
     }
 }
