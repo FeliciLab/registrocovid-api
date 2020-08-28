@@ -15,6 +15,7 @@ class ExamesLaboratoriaisController extends Controller
         $examesPcr = ExameRtPcrResource::collection(
             ExameRtPcr::where('paciente_id', $pacienteId)->get()
         );
+        
         $examesTesteRapido = ExameTesteRapido::where('paciente_id', $pacienteId)->get();
 
         if (!count($examesPcr) && !count($examesTesteRapido)) {
