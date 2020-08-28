@@ -11,8 +11,8 @@ class TratamentoSuporteStoreRequest extends FormRequest
     {
         return [
             '*.data_hemodialise' => 'required|date',
-            '*.motivo_hemodialise' => 'string',
-            '*.frequencia_hemodialise' => 'string'
+            '*.motivo_hemodialise' => 'nullable|string',
+            '*.frequencia_hemodialise' => 'nullable|string'
         ];
     }
 }

@@ -23,7 +23,9 @@ class ExamesLaboratoriaisController extends Controller
                     'message' => 'Paciente não possui exames laboratóriais cadastrada',
                     'exames_pcr' => [],
                     'exames_teste_rapido' => []
-                ], 200);
+                ],
+                200
+            );
         }
 
         return response()->json([
@@ -33,7 +35,6 @@ class ExamesLaboratoriaisController extends Controller
     }
     public function store(ExamesLaboratoriaisRequest $request, $pacienteId)
     {
-
         if ($request->has(['data_resultado', 'rt_pcr_resultado_id'])) {
             $exameRtPcr = ExameRtPcr::create(array_merge(
                 $request->only(['data_coleta', 'sitio_tipo_id', 'data_resultado', 'rt_pcr_resultado_id']),
