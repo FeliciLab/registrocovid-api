@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TratamentoSuporteStoreRequest extends FormRequest
 {
-
     public function rules()
     {
         return [

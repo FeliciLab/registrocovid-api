@@ -126,7 +126,6 @@ class TratamentoSuporteController extends Controller
      */
     public function store(TratamentoSuporteStoreRequest $request, $pacienteId)
     {
-
         $resultado = new Collection();
         foreach ($request->post() as $tratamento) {
             $resultado->push(
