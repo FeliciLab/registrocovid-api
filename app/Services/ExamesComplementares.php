@@ -14,13 +14,18 @@ class ExamesComplementares
         foreach ($examesComplementares as $exame) {
             array_push($resultadosExames, self::registra($exame, $pacienteId));
         }
+        return count($resultadosExames) ? [
+            [
+                "message" => "Exames cadastrados com sucesso.", 
+                "exames_complementares" => $resultadosExames
+            ], 201]:
 
-
-        return $resultadosExames;
+            ["Um erro ocorreu.", 200];
     }
 
     private static function registra($exame, $pacienteId){
         $data = array_merge($exame, ['paciente_id' => $pacienteId]);
+
         return ExameComplementarModel::create($data);
     }
 
@@ -31,6 +36,6 @@ class ExamesComplementares
             ExameComplementarModel::where('paciente_id', $pacienteId)->get()
         );
 
-        return count($examesComplementares) ? [$examesComplementares, 200]: [[], 404] ;
+        return count($examesComplementares) ? [$examesComplementares, 200]: [[], 204];
     }
 }

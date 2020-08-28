@@ -12,15 +12,25 @@ class ExamesComplementaresController extends Controller
 
     public function store(ExamesComplementaresRequest $request, $pacienteId)
     {
-        $resultadosExames = ExamesComplementares::salvaExamesComplementares(
-            $request->examescomplementares, $pacienteId);
-        return response()->json(["message" => "Exames cadastrados com sucesso."], 201);
+        try{
+            [$response, $statusCode] = ExamesComplementares::salvaExamesComplementares(
+                $request->examescomplementares, $pacienteId
+            );
+            
+        }catch (\Exception $e) {
+            $responseMessage = new ErrorMessage($e->getMessage());
+            $statusCode = 500;
+        }
+
+        
+        
+        return response()->json($response, $statusCode);
     }
 
 
     public function index($pacienteId)
     {
-        [$response, $status] = ExamesComplementares::mostrarExamesComplementares($pacienteId);
-        return response()->json($response, $status);
+        [$response, $statusCode] = ExamesComplementares::mostrarExamesComplementares($pacienteId);
+        return response()->json($response, $statusCode);
     }
 }
