@@ -3,9 +3,6 @@
 namespace Tests\Feature\Paciente\ExamesComplementares;
 
 use App\Models\Paciente;
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CadastroExamesComplementaresTest extends TestCase
@@ -17,7 +14,7 @@ class CadastroExamesComplementaresTest extends TestCase
         $this->authenticated();
     }
 
-    public function testShouldReturnUnprocessableEntity()
+    public function testDeveRetornarCamposInvalidos()
     {
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id
@@ -52,7 +49,7 @@ class CadastroExamesComplementaresTest extends TestCase
     }
 
 
-    public function testShouldReturnCreateSuccessfull()
+    public function testCriarExamesComplementares()
     {
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id
