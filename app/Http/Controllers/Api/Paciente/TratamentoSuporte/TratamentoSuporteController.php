@@ -28,8 +28,9 @@ class TratamentoSuporteController extends Controller
 
     public function store(TratamentoSuporteStoreRequest $request, $pacienteId)
     {
+
         $resultado = new Collection();
-        foreach ($request->tratamentos_suportes as $tratamento) {
+        foreach ($request->post() as $tratamento) {
             $resultado->push(
                 TratamentoSuporte::create([
                     'paciente_id' => (int) $pacienteId,
