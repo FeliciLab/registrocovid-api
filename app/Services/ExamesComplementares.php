@@ -20,7 +20,7 @@ class ExamesComplementares
                 "exames_complementares" => $resultadosExames
             ], 201]:
 
-            ["Um erro ocorreu.", 200];
+            [["message"=> "Não foi possível cadastrar os exames."], 200];
     }
 
     private static function registra($exame, $pacienteId){
