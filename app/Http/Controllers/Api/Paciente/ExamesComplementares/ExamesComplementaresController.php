@@ -12,7 +12,7 @@ class ExamesComplementaresController extends Controller
 
     /**
      * Cadastra exames complementares no sistema
-     * 
+     *
      * @OA\Post(
      *      path="/api/exames-complementares",
      *      operationId="storeExamesComplementares",
@@ -41,7 +41,7 @@ class ExamesComplementaresController extends Controller
      *                                   "data" : "2020-04-01",
      *                                   "resultado": "Resultado do Exame"
      *                               }
-     *                               
+     *
      *                           ]
      *                      }
      *                  )
@@ -54,12 +54,12 @@ class ExamesComplementaresController extends Controller
      */
     public function store(ExamesComplementaresRequest $request, $pacienteId)
     {
-        try{
+        try {
             [$response, $statusCode] = ExamesComplementares::salvaExamesComplementares(
-                $request->examescomplementares, $pacienteId
+                $request->examescomplementares,
+                $pacienteId
             );
-            
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             $response = $e->getMessage();
             $statusCode = 500;
         }
@@ -69,7 +69,7 @@ class ExamesComplementaresController extends Controller
 
     /**
      * Lista os exames complementares de um paciente
-     * 
+     *
      * @OA\Get(
      *      path="/api/exames-complementares",
      *      operationId="getExamesComplementares",

@@ -5,7 +5,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\TipoExameComplementar;
 
-
 class ExameComplementarResource extends JsonResource
 {
     /**
@@ -16,9 +15,10 @@ class ExameComplementarResource extends JsonResource
      */
     public function toArray($request)
     {
-
         $tipoExameComplementar = TipoExameComplementar::where(
-            'id', $this->tipo_exames_complementares_id)->get('descricao')->first();
+            'id',
+            $this->tipo_exames_complementares_id
+        )->get('descricao')->first();
 
         return [
             'id' => $this->id,

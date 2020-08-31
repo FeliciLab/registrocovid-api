@@ -10,7 +10,7 @@ class TipoExamesComplementaresController extends Controller
 
     /**
      * Lista os tipos de exames complementares cadastrados no sistema
-     * 
+     *
      * @OA\Get(
      *      path="/api/tipos-exames-complementares",
      *      operationId="getTipoExamesComplementares",
