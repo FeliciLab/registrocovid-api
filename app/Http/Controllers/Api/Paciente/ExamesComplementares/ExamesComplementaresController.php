@@ -91,14 +91,14 @@ class ExamesComplementaresController extends Controller
      *                                   "data": "2020-04-01",
      *                                   "resultado": "Texto do Resultado",
      *                                   "tipo_exame_id": 1,
-     *                                   "tipo_exame_descricao": "Tomografia computadorizada de tórax"
+     *                                   "descricao": "Tomografia computadorizada de tórax"
      *                               },
      *                               {
      *                                   "id": 2,
      *                                   "data": "2020-04-01",
      *                                   "resultado": "Texto do Resultado",
      *                                   "tipo_exame_id": 2,
-     *                                   "tipo_exame_descricao": "Eletrocardiograma"
+     *                                   "descricao": "Eletrocardiograma"
      *                               }
      *                           ]
      *                      }

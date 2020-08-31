@@ -25,7 +25,7 @@ class ExameComplementarResource extends JsonResource
             'data' => $this->data,
             'resultado' => $this->resultado,
             'tipo_exame_id' => $this->tipo_exames_complementares_id,
-            'tipo_exame_descricao' => $tipoExameComplementar['descricao']
+            'descricao' => $tipoExameComplementar['descricao']
         ];
     }
 }
