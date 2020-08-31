@@ -18,11 +18,9 @@ class ExamesComplementaresController extends Controller
             );
             
         }catch (\Exception $e) {
-            $responseMessage = new ErrorMessage($e->getMessage());
+            $response = new ErrorMessage($e->getMessage());
             $statusCode = 500;
         }
-
-        
         
         return response()->json($response, $statusCode);
     }
@@ -31,6 +29,7 @@ class ExamesComplementaresController extends Controller
     public function index($pacienteId)
     {
         [$response, $statusCode] = ExamesComplementares::mostrarExamesComplementares($pacienteId);
+
         return response()->json($response, $statusCode);
     }
 }

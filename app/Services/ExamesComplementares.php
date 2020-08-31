@@ -36,6 +36,7 @@ class ExamesComplementares
             ExameComplementarModel::where('paciente_id', $pacienteId)->get()
         );
 
-        return count($examesComplementares) ? [$examesComplementares, 200]: [[], 204];
+        return count($examesComplementares) ? [$examesComplementares, 200]: 
+            [["message" => "Paciente não possui exames complementares cadastrados."], 200];
     }
 }
