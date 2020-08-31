@@ -12,7 +12,7 @@ class SintomaController extends Controller
 {
     /**
      * List sintomas
-     * 
+     *
      * @OA\Get(
      *      path="/api/sintomas",
      *      operationId="getSintomas",

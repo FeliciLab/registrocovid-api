@@ -12,7 +12,7 @@ class MunicipioController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @OA\Get(
      *      path="/api/municipios",
      *      operationId="getMunicipios",
@@ -41,7 +41,7 @@ class MunicipioController extends Controller
      *                          {
      *                              "id": 1347,
      *                              "estado_id": 6,
-     *                              "nome": "Fortaleza" 
+     *                              "nome": "Fortaleza"
      *                          }
      *                      }
      *                  )

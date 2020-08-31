@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\RtPcrResultado;
+use App\Models\TipoComplicacaoVM;
 use Illuminate\Http\Request;
 
-class ResultadoPcrController extends Controller
+class TipoComplicacaoVMController extends Controller
 {
     /**
-     * Lista todos os resulta PCR possíveis
+     * Listar tipos de complicações ventilação mecânica
      *
      * @OA\Get(
-     *      path="/api/pcr-resultado",
-     *      operationId="getPcrResultado",
+     *      path="/api/tipos-complicacao-vm",
+     *      operationId="getTiposComplicacaoesVM",
      *      tags={"Recursos"},
-     *      summary="Lista resultados pcr",
-     *      description="Retorna todos resultados pcr cadastrados no sistema",
+     *      summary="Lista tipos de complicações relacionados a ventilação mecânica",
+     *      description="Retorna todos tipos de complicações relacionados a ventilação mecânica",
      *      security={{"apiAuth":{}}},
      *      @OA\Response(
      *          response=200,
@@ -28,8 +28,12 @@ class ResultadoPcrController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Detectável"
-     *                          }
+     *                              "descricao": "Pneumotórax"
+     *                          },
+     *                          {
+     *                              "id": 2,
+     *                              "descricao": "Extubação acidental"
+     *                          },
      *                      }
      *                  )
      *              )
@@ -38,10 +42,10 @@ class ResultadoPcrController extends Controller
      *      @OA\Response(response=401, description="Unauthorized"),
      * )
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return RtPcrResultado::all();
+        return TipoComplicacaoVM::all()->toArray();
     }
 }

@@ -9,7 +9,7 @@ class CorController extends Controller
 {
     /**
      * Listar cores
-     * 
+     *
      * @OA\Get(
      *      path="/api/cores",
      *      operationId="getCores",
@@ -27,7 +27,7 @@ class CorController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "nome": "Amarelo" 
+     *                              "nome": "Amarelo"
      *                          }
      *                      }
      *                  )

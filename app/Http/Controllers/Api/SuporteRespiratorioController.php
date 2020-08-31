@@ -25,7 +25,7 @@ class SuporteRespiratorioController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "nome": "Máscara de reservatório" 
+     *                              "nome": "Máscara de reservatório"
      *                          }
      *                      }
      *                  )

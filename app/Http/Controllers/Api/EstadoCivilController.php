@@ -11,7 +11,7 @@ class EstadoCivilController extends Controller
 {
     /**
      * Listar Estado civil
-     * 
+     *
      * @OA\Get(
      *      path="/api/estados-civis",
      *      operationId="getEstadoCivil",
@@ -29,7 +29,7 @@ class EstadoCivilController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "Prednisona > 40 mg/dia" 
+     *                              "descricao": "Prednisona > 40 mg/dia"
      *                          }
      *                      }
      *                  )
