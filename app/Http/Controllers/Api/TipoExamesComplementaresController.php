@@ -26,16 +26,14 @@ class TipoExamesComplementaresController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                         [
-     *                              {
-     *                                   "id": 1,
-     *                                   "descricao": "Tomografia computadorizada de tórax"
-     *                               },
-     *                               {
-     *                                   "id": 2,
-     *                                   "descricao": "Eletrocardiograma"
-     *                               }
-     *                           ]
+     *                          {
+     *                               "id": 1,
+     *                               "descricao": "Tomografia computadorizada de tórax"
+     *                           },
+     *                           {
+     *                               "id": 2,
+     *                               "descricao": "Eletrocardiograma"
+     *                           }
      *                      }
      *                  )
      *              )

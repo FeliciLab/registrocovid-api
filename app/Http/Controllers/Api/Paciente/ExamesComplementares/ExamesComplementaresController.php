@@ -21,11 +21,42 @@ class ExamesComplementaresController extends Controller
      *      description="Cadastra exames complementares no sistema",
      *      security={{"apiAuth":{}}},
      *      @OA\RequestBody(
-     *          description="",
-     *          required=true,
      *          @OA\JsonContent(
-     *              @OA\Property(property="descricao", type="string")
-     *          )
+     *             type="object",
+     *             @OA\Property(
+     *                property="examescomplementares",
+     *                type="array",
+     *                example={
+     *                   {
+     *                       "tipo_exames_complementares_id" : 1,
+     *                       "data" : "2020-04-01",
+     *                       "resultado": "Resultado do Exame"
+     *                   },
+     *                   {
+     *                       "tipo_exames_complementares_id" : 2,
+     *                       "data" : "2020-04-01",
+     *                       "resultado": "Resultado do Exame"
+     *                   }
+     *                },
+     *                @OA\Items(
+     *                      @OA\Property(
+     *                         property="tipo_exames_complementares_id",
+     *                         type="integer",
+     *                         example="1"
+     *                      ),
+     *                      @OA\Property(
+     *                         property="data",
+     *                         type="string",
+     *                         example="2020-04-01"
+     *                      ),
+     *                      @OA\Property(
+     *                         property="resultado",
+     *                         type="string",
+     *                         example="Resultado do Exame"
+     *                      )
+     *                  ),
+     *              ),
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=201,
@@ -35,14 +66,13 @@ class ExamesComplementaresController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                          "examescomplementares" : [
-     *                               {
-     *                                   "tipo_exames_complementares_id" : 1,
-     *                                   "data" : "2020-04-01",
-     *                                   "resultado": "Resultado do Exame"
-     *                               }
-     *
-     *                           ]
+     *                           {
+     *                               "tipo_exames_complementares_id": 1,
+     *                               "data": "2020-04-01",
+     *                               "resultado": "Texto do resultado",
+     *                               "paciente_id": "1",
+     *                               "id": 4
+     *                           }
      *                      }
      *                  )
      *              )
@@ -85,7 +115,6 @@ class ExamesComplementaresController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                          [
      *                               {
      *                                   "id": 1,
      *                                   "data": "2020-04-01",
@@ -100,7 +129,6 @@ class ExamesComplementaresController extends Controller
      *                                   "tipo_exame_id": 2,
      *                                   "descricao": "Eletrocardiograma"
      *                               }
-     *                           ]
      *                      }
      *                  )
      *              )
