@@ -88,5 +88,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
         Route::post('/drogas', 'DrogaController@store');
+        Route::get('/tipos-iras', 'TipoIRASController@index');
     });
 });

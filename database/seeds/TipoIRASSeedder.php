@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class IRASSeedder extends Seeder
+class TipoIRASSeedder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             SintomasSeeder::class,
             TipoComplicacaoVMSeeder::class,
             TipoTransfusaoSeeder::class,
-            IRASSeedder::class
+            TipoIRASSeedder::class
         ]);
     }
 }
