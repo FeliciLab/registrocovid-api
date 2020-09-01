@@ -157,6 +157,7 @@ class ComplicacoesVentilacaoMecController extends Controller
 
             if ($request->input('tipo_complicacao_id') == 4) {
                 $transfusaoOcorrencia = new TransfusaoOcorrencia();
+                $transfusaoOcorrencia->tipo_transfusao_id = $request->tipo_transfusao_id;
                 $transfusaoOcorrencia->data_transfusao = $request->data_complicacao;
                 $transfusaoOcorrencia->volume_transfusao = $request->volume_transfusao;
                 $transfusaoOcorrencia->paciente_id = $pacienteId;
