@@ -53,6 +53,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@index');
                 Route::post('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@store');
 
+                Route::post('/pacientes/{pacienteId}/exames-complementares', 'ExamesComplementares\ExamesComplementaresController@store');
+                Route::get('/pacientes/{pacienteId}/exames-complementares', 'ExamesComplementares\ExamesComplementaresController@index');
                 Route::post('/pacientes/{pacienteId}/tratamentos-suportes', 'TratamentoSuporte\TratamentoSuporteController@store');
                 Route::get('/pacientes/{pacienteId}/tratamentos-suportes', 'TratamentoSuporte\TratamentoSuporteController@index');
                 Route::post('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@store');
@@ -88,5 +90,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
         Route::post('/drogas', 'DrogaController@store');
+        Route::get('/tipos-exames-complementares', 'TipoExamesComplementaresController@index');
+
     });
 });
