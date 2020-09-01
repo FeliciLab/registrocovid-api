@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Paciente\ExamesComplementares;
 
-use App\Models\ExamesComplementares;
 use Tests\TestCase;
 
 class MostrarTipoExamesComplementaresTest extends TestCase
