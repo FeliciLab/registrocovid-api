@@ -55,9 +55,10 @@ Configurar os parametros no arquivo .env (banco, token) https://laravel.com/docs
 cp .env.example .env
 ```
 
-Gerar Application Key
+Gerar Application Keys
 ```
 php artisan key:generate
+php artisan jwt:secret
 ```
 
 Será necessário da permissão para as views acessar os storage
