@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CorticosteroidesSeeder::class,
             SintomasSeeder::class,
             TiposComplicacoesSeeder::class,
+            TipoExamesComplementaresSeeder::class,
             TipoComplicacaoVMSeeder::class,
             TipoTransfusaoSeeder::class
         ]);

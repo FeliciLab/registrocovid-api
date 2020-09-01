@@ -27,7 +27,6 @@ class CadastroComplicacaoTest extends TestCase
             "data_complicacao" => "2020-08-10",
             "descricao" => "descricao qualquer",
             "tipo_transfusao_id" => 5,
-            "data_transfusao" => "2020-08-18",
             "volume_transfusao" => 6.2
         ];
 
@@ -64,28 +63,24 @@ class CadastroComplicacaoTest extends TestCase
     {
         return [
             [
-                [ 'tipo_complicacao_id' => 'teste'],
-                [ 'errors' => ['data_complicacao' => ['O campo data complicacao é obrigatório quando tipo complicacao id está presente.'], 'tipo_complicacao_id' => ['O campo tipo complicacao id deve ser um número inteiro.']]]
+                ['tipo_complicacao_id' => 'teste'],
+                ['errors' => ['data_complicacao' => ['O campo data complicacao é obrigatório quando tipo complicacao id está presente.'], 'tipo_complicacao_id' => ['O campo tipo complicacao id deve ser um número inteiro.']]]
             ],
             [
-                [ 'data_complicacao' => 0],
-                [ 'data_complicacao' => ['O campo data complicacao não é uma data válida.'] ]
+                ['data_complicacao' => 0],
+                ['data_complicacao' => ['O campo data complicacao não é uma data válida.']]
             ],
             [
-                [ 'descricao' => 0],
-                [ 'descricao' => ['O campo descricao deve ser uma string.'] ]
+                ['descricao' => 0],
+                ['descricao' => ['O campo descricao deve ser uma string.']]
             ],
             [
-                [ 'tipo_transfusao_id' => 0],
-                [ 'errors' => ['data_transfusao' => ['O campo data transfusao é obrigatório quando tipo transfusao id está presente.'], 'tipo_transfusao_id' => ['O campo tipo transfusao id selecionado é inválido.']]]
+                ['tipo_transfusao_id' => 0],
+                ['errors' => ['tipo_transfusao_id' => ['O campo tipo transfusao id selecionado é inválido.']]]
             ],
             [
-                [ 'data_transfusao' => 'teste'],
-                [ 'data_transfusao' => ['O campo data transfusao não é uma data válida.'] ]
-            ],
-            [
-                [ 'volume_transfusao' => 'teste'],
-                [ 'errors' => ['volume_transfusao' => ['O campo volume transfusao tem um formato inválido.']]]
+                ['volume_transfusao' => 'teste'],
+                ['errors' => ['volume_transfusao' => ['O campo volume transfusao tem um formato inválido.']]]
             ]
         ];
     }
