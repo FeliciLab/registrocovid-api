@@ -9,7 +9,7 @@ class TipoComplicacaoController extends Controller
 {
     /**
      * Listar Estado civil
-     * 
+     *
      * @OA\Get(
      *      path="/api/tipos-complicacoes",
      *      operationId="getTiposComplicacoes",
@@ -27,7 +27,7 @@ class TipoComplicacaoController extends Controller
      *                      example={
      *                          {
      *                              "id": 1,
-     *                              "descricao": "UTI" 
+     *                              "descricao": "UTI"
      *                          }
      *                      }
      *                  )
