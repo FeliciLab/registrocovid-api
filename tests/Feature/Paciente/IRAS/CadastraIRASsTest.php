@@ -31,7 +31,7 @@ class CadastraIRASsTest extends TestCase
                 [
                     "tipo_iras_id" => False,
                     "data" => "2020",
-                    "descricao" => 5
+                    "descricao" => ""
                 ]
             ]
         ];
@@ -61,12 +61,12 @@ class CadastraIRASsTest extends TestCase
                 [
                     "tipo_iras_id" => 2,
                     "data" => "2020-04-01",
-                    "descricao" => ""
+                    "descricao" => "Descrição da infecção"
                 ],
                 [
                     "tipo_iras_id" => 1,
                     "data" => "2019-03-07",
-                    "descricao" => ''
+                    "descricao" => "Descrição da infecção"
                 ]
             ]
         ];

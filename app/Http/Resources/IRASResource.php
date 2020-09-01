@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\TipoExameComplementar;
+use App\Models\TipoIRAS;
 
 class IRASResource extends JsonResource
 {
@@ -23,7 +23,7 @@ class IRASResource extends JsonResource
         return [
             'id' => $this->id,
             'data' => $this->data,
-            'resultado' => $this->resultado,
+            'descricao' => $this->descricao,
             'tipo_iras_id' => $this->tipo_iras_id,
             'tipo_iras_descricao' => $tipoIRAS['descricao']
         ];

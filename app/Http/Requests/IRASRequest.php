@@ -17,7 +17,7 @@ class IRASRequest extends FormRequest
         return [
             'iras.*.tipo_iras_id' => 'integer',
             'iras.*.data' => 'date',
-            'iras.*.resultado' => 'string',
+            'iras.*.descricao' => 'string',
         ];
     }
 }
