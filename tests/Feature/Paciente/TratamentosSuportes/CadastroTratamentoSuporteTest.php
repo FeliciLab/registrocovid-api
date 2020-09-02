@@ -6,6 +6,7 @@ use App\Models\Paciente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\TratamentoSuporte;
 
 class CadastroTratamentoSuporteTest extends TestCase
 {
@@ -29,11 +30,33 @@ class CadastroTratamentoSuporteTest extends TestCase
             "frequencia_hemodialise" => "Frequencia de teste hemodialise"
         ];
 
-        $response = $this->postJson("api/pacientes/{$paciente->id}/tratamentos-suportes", $data);
+        $response = $this->postJson("api/pacientes/{$paciente->id}/tratamento-suporte", $data);
         $response->assertStatus(201);
         $response->assertJsonFragment([
-            "message" => "Tramento de suporte hemodialise cadastrado com sucesso",
+            "message" => "Tratamento de suporte hemodialise cadastrado com sucesso",
         ]);
+    }
+
+    public function testTratamentoSuporteJaExiste()
+    {
+        $paciente = factory(Paciente::class)->create([
+            'coletador_id' => $this->currentUser->id
+        ]);
+
+        factory(TratamentoSuporte::class)->create([
+            'paciente_id' => $paciente->id
+        ]);
+
+        $data = [
+            "data_inicio" => "2020-09-01",
+            "data_termino" => "2020-09-02",
+            "motivo_hemodialise" => "Motivo de teste hemodialise",
+            "frequencia_hemodialise" => "Frequencia de teste hemodialise"
+        ];
+        
+        $response = $this->postJson("api/pacientes/{$paciente->id}/tratamento-suporte", $data);
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['message' => 'Tratamento de suporte hemodialise paciente já existe']);
     }
 
     /**
@@ -45,7 +68,7 @@ class CadastroTratamentoSuporteTest extends TestCase
             'coletador_id' => $this->currentUser->id
         ]);
 
-        $response = $this->postJson("api/pacientes/{$paciente->id}/tratamentos-suportes", $dados);
+        $response = $this->postJson("api/pacientes/{$paciente->id}/tratamento-suporte", $dados);
         $response->assertStatus(422);
         $response->assertJsonFragment($erro);
     }
