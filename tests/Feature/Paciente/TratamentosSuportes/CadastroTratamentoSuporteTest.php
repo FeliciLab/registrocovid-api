@@ -23,16 +23,10 @@ class CadastroTratamentoSuporteTest extends TestCase
         ]);
 
         $data = [
-            [
-                "data_hemodialise" => "2020-08-26",
-                "motivo_hemodialise" => "Motivo de teste hemodialise",
-                "frequencia_hemodialise" => "Frequencia de teste hemodialise"
-            ],
-            [
-                "data_hemodialise" => "2020-08-27",
-                "motivo_hemodialise" => "Motivo de teste hemodialise 2",
-                "frequencia_hemodialise" => "Frequencia de teste hemodialise 2"
-            ]
+            "data_inicio" => "2020-09-01",
+            "data_termino" => "2020-09-02",
+            "motivo_hemodialise" => "Motivo de teste hemodialise",
+            "frequencia_hemodialise" => "Frequencia de teste hemodialise"
         ];
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/tratamentos-suportes", $data);
@@ -62,19 +56,22 @@ class CadastroTratamentoSuporteTest extends TestCase
     public function cenariosValidacao(): array
     {
         return [
-           [
-               ['data_hemodialise' => 0],
-               ['errors' => ['data_hemodialise.data_hemodialise' => ['O campo data_hemodialise.data_hemodialise é obrigatório.']]]
-           ],
-           [
-               ['motivo_hemodialise' => 0],
-               ['errors' => ['motivo_hemodialise.data_hemodialise' => ['O campo motivo_hemodialise.data_hemodialise é obrigatório.']]]
-           ],
-           [
-               ['frequencia_hemodialise' => 0],
-               ['errors' => ['frequencia_hemodialise.data_hemodialise' => ['O campo frequencia_hemodialise.data_hemodialise é obrigatório.']]]
-           ]
+            [
+                ['data_inicio' => 0],
+                ['errors' => ['data_inicio' => ['O campo data inicio não é uma data válida.'], 'data_termino' => ['O campo data termino é obrigatório.']]]
+            ],
+            [
+                ['data_termino' => 0],
+                ['errors' => ['data_inicio' => ['O campo data inicio é obrigatório.'], 'data_termino' => ['O campo data termino não é uma data válida.']]]
+            ],
+            [
+                ['motivo_hemodialise' => 0],
+                ['errors' => ['data_inicio' => ['O campo data inicio é obrigatório.'], 'data_termino' => ['O campo data termino é obrigatório.'], 'motivo_hemodialise' => ['O campo motivo hemodialise deve ser uma string.']]]
+            ],
+            [
+                ['frequencia_hemodialise' => 0],
+                ['errors' => ['data_inicio' => ['O campo data inicio é obrigatório.'], 'data_termino' => ['O campo data termino é obrigatório.'], 'frequencia_hemodialise' => ['O campo frequencia hemodialise deve ser uma string.']]]
+            ]
         ];
     }
-
 }
