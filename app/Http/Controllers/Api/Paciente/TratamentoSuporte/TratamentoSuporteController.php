@@ -129,7 +129,6 @@ class TratamentoSuporteController extends Controller
      */
     public function store(TratamentoSuporteStoreRequest $request, $pacienteId)
     {
-
         if (TratamentoSuporte::where('paciente_id', $pacienteId)->exists()) {
             return response()->json(['message' => 'Tratamento de suporte hemodialise paciente já existe']);
         }
