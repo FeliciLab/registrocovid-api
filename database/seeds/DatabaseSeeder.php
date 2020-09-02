@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             TiposComplicacoesSeeder::class,
             TipoExamesComplementaresSeeder::class,
             TipoComplicacaoVMSeeder::class,
-            TipoTransfusaoSeeder::class
+            TipoTransfusaoSeeder::class,
+            TipoIRASSeedder::class
         ]);
     }
 }

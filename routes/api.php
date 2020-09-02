@@ -64,6 +64,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::get('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@index');
 
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias/{evolucaoId}', 'EvolucaoDiariaController@show');
+
+                Route::post('/pacientes/{pacienteId}/iras', 'IRAS\IRASController@store');
+                Route::get('/pacientes/{pacienteId}/iras', 'IRAS\IRASController@index');
             });
         });
         Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
@@ -83,7 +86,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/pcr-resultado', 'ResultadoPcrController@index');
         Route::get('/sintomas', 'SintomaController@index');
         Route::get('/sitios-rt-pcr', 'TipoSitiosController@index');
-        Route::get('/pcr-resultado', 'ResultadoPcrController@index');
         Route::get('/cores', 'CorController@index');
         Route::get('/estados-civis', 'EstadoCivilController@index');
         Route::get('/escolaridades', 'EscolaridadeController@index');
@@ -95,6 +97,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
         Route::get('/tipos-complicacoes', 'TipoComplicacaoController@index');
         Route::post('/drogas', 'DrogaController@store');
+        Route::get('/tipos-iras', 'TipoIRASController@index');
         Route::get('/tipos-exames-complementares', 'TipoExamesComplementaresController@index');
 
     });
