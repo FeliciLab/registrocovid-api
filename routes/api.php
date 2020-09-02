@@ -53,6 +53,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@index');
                 Route::post('/pacientes/{pacienteId}/evolucoes-diarias', 'EvolucaoDiariaController@store');
 
+                Route::get('/pacientes/{pacienteId}/complicacoes', 'ComplicacaoController@index');
+                Route::post('/pacientes/{pacienteId}/complicacoes', 'ComplicacaoController@store');
+              
                 Route::post('/pacientes/{pacienteId}/exames-complementares', 'ExamesComplementares\ExamesComplementaresController@store');
                 Route::get('/pacientes/{pacienteId}/exames-complementares', 'ExamesComplementares\ExamesComplementaresController@index');
                 Route::post('/pacientes/{pacienteId}/tratamentos-suportes', 'TratamentoSuporte\TratamentoSuporteController@store');
@@ -63,6 +66,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias/{evolucaoId}', 'EvolucaoDiariaController@show');
             });
         });
+        Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
 
         Route::get('/atividades-profissionais', 'AtividadeProfissionalController@index');
         Route::get('/bairros', 'BairroController@index');
@@ -89,6 +93,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
+        Route::get('/tipos-complicacoes', 'TipoComplicacaoController@index');
         Route::post('/drogas', 'DrogaController@store');
         Route::get('/tipos-exames-complementares', 'TipoExamesComplementaresController@index');
 
