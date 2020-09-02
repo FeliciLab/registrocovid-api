@@ -9,9 +9,10 @@ class TratamentoSuporte extends Model
     protected $fillable = [
         'paciente_id',
         'hemodialise',
-        'data_hemodialise',
         'motivo_hemodialise',
-        'frequencia_hemodialise'
+        'frequencia_hemodialise',
+        'data_inicio',
+        'data_termino'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'paciente_id'];

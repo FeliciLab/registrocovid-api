@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Paciente\TratamentoSuporte;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TratamentoSuporteStoreRequest;
 use App\Models\TratamentoSuporte;
-use Illuminate\Support\Collection;
 
 class TratamentoSuporteController extends Controller
 {
@@ -41,9 +40,10 @@ class TratamentoSuporteController extends Controller
      *                              {
      *                                  "id": 1,
      *                                  "hemodialise": true,
-     *                                  "data_hemodialise": "2020-08-26",
      *                                  "motivo_hemodialise": "Motivo de teste hemodialise",
      *                                  "frequencia_hemodialise": "Frequencia de teste hemodialise",
+     *                                  "data_inicio": "2020-09-02",
+     *                                  "data_termino": "2020-09-03"
      *                              }
      *                          }
      *                      }
@@ -92,10 +92,11 @@ class TratamentoSuporteController extends Controller
      *          )
      *      ),
      *      @OA\RequestBody(
-     *          description="Somente o campo data_hemodialise é obrigatório",
+     *          description="data_inicio e data_termino são obrigatórios",
      *          required=true,
      *          @OA\JsonContent(
-     *              @OA\Property(property="data_hemodialise", type="date", example="2020-08-26"),
+     *              @OA\Property(property="data_inicio", type="date", example="2020-09-01"),
+     *              @OA\Property(property="data_termino", type="date", example="2020-09-02"),
      *              @OA\Property(property="motivo_hemodialise", type="string", example="Motivo de teste hemodialise"),
      *              @OA\Property(property="frequencia_hemodialise", type="string", example="Frequencia de teste hemodialise"),
      *          )
@@ -111,9 +112,11 @@ class TratamentoSuporteController extends Controller
      *                          "message": "Tramento de suporte hemodialise cadastrado com sucesso",
      *                          "tratamentos_suportes": {
      *                              {
-     *                                  "data_complicacao": "2020-08-19",
-     *                                  "descricao": "descricao da complicacao",
-     *                                  "id": 2
+     *                                  "data_inicio": "2020-09-02",
+     *                                  "data_termino": "2020-09-03",
+     *                                  "motivo_hemodialise": "Motivo de teste hemodialise",
+     *                                  "frequencia_hemodialise": "Frequencia de teste hemodialise",
+     *                                  "id": 1
      *                              },
      *                           }
      *                      }
@@ -126,21 +129,16 @@ class TratamentoSuporteController extends Controller
      */
     public function store(TratamentoSuporteStoreRequest $request, $pacienteId)
     {
-        $resultado = new Collection();
-        foreach ($request->post() as $tratamento) {
-            $resultado->push(
-                TratamentoSuporte::create([
-                    'paciente_id' => (int) $pacienteId,
-                    'data_hemodialise' => $tratamento['data_hemodialise'],
-                    'motivo_hemodialise' => $tratamento['motivo_hemodialise'],
-                    'frequencia_hemodialise' => $tratamento['frequencia_hemodialise']
-                ])
-            );
-        }
+        $tratamentoSuporte = TratamentoSuporte::create(array_merge(
+            $request->post(),
+            [
+                'paciente_id' => $pacienteId
+            ]
+        ));
 
         return response()->json([
             "message" => "Tramento de suporte hemodialise cadastrado com sucesso",
-            "tratamentos_suportes" => $resultado
+            "tratamentos_suportes" => $tratamentoSuporte
         ], 201);
     }
 }

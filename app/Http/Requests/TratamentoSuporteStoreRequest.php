@@ -9,9 +9,10 @@ class TratamentoSuporteStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            '*.data_hemodialise' => 'required|date',
-            '*.motivo_hemodialise' => 'nullable|string',
-            '*.frequencia_hemodialise' => 'nullable|string'
+            'data_inicio' => 'required|date',
+            'data_termino' => 'required|date',
+            'motivo_hemodialise' => 'nullable|string',
+            'frequencia_hemodialise' => 'nullable|string'
         ];
     }
 }
