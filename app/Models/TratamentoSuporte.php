@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Paciente;
 
 class TratamentoSuporte extends Model
 {
@@ -16,4 +17,9 @@ class TratamentoSuporte extends Model
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'paciente_id'];
+
+    public function paciente()
+    {
+        return $this->hasOne(Paciente::class, 'id', 'paciente_id');
+    }
 }

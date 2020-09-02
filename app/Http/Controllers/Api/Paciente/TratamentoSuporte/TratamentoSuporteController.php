@@ -36,7 +36,6 @@ class TratamentoSuporteController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                          "tratamentos_suportes": {
      *                              {
      *                                  "id": 1,
      *                                  "hemodialise": true,
@@ -45,7 +44,6 @@ class TratamentoSuporteController extends Controller
      *                                  "data_inicio": "2020-09-02",
      *                                  "data_termino": "2020-09-03"
      *                              }
-     *                          }
      *                      }
      *                  )
      *              )
@@ -58,17 +56,19 @@ class TratamentoSuporteController extends Controller
      */
     public function index($pacienteId)
     {
-        $tratamentoSuportes = TratamentoSuporte::where('paciente_id', $pacienteId)->get()->toArray();
+        $tratamentoSuportes = TratamentoSuporte::where('paciente_id', $pacienteId)->get()->first();
 
-        if (!count($tratamentoSuportes)) {
+        if (!isset($tratamentoSuportes)) {
             return response()->json([
                 "message" => "Paciente não possui tratamentos de suporte hemodiálise",
-                "tratamentos_suportes" => $tratamentoSuportes
+                "tratamento_suporte" => [],
+                
             ], 200);
         }
 
         return response()->json([
-            "tratamentos_suportes" => $tratamentoSuportes
+            "message" => "Paciente não possui tratamentos de suporte hemodiálise",
+            "tratamento_suporte" => $tratamentoSuportes->toArray()
         ]);
     }
 
@@ -109,8 +109,8 @@ class TratamentoSuporteController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                          "message": "Tramento de suporte hemodialise cadastrado com sucesso",
-     *                          "tratamentos_suportes": {
+     *                          "message": "Tratamento de suporte hemodialise cadastrado com sucesso",
+     *                          "tratamento_suporte": {
      *                              {
      *                                  "data_inicio": "2020-09-02",
      *                                  "data_termino": "2020-09-03",
@@ -129,6 +129,11 @@ class TratamentoSuporteController extends Controller
      */
     public function store(TratamentoSuporteStoreRequest $request, $pacienteId)
     {
+
+        if (TratamentoSuporte::where('paciente_id', $pacienteId)->exists()) {
+            return response()->json(['message' => 'Tratamento de suporte hemodialise paciente já existe']);
+        }
+
         $tratamentoSuporte = TratamentoSuporte::create(array_merge(
             $request->post(),
             [
@@ -137,8 +142,8 @@ class TratamentoSuporteController extends Controller
         ));
 
         return response()->json([
-            "message" => "Tramento de suporte hemodialise cadastrado com sucesso",
-            "tratamentos_suportes" => $tratamentoSuporte
+            "message" => "Tratamento de suporte hemodialise cadastrado com sucesso",
+            "tratamento_suporte" => $tratamentoSuporte
         ], 201);
     }
 }
