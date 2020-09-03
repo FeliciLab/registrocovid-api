@@ -19,13 +19,37 @@ class TiposSuporteRespiratorio extends Seeder
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 2,
-            'nome' => 'Catéter 02',
+            'nome' => 'Catéter de 02',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 3,
             'nome' => 'Ventilação invasiva',
         ]);
-        DB::statement("ALTER SEQUENCE tipos_suporterespiratorio_id_seq RESTART WITH 4;");
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 4,
+            'nome' => 'Tubo',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 5,
+            'nome' => 'Traqueostomia',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 6,
+            'nome' => 'Cânula nasal de alto fluxo',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 7,
+            'nome' => 'Pronação',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 8,
+            'nome' => 'Inclusão no desmame da VM',
+        ]);
     }
 }
