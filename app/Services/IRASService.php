@@ -36,7 +36,9 @@ class IRASService
             IRAS::where('paciente_id', $pacienteId)->get()
         );
 
-        return count($iras) ? [$iras, 200]:
+        return count($iras) ? [
+                ["iras"  => $iras], 200
+            ]:
             [
                 [
                     "message" => "Paciente não possui IRASs cadastradas.",
