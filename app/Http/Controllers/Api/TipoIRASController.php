@@ -33,15 +33,15 @@ class TipoIRASController extends Controller
      *                           {
      *                               "id": 2,
      *                               "descricao": "Pneumonia associada não à ventilação (PAV)"
-     *                           }
-     *                          {
+     *                           },
+     *                           {
      *                               "id": 3,
      *                               "descricao": "Infecção de corrente sanguínea relacionada a catéter"
      *                           },
      *                           {
      *                               "id": 4,
      *                               "descricao": "Infecção de trato urinário associada à sonda vesical"
-     *                           }
+     *                           },
      *                           {
      *                               "id": 5,
      *                               "descricao": "Outras"
