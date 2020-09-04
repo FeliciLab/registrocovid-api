@@ -17,7 +17,7 @@ class CadastroTratamentoSuporteTest extends TestCase
         $this->authenticated();
     }
 
-    public function testeTratamentoSuporteComSucesso()
+    public function testTratamentoSuporteComSucesso()
     {
         $paciente = factory(Paciente::class)->create([
             'coletador_id' => $this->currentUser->id
