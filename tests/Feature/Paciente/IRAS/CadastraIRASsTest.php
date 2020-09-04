@@ -42,9 +42,6 @@ class CadastraIRASsTest extends TestCase
         $response->assertJsonFragment( ["iras.1.data" => [
             "O campo iras.1.data não é uma data válida."
         ]]);
-        $response->assertJsonFragment(["iras.1.descricao" => [
-            "O campo iras.1.descricao deve ser uma string."
-        ]]);
 
     }
 

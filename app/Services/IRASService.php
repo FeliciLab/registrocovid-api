@@ -37,6 +37,10 @@ class IRASService
         );
 
         return count($iras) ? [$iras, 200]:
-            [["message" => "Paciente não possui IRASs cadastradas."], 200];
+            [
+                [
+                    "message" => "Paciente não possui IRASs cadastradas.",
+                    "iras"  => []
+            ], 200];
     }
 }
