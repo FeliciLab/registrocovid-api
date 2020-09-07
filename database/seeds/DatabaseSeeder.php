@@ -34,7 +34,10 @@ class DatabaseSeeder extends Seeder
             TipoExamesComplementaresSeeder::class,
             TipoComplicacaoVMSeeder::class,
             TipoTransfusaoSeeder::class,
-            TipoIRASSeedder::class
+            TipoIRASSeedder::class,
+            TipoAutoCuidadoSeeder::class,
+            TipoCuidadoPaliativoSeeder::class,
+            TipoDesfechoSeeder::class
         ]);
     }
 }
