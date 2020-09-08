@@ -13,7 +13,7 @@ class CreateTipoDesfechoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_desfecho', function (Blueprint $table) {
+        Schema::create('tipo_desfechos', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTipoDesfechoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_desfecho');
+        Schema::dropIfExists('tipo_desfechos');
     }
 }

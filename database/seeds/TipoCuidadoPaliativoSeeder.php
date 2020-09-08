@@ -12,9 +12,9 @@ class TipoCuidadoPaliativoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipos_cuidado_paliativo')->insert(['id' => 1, 'descricao' => 'Sim']);
-        DB::table('tipos_cuidado_paliativo')->insert(['id' => 2, 'descricao' => 'Não']);
-        DB::table('tipos_cuidado_paliativo')->insert(['id' => 3, 'descricao' => 'Aguardando aval equipe CP']);
-        DB::table('tipos_cuidado_paliativo')->insert(['id' => 4, 'descricao' => 'Não RCP por gravidade do caso']);
+        DB::table('tipo_cuidado_paliativos')->insert(['id' => 1, 'descricao' => 'Sim']);
+        DB::table('tipo_cuidado_paliativos')->insert(['id' => 2, 'descricao' => 'Não']);
+        DB::table('tipo_cuidado_paliativos')->insert(['id' => 3, 'descricao' => 'Aguardando aval equipe CP']);
+        DB::table('tipo_cuidado_paliativos')->insert(['id' => 4, 'descricao' => 'Não RCP por gravidade do caso']);
     }
 }

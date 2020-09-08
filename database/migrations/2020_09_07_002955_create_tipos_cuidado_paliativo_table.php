@@ -13,7 +13,7 @@ class CreateTiposCuidadoPaliativoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_cuidado_paliativo', function (Blueprint $table) {
+        Schema::create('tipo_cuidado_paliativos', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTiposCuidadoPaliativoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_cuidado_paliativo');
+        Schema::dropIfExists('tipo_cuidado_paliativos');
     }
 }

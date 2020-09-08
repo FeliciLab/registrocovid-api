@@ -12,8 +12,8 @@ class TipoDesfechoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipos_desfecho')->insert(['id' => 1, 'descricao' => 'Alta']);
-        DB::table('tipos_desfecho')->insert(['id' => 2, 'descricao' => 'Transferência para outro serviço']);
-        DB::table('tipos_desfecho')->insert(['id' => 3, 'descricao' => 'Óbito']);
+        DB::table('tipo_desfechos')->insert(['id' => 1, 'descricao' => 'Alta']);
+        DB::table('tipo_desfechos')->insert(['id' => 2, 'descricao' => 'Transferência para outro serviço']);
+        DB::table('tipo_desfechos')->insert(['id' => 3, 'descricao' => 'Óbito']);
     }
 }

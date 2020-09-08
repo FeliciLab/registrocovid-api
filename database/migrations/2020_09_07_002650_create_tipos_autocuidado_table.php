@@ -13,7 +13,7 @@ class CreateTiposAutocuidadoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_autocuidado', function (Blueprint $table) {
+        Schema::create('tipo_auto_cuidados', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTiposAutocuidadoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_autocuidado');
+        Schema::dropIfExists('tipo_auto_cuidados');
     }
 }

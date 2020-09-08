@@ -12,8 +12,8 @@ class TipoAutoCuidadoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipos_autocuidado')->insert(['id' => 1, 'descricao' => 'Mesma antes da doença']);
-        DB::table('tipos_autocuidado')->insert(['id' => 2, 'descricao' => 'Pior']);
-        DB::table('tipos_autocuidado')->insert(['id' => 3, 'descricao' => 'Desconhecida']);
+        DB::table('tipo_auto_cuidados')->insert(['id' => 1, 'descricao' => 'Mesma antes da doença']);
+        DB::table('tipo_auto_cuidados')->insert(['id' => 2, 'descricao' => 'Pior']);
+        DB::table('tipo_auto_cuidados')->insert(['id' => 3, 'descricao' => 'Desconhecida']);
     }
 }
