@@ -11,7 +11,6 @@ use App\Http\Resources\Desfecho as DesfechoResource;
 
 class DesfechoController extends Controller
 {
-
     public function index($pacienteId)
     {
         $desfecho = Desfecho::where('paciente_id', $pacienteId)->get();
@@ -29,11 +28,9 @@ class DesfechoController extends Controller
 
     public function store(DesfechoStoreRequest $request, $pacienteId)
     {
-
         $desfechoCollection = new Collection();
 
         foreach ($request->post() as $desfecho) {
-
             if ($desfecho['tipo_desfecho_id'] == TipoDesfecho::TIPO_OBITO && Desfecho::where('tipo_desfecho_id', TipoDesfecho::TIPO_OBITO)->exists()) {
                 return response()->json([
                     "message" => "Desfecho óbito já existe",
