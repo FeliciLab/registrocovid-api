@@ -19,7 +19,7 @@ class DesfechoController extends Controller
         if (!count($desfecho)) {
             return response()->json([
                 "message" => "Paciente não possui desfecho cadastrado",
-                "tratamento_suporte" => [],
+                "desfecho" => [],
 
             ], 200);
         }
