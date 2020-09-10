@@ -16,10 +16,10 @@ class ComplicacaoRequest extends FormRequest
         return [
             '*.tipo_complicacao_id' => 'required|integer',
             '*.data' => 'required|date',
-            '*.data_termino' => 'date',
-            '*.descricao' => 'string|max:100',
-            '*.menos_24h_uti' => 'boolean',
-            '*.glasglow_admissao_uti' => 'integer',
+            '*.data_termino' => 'nullable|date',
+            '*.descricao' => 'nullable|string|max:100',
+            '*.menos_24h_uti' => 'nullable|boolean',
+            '*.glasglow_admissao_uti' => 'nullable|integer',
         ];
     }
 }
