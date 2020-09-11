@@ -17,7 +17,7 @@ class Desfecho extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tipo_desfecho' => $this->tipoDesfecho->descricao,
+            'tipo_desfecho' => $this->tipoDesfecho,
             'tipo_autocuidado' => $this->tipoAutoCuidado,
             'instituicao_transferencia' => $this->instituicaoTransferencia,
             'data' => $this->data,

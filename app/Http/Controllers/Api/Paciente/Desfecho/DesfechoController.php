@@ -39,10 +39,13 @@ class DesfechoController extends Controller
      *                  mediaType="application/json",
      *                  @OA\Schema(
      *                      example={
-     *                          "data": {
+     *                          "desfechos": {
      *                              {
      *                                   "id": 1,
-     *                                   "tipo_desfecho": "Alta hospitalar",
+     *                                   "tipo_desfecho": {
+     *                                      "id": 1,
+     *                                      "descricao": "Alta hospitalar"
+     *                                   },
      *                                   "tipo_autocuidado": {
      *                                      "id": 1,
      *                                      "descricao": "Mesma antes da doença"
@@ -53,11 +56,17 @@ class DesfechoController extends Controller
      *                                   "obito_menos_24h": null,
      *                                   "obito_em_vm": null,
      *                                   "obito_em_uti": null,
-     *                                   "tipo_cuidado_paliativo": null
+     *                                   "tipo_cuidado_paliativo": {
+     *                                       "id": 3,
+     *                                       "descricao": "Aguardando aval equipe CP"
+     *                                    }
      *                              },
      *                              {
      *                                   "id": 2,
-     *                                   "tipo_desfecho": "Óbito",
+     *                                   "tipo_desfecho": {
+     *                                      "id": 3,
+     *                                      "descricao": "Óbito"
+     *                                   },
      *                                   "tipo_autocuidado": null,
      *                                   "instituicao_transferencia": null,
      *                                   "data": "2020-09-11",
@@ -65,7 +74,10 @@ class DesfechoController extends Controller
      *                                   "obito_menos_24h": false,
      *                                   "obito_em_vm": true,
      *                                   "obito_em_uti": false,
-     *                                   "tipo_cuidado_paliativo": null
+     *                                   "tipo_cuidado_paliativo": {
+     *                                      "id": 2,
+     *                                      "descricao": "Não"
+     *                                   }
      *                              }
      *                          }
      *                      }
@@ -80,17 +92,19 @@ class DesfechoController extends Controller
      */
     public function index($pacienteId)
     {
-        $desfecho = Desfecho::where('paciente_id', $pacienteId)->get();
+        $desfechos = Desfecho::where('paciente_id', $pacienteId)->get();
 
-        if (!count($desfecho)) {
+        if (!count($desfechos)) {
             return response()->json([
-                "message" => "Paciente não possui desfecho cadastrado",
-                "desfecho" => [],
+                "message" => "Paciente não possui desfechos cadastrado",
+                "desfechos" => [],
 
             ], 200);
         }
 
-        return DesfechoResource::collection($desfecho);
+        $desfechosCollection = DesfechoResource::collection($desfechos);
+
+        return ["desfechos" => $desfechosCollection->collection];
     }
 
 

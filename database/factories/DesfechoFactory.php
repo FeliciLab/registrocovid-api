@@ -8,11 +8,12 @@ use Carbon\Carbon;
 
 $factory->define(Desfecho::class, function (Faker $faker) {
     return [
-        "tipo_desfecho_id" => 4,
+        "tipo_desfecho_id" => 3,
         "data" => Carbon::now(),
         "obito_menos_24h" => false,
         "obito_em_vm" => true,
         "obito_em_uti" => false,
-        "causa_obito" => "Causa do óbito desconhecida"
+        "causa_obito" => "Causa do óbito desconhecida",
+        "tipo_cuidado_paliativo_id" => 1
     ];
 });

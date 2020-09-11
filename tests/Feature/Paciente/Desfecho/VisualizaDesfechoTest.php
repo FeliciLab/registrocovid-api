@@ -24,8 +24,8 @@ class VisualizaDesfechoTest extends TestCase
 
         $response = $this->json("GET", "api/pacientes/{$paciente->id}/desfecho");
         $response->assertJsonFragment([
-            'message' => 'Paciente não possui desfecho cadastrado',
-            'desfecho' => []
+            'message' => 'Paciente não possui desfechos cadastrado',
+            'desfechos' => []
         ]);
     }
 
@@ -42,7 +42,7 @@ class VisualizaDesfechoTest extends TestCase
         $response = $this->get("api/pacientes/{$paciente->id}/desfecho");
         $response->assertStatus(200);
         $response->assertJsonStructure([
-            'data'
+            'desfechos'
         ]);
     }
 }

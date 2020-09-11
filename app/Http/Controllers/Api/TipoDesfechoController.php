@@ -37,10 +37,6 @@ class TipoDesfechoController extends Controller
      *                          },
      *                          {
      *                               "id": 3,
-     *                               "descricao": "Cuidados paliativos"
-     *                          },
-     *                          {
-     *                               "id": 4,
      *                               "descricao": "Óbito"
      *                          }
      *                      }

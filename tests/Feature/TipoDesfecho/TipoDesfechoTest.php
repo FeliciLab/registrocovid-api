@@ -21,6 +21,6 @@ class TipoDesfechoTest extends TestCase
             "id" => 1,
             "descricao" => "Alta hospitalar",
         ]);
-        $response->assertJsonCount(4);
+        $response->assertJsonCount(3);
     }
 }

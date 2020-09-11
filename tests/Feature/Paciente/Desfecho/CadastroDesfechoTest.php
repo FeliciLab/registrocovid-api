@@ -29,12 +29,13 @@ class CadastroDesfechoTest extends TestCase
 
         $data = [
             [
-                "tipo_desfecho_id" => 4,
+                "tipo_desfecho_id" => 3,
                 "data" => Carbon::now(),
                 "obito_menos_24h" => false,
                 "obito_em_vm" => true,
                 "obito_em_uti" => false,
-                "causa_obito" => "Causa do óbito desconhecida"
+                "causa_obito" => "Causa do óbito desconhecida",
+                "tipo_cuidado_paliativo_id" => 2
             ]
         ];
 
@@ -53,11 +54,13 @@ class CadastroDesfechoTest extends TestCase
             [
                 "tipo_desfecho_id" => 1,
                 "tipo_autocuidado_id" => 1,
+                "tipo_cuidado_paliativo_id" => 3,
                 "data" => Carbon::now()
             ],
             [
                 "tipo_desfecho_id" => 2,
                 "instituicao_transferencia_id" => 1,
+                "tipo_cuidado_paliativo_id" => 3,
                 "data" => Carbon::now()
             ],
             [
