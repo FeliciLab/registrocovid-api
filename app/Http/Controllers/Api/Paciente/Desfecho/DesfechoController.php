@@ -174,7 +174,7 @@ class DesfechoController extends Controller
         $desfechoCollection = new Collection();
 
         foreach ($request->post() as $desfecho) {
-            if ($desfecho['tipo_desfecho_id'] == TipoDesfecho::TIPO_OBITO && Desfecho::where('tipo_desfecho_id', TipoDesfecho::TIPO_OBITO)->exists()) {
+            if ($desfecho['tipo_desfecho_id'] == TipoDesfecho::TIPO_OBITO && Desfecho::where(['paciente_id' => $pacienteId, 'tipo_desfecho_id' => TipoDesfecho::TIPO_OBITO])->exists()) {
                 return response()->json([
                     "message" => "Desfecho óbito já existe",
                 ], 200);
