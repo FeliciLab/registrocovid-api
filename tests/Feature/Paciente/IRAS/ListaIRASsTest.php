@@ -28,6 +28,9 @@ class ListaIRASsTest extends TestCase
         $response->assertJsonFragment([
             "message" => "Paciente não possui IRASs cadastradas."
         ]);
+        $response->assertJsonFragment([
+            "iras" => []
+        ]);
     }
 
     public function testMostraIRASs()

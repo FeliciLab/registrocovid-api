@@ -15,9 +15,9 @@ class ExamesComplementaresRequest extends FormRequest
     public function rules()
     {
         return [
-            'examescomplementares.*.tipo_exames_complementares_id' => 'integer',
-            'examescomplementares.*.data' => 'date',
-            'examescomplementares.*.resultado' => 'string',
+            'examescomplementares.*.tipo_exames_complementares_id' => 'integer|required',
+            'examescomplementares.*.data' => 'date|required',
+            'examescomplementares.*.resultado' => 'string|required|max:191',
         ];
     }
 }

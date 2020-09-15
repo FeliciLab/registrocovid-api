@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\IRAS;
 use App\Http\Resources\IRASResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class IRASService
 {
@@ -17,9 +18,9 @@ class IRASService
             [
                 "message" => "IRASs cadastradas com sucesso.",
                 "iras" => $listaDeIRAS
-            ], 201]:
+            ], Response::HTTP_CREATED]:
 
-            [["message"=> "Não foi possível cadastrar as IRASs."], 200];
+            [["message"=> "Não foi possível cadastrar as IRASs."], Response::HTTP_OK ];
     }
 
     private static function registra($exame, $pacienteId)
@@ -36,7 +37,13 @@ class IRASService
             IRAS::where('paciente_id', $pacienteId)->get()
         );
 
-        return count($iras) ? [$iras, 200]:
-            [["message" => "Paciente não possui IRASs cadastradas."], 200];
+        return count($iras) ? [
+                ["iras"  => $iras], Response::HTTP_OK
+            ]:
+            [
+                [
+                    "message" => "Paciente não possui IRASs cadastradas.",
+                    "iras"  => []
+            ], Response::HTTP_OK ];
     }
 }
