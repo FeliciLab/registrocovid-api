@@ -70,6 +70,9 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::post('/pacientes/{pacienteId}/suportes-respiratorios', 'SuporteRespiratorio\SuporteRespiratorioController@store');
                 Route::get('/pacientes/{pacienteId}/suportes-respiratorios', 'SuporteRespiratorio\SuporteRespiratorioController@index');
+
+                Route::post('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@store');
+                Route::get('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@index');
             });
         });
         Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
@@ -102,5 +105,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::post('/drogas', 'DrogaController@store');
         Route::get('/tipos-iras', 'TipoIRASController@index');
         Route::get('/tipos-exames-complementares', 'TipoExamesComplementaresController@index');
+        Route::get('/tipos-desfecho', 'TipoDesfechoController@index');
+        Route::get('/tipos-auto-cuidado', 'TipoAutoCuidadoController@index');
+        Route::get('/tipos-cuidado-paliativo', 'TipoCuidadoPaliativoController@index');
     });
 });
