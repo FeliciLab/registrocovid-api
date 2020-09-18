@@ -87,7 +87,7 @@ class MostrarComorbidadeTest extends TestCase
       ]);
         $response->assertJsonFragment([
           'id' => 8,
-          'descricao' => 'Asma'
+          'descricao' => 'Doença arterial periférica'
       ]);
     }
 
