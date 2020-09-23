@@ -11,9 +11,9 @@ class CorticosteroidesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('corticosteroides')->insert(['id' => 1,'descricao' => 'Prednisona > 40 mg/dia']);
-        DB::table('corticosteroides')->insert(['id' => 2,'descricao' => 'Hidrocortisona > 160 mg/dia']);
-        DB::table('corticosteroides')->insert(['id' => 3,'descricao' => 'Metilprednisolona > 32 mg/dia']);
-        DB::table('corticosteroides')->insert(['id' => 4,'descricao' => 'Dexametasona > 6 mg/dia']);
+        DB::table('corticosteroides')->insert(['id' => 1,'descricao' => 'Prednisona > 20 mg/dia']);
+        DB::table('corticosteroides')->insert(['id' => 2,'descricao' => 'Hidrocortisona > 80 mg/dia']);
+        DB::table('corticosteroides')->insert(['id' => 3,'descricao' => 'Metilprednisolona > 16 mg/dia']);
+        DB::table('corticosteroides')->insert(['id' => 4,'descricao' => 'Dexametasona > 3 mg/dia']);
     }
 }
