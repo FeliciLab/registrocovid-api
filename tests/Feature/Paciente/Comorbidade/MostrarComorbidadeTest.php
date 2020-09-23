@@ -114,7 +114,7 @@ class MostrarComorbidadeTest extends TestCase
       ]);
         $response->assertJsonFragment([
           'id' => 1,
-          'descricao' => 'Prednisona > 40 mg/dia'
+          'descricao' => 'Prednisona > 20 mg/dia'
       ]);
     }
 
@@ -141,7 +141,7 @@ class MostrarComorbidadeTest extends TestCase
       ]);
         $response->assertJsonFragment([
           'id' => 1,
-          'descricao' => 'Coracao'
+          'descricao' => 'Coração'
       ]);
     }
 }

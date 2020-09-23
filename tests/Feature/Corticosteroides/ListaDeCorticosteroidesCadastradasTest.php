@@ -32,7 +32,7 @@ class ListaDeCorticosteroidesCadastradasTest extends TestCase
         $response->assertJsonCount(4);
         $response->assertJsonFragment([
             'id' => 1,
-            'descricao' => 'Prednisona > 40 mg/dia'
+            'descricao' => 'Prednisona > 20 mg/dia'
         ]);
     }
 }
