@@ -30,7 +30,7 @@ class ListaDeDrogasCadastradasTest extends TestCase
     {
         $response = $this->json('GET', 'api/drogas');
         $response->assertOk();
-        $response->assertJsonCount(4);
+        $response->assertJsonCount(5);
         $response->assertJsonFragment([
             'id' => 1,
             'descricao' => 'Maconha'
