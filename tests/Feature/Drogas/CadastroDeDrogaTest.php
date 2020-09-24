@@ -57,6 +57,7 @@ class CadastroDeDrogaTest extends TestCase
         $this->authenticated();
 
         factory(Droga::class)->create([
+            'id' => 6,
             'descricao' => 'droga de teste'
         ]);
 
@@ -83,16 +84,19 @@ class CadastroDeDrogaTest extends TestCase
     {
         $this->authenticated();
 
-        $data = ['descricao' => 'droga de teste'];
+        $data = [
+            'descricao' => 'droga de teste criada'
+        ];
 
         $response = $this->postJson('api/drogas', $data);
+        var_dump($response);
         $response->assertStatus(201);
         $response->assertJsonStructure([
             'id',
             'descricao',
         ]);
         $response->assertJsonFragment([
-            'descricao' => 'droga de teste'
+            'descricao' => 'droga de teste criada'
         ]);
     }
 }
