@@ -30,7 +30,7 @@ class ListaDeSintomasCadastradosTest extends TestCase
     {
         $response = $this->json('GET', 'api/sintomas');
         $response->assertOk();
-        $response->assertJsonCount(18);
+        $response->assertJsonCount(24);
         $response->assertJsonFragment([
             'id' => 1,
             'nome' => 'Coriza'
