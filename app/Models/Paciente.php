@@ -35,7 +35,8 @@ class Paciente extends Model
         'estado_id',
         'outros_sintomas',
         'data_inicio_sintomas',
-        'caso_confirmado'
+        'caso_confirmado',
+        'chegou_traqueostomizado',
     ];
 
     protected $with = [

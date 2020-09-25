@@ -11,7 +11,11 @@ class SuporteRespiratorio extends Model
     protected $fillable = [
         'paciente_id',
         'tipo_suporte_id',
-        'parametro',
+        'fluxo_o2',
+        'concentracao_o2',
+        'fluxo_sangue',
+        'fluxo_gasoso',
+        'fio2',
         'data_inicio',
         'data_termino',
         'menos_24h_vmi'

@@ -14,42 +14,57 @@ class TiposSuporteRespiratorio extends Seeder
     {
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 1,
-            'nome' => 'Máscara de reservatório',
+            'nome' => 'Catéter nasal de baixo fluxo',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 2,
-            'nome' => 'Catéter de 02',
+            'nome' => 'Catéter nasal de alto fluxo',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 3,
-            'nome' => 'Ventilação invasiva',
+            'nome' => 'Máscara de Venturi',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 4,
-            'nome' => 'Tubo',
+            'nome' => 'Máscara com reservatório',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 5,
-            'nome' => 'Traqueostomia',
+            'nome' => 'Ventilação mecânica não invasiva (VNI)',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 6,
-            'nome' => 'Cânula nasal de alto fluxo',
+            'nome' => 'Ventilação mecânica invasiva',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 7,
-            'nome' => 'Pronação',
+            'nome' => 'Intubação Orotraqueal',
         ]);
 
         DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 8,
-            'nome' => 'Inclusão no desmame da VM',
+            'nome' => 'Traqueostomia',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 9,
+            'nome' => 'Oxigenação por membrana extracorpórea (ECMO)',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 10,
+            'nome' => 'Pronação',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 11,
+            'nome' => 'Inclusão em desmame da ventilação mecânica',
         ]);
     }
 }
