@@ -45,7 +45,7 @@ class MostrarComplicacaoEspecificaTest extends TestCase
         $response->assertJsonFragment([
             'tipo_complicacao' => [
                 'id' => 1,
-                'descricao' => 'UTI'
+                'descricao' => 'Admissão na Unidade de Terapia Intensiva (UTI)'
             ]
         ]);
     }
