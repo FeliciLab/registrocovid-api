@@ -20,19 +20,19 @@ class ListaTiposDeIRASTest extends TestCase
 
         $response->assertJsonFragment([
             'id' => 1,
-            'descricao' => 'Pneumonia associada à ventilação (PAV)'
+            'descricao' => 'Pneumonia associada à ventilação mecânica (PAV)'
         ]);
         $response->assertJsonFragment([   
             'id' => 2,
-            'descricao' => 'Pneumonia associada não à ventilação (PAV)'
+            'descricao' => 'Pneumonia não associada à ventilação mecânica'
         ]);
         $response->assertJsonFragment([
             'id' => 3,
-            'descricao' => 'Infecção de corrente sanguínea relacionada a catéter'
+            'descricao' => 'Infecção de corrente sanguínea relacionada a cateter central (ICSRC)'
         ]);
         $response->assertJsonFragment([   
             'id' => 4,
-            'descricao' => 'Infecção de trato urinário associada à sonda vesical'
+            'descricao' => 'Infecção de trato urinário associada à sonda vesical (ITUSV)'
         ]);
         $response->assertJsonFragment([   
             'id' => 5,

@@ -11,10 +11,10 @@ class TipoIRASSeedder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_iras')->insert(['id' => 1,'descricao' => 'Pneumonia associada à ventilação (PAV)']);
-        DB::table('tipo_iras')->insert(['id' => 2,'descricao' => 'Pneumonia associada não à ventilação (PAV)']);
-        DB::table('tipo_iras')->insert(['id' => 3,'descricao' => 'Infecção de corrente sanguínea relacionada a catéter']);
-        DB::table('tipo_iras')->insert(['id' => 4,'descricao' => 'Infecção de trato urinário associada à sonda vesical']);
+        DB::table('tipo_iras')->insert(['id' => 1,'descricao' => 'Pneumonia associada à ventilação mecânica (PAV)']);
+        DB::table('tipo_iras')->insert(['id' => 2,'descricao' => 'Pneumonia não associada à ventilação mecânica']);
+        DB::table('tipo_iras')->insert(['id' => 3,'descricao' => 'Infecção de corrente sanguínea relacionada a cateter central (ICSRC)']);
+        DB::table('tipo_iras')->insert(['id' => 4,'descricao' => 'Infecção de trato urinário associada à sonda vesical (ITUSV)']);
         DB::table('tipo_iras')->insert(['id' => 5,'descricao' => 'Outras']);
     }
 }
