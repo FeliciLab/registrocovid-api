@@ -32,7 +32,7 @@ class MostrarPacienteTest extends TestCase
       
         $response->assertJsonFragment([
         'id' => 2,
-        'nome' => 'Tosse (seca ou produtiva)'
+        'nome' => 'Congestão Nasal'
       ]);
     }
 }
