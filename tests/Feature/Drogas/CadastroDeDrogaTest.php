@@ -89,7 +89,6 @@ class CadastroDeDrogaTest extends TestCase
         ];
 
         $response = $this->postJson('api/drogas', $data);
-        var_dump($response);
         $response->assertStatus(201);
         $response->assertJsonStructure([
             'id',
