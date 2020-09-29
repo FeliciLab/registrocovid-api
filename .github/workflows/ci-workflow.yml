@@ -31,7 +31,7 @@ jobs:
         run: composer run php-cs:check
 
       - name: Migrate and seed
-        run: php artisan migrate --seed --database=pgsql_test
+        run: php artisan migrate:fresh --seed --database=pgsql_test
         env:
           DB_HOST_TEST: db
           DB_PORT_TEST: 5432
