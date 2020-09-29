@@ -21,7 +21,7 @@ class CreateComplicacoesTable extends Migration
             $table->date('data_termino')->nullable();
             $table->string('descricao', 100)->nullable();
             $table->boolean('menos_24h_uti')->nullable();
-            $table->integer('glasglow_admissao_uti')->nullable();
+            $table->integer('glasgow_admissao_uti')->nullable();
             $table->timestamps();
         });
     }

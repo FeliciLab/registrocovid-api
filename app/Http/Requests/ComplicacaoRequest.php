@@ -19,7 +19,7 @@ class ComplicacaoRequest extends FormRequest
             '*.data_termino' => 'nullable|date',
             '*.descricao' => 'nullable|string|max:100',
             '*.menos_24h_uti' => 'nullable|boolean',
-            '*.glasglow_admissao_uti' => 'nullable|integer',
+            '*.glasgow_admissao_uti' => 'nullable|integer',
         ];
     }
 }
