@@ -20,10 +20,10 @@ class VisualizaSuporteRespiratorioTest extends TestCase
     {
         $response = $this->json('GET', 'api/suportes-respiratorios');
         $response->assertStatus(200);
-        $response->assertJsonCount(8);
+        $response->assertJsonCount(11);
         $response->assertJsonFragment([
             "id" => 1,
-            "nome" => "Máscara de reservatório",
+            "nome" => "Catéter nasal de baixo fluxo",
         ]);
     }
 
