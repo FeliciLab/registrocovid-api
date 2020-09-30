@@ -54,7 +54,7 @@ class MostrarComplicacoesPacienteTest extends TestCase
             'data_termino',
             'descricao',
             'menos_24h_uti',
-            'glasglow_admissao_uti',
+            'glasgow_admissao_uti',
             'created_at',
             'updated_at',
         ]]);
@@ -62,7 +62,7 @@ class MostrarComplicacoesPacienteTest extends TestCase
         $response->assertJsonFragment([
             'tipo_complicacao' => [
                 'id' => 1,
-                'descricao' => 'UTI'
+                'descricao' => 'Admissão na Unidade de Terapia Intensiva (UTI)'
             ]
         ]);
     }
