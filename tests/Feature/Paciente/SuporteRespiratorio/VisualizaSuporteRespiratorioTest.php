@@ -59,7 +59,7 @@ class VisualizaSuporteRespiratorioTest extends TestCase
             'tratamento_inclusao_desmame'
         ]);
         $response->assertJsonStructure([
-            'tratamento_suporte' => []
+            'suporte_respiratorio' => []
         ]);
     }
 }

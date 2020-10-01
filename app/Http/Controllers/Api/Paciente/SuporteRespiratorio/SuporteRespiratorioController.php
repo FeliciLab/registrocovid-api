@@ -52,7 +52,7 @@ class SuporteRespiratorioController extends Controller
      *                                  "data_inclusao_desmame": "2020-09-02"
      *                              }
      *                          },
-     *                          "tratamento_suporte": {
+     *                          "suporte_respiratorio": {
      *                              {
      *                                  "id": 22,
      *                                  "tipo_suporte_id": 1,
@@ -78,9 +78,9 @@ class SuporteRespiratorioController extends Controller
 
         $tratamentoPronacao = Pronacao::where('paciente_id', $pacienteId)->get()->toArray();
         $tratamentoInclusaoDesmame = InclusaoDesmame::where('paciente_id', $pacienteId)->get()->toArray();
-        $tratamentoSuporte = SuporteRespiratorio::where('paciente_id', $pacienteId)->get()->toArray();
+        $suporteRespiratorio = SuporteRespiratorio::where('paciente_id', $pacienteId)->get()->toArray();
 
-        if (!count($tratamentoPronacao) && !count($tratamentoInclusaoDesmame) && !count($tratamentoSuporte)) {
+        if (!count($tratamentoPronacao) && !count($tratamentoInclusaoDesmame) && !count($suporteRespiratorio)) {
             return response()->json(
                 [
                     'message' => 'Paciente não possui suportes respiratorios cadastradas',
@@ -90,12 +90,12 @@ class SuporteRespiratorioController extends Controller
             );
         }
 
-        $resultado->push($tratamentoPronacao, $tratamentoInclusaoDesmame, $tratamentoSuporte);
+        $resultado->push($tratamentoPronacao, $tratamentoInclusaoDesmame, $suporteRespiratorio);
 
         return response()->json([
             'tratamento_pronacao' => $tratamentoPronacao,
             'tratamento_inclusao_desmame' => $tratamentoInclusaoDesmame,
-            'tratamento_suporte' => $tratamentoSuporte,
+            'suporte_respiratorio' => $suporteRespiratorio,
         ]);
     }
 
