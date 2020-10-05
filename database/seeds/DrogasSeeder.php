@@ -16,6 +16,7 @@ class DrogasSeeder extends Seeder
         DB::table('drogas')->insert(['id' => 2, 'descricao' => 'Cocaína']);
         DB::table('drogas')->insert(['id' => 3, 'descricao' => 'Crack']);
         DB::table('drogas')->insert(['id' => 4, 'descricao' => 'Ecstasy']);
-        DB::statement("ALTER SEQUENCE drogas_id_seq RESTART WITH 5;");
+        DB::table('drogas')->insert(['id' => 5, 'descricao' => 'Outras']);
+        DB::statement("ALTER SEQUENCE drogas_id_seq RESTART WITH 6;");
     }
 }

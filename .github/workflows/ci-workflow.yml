@@ -1,0 +1,49 @@
+name: Registro covid API
+on: [push, pull_request]
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container: ferfabricio/php-ci:7.4
+    services:
+      db:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: registrocovid
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Check PHP CS
+        run: composer run php-cs:check
+
+      - name: Migrate and seed
+        run: php artisan migrate:fresh --seed --database=pgsql_test
+        env:
+          DB_HOST_TEST: db
+          DB_PORT_TEST: 5432
+          DB_DATABASE_TEST: registrocovid
+          DB_USERNAME_TEST: postgres
+          DB_PASSWORD_TEST: postgres
+
+      - name: Run tests
+        run: composer test
+        env:
+          DB_HOST_TEST: db
+          DB_PORT_TEST: 5432
+          DB_DATABASE_TEST: registrocovid
+          DB_USERNAME_TEST: postgres
+          DB_PASSWORD_TEST: postgres

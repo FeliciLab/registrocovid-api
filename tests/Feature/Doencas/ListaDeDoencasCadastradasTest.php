@@ -30,7 +30,7 @@ class ListaDeDoencasCadastradasTest extends TestCase
     {
         $response = $this->json('GET', 'api/doencas');
         $response->assertOk();
-        $response->assertJsonCount(7);
+        $response->assertJsonCount(50);
         $response->assertJsonFragment([
             'id' => 1,
             'tipo_doenca_id' => 1,

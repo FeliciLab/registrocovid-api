@@ -10,8 +10,6 @@ class Historico extends Model
         'drogas'
     ];
 
-    protected $table = 'historico';
-
     protected $fillable = [
         'paciente_id', 'situacao_uso_drogas_id', 'tabagismo', 'etilismo'
     ];
@@ -23,6 +21,6 @@ class Historico extends Model
 
     public function drogas()
     {
-        return $this->belongsToMany(Droga::class, 'historico_drogas');
+        return $this->belongsToMany(Droga::class, 'historicos_drogas');
     }
 }
