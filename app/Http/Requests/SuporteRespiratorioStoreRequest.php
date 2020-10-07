@@ -17,12 +17,12 @@ class SuporteRespiratorioStoreRequest extends FormRequest
         return [
             '*.tipo_suporte_id' => 'required|integer|exists:tipos_suportes_respiratorios,id',
             '*.parametro' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
-            '*.data_inicio' => 'exclude_if:*.tipo_suporte_id,7,8|required|date',
-            '*.data_termino' => 'exclude_if:*.tipo_suporte_id,7,8|required|date',
+            '*.data_inicio' => 'exclude_if:*.tipo_suporte_id,10,11|required|date',
+            '*.data_termino' => 'exclude_if:*.tipo_suporte_id,10,11|required|date',
             '*.menos_24h_vmi' => 'nullable|bool',
-            '*.data_pronacao' => 'exclude_unless:*.tipo_suporte_id,7|required|date',
-            '*.quantidade_horas' => 'exclude_unless:*.tipo_suporte_id,7|nullable|regex:/^\d+(\.\d{1,2})?$/',
-            '*.data_inclusao_desmame' => 'exclude_unless:*.tipo_suporte_id,8|required'
+            '*.data_pronacao' => 'exclude_unless:*.tipo_suporte_id,10|required|date',
+            '*.quantidade_horas' => 'exclude_unless:*.tipo_suporte_id,10|nullable|regex:/^\d+(\.\d{1,2})?$/',
+            '*.data_inclusao_desmame' => 'exclude_unless:*.tipo_suporte_id,11|required'
         ];
     }
 }
