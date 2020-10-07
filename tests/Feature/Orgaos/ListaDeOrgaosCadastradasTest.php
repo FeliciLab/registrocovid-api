@@ -30,10 +30,10 @@ class ListaDeOrgaosCadastradasTest extends TestCase
     {
         $response = $this->json('GET', 'api/orgaos');
         $response->assertOk();
-        $response->assertJsonCount(3);
+        $response->assertJsonCount(6);
         $response->assertJsonFragment([
             'id' => 1,
-            'descricao' => 'Coracao'
+            'descricao' => 'Coração'
         ]);
     }
 }

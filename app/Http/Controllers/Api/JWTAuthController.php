@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class JWTAuthController extends Controller
@@ -52,14 +52,45 @@ class JWTAuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'cpf' => 'required',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6'
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        if (!$token = auth('api')->attempt($validator->validated())) {
+        $data = $validator->validated();
+
+        return $this->authenticate($data);
+    }
+
+    /**
+     * Auth for the Swagger
+     *
+     * @return JsonResponse
+     */
+    public function auth(Request $request)
+    {
+        $rawHeader = explode(' ', $request->header('Authorization'));
+        if (count($rawHeader) !== 2) {
+            return response()->json([
+                'errors' => [
+                    'authorization' => ['Invalid authorization header.']
+                ]
+            ], 422);
+        }
+        $authData = explode(':', base64_decode($rawHeader[1]));
+        $data = [
+            'cpf' => $authData[0],
+            'password' => $authData[1]
+        ];
+
+        return $this->authenticate($data);
+    }
+
+    private function authenticate($data)
+    {
+        if (!$token = auth('api')->attempt($data)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

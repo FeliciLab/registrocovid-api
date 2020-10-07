@@ -25,18 +25,18 @@ class Paciente extends Model
         'data_nascimento',
         'estado_nascimento_id',
         'cor_id',
-        'estadocivil_id',
+        'estado_civil_id',
         'escolaridade_id',
-        'atividadeprofissional_id',
+        'atividade_profissional_id',
         'qtd_pessoas_domicilio',
         'coletador_id',
         'instituicao_id',
-        'municipio_id'
-    ];
-
-
-    protected $appends = [
-        'estado'
+        'municipio_id',
+        'estado_id',
+        'outros_sintomas',
+        'data_inicio_sintomas',
+        'caso_confirmado',
+        'chegou_traqueostomizado',
     ];
 
     protected $with = [
@@ -46,10 +46,13 @@ class Paciente extends Model
         'escolaridade',
         'atividadeProfissional',
         'instituicaoReferencia',
+        'bairro',
         'municipio',
+        'estado',
         'estadoNascimento',
         'tipoSuporteRespiratorios',
-        'telefones'
+        'telefones',
+        'sintomas'
     ];
 
     protected $hidden = [
@@ -63,7 +66,12 @@ class Paciente extends Model
         'estadocivil_id',
         'escolaridade_id',
         'atividadeprofissional_id',
+        'estado_id',
         'municipio_id'
+    ];
+
+    protected $casts = [
+        'outros_sintomas' => 'array'
     ];
 
     protected static function booted()
@@ -71,11 +79,6 @@ class Paciente extends Model
         static::addGlobalScope('coletador_id', function (Builder $query) {
             $query->where('coletador_id', auth()->user()->id);
         });
-    }
-
-    public function getEstadoAttribute()
-    {
-        return $this->municipio->estado ?? null;
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
@@ -91,19 +94,6 @@ class Paciente extends Model
                 TipoSuporteRespitarioPaciente::firstOrCreate([
                     'tipo_suporte_id' => $suporte_id['id'],
                     'paciente_id' => $this->id
-                ]);
-            }
-        }
-    }
-
-    public function associarTelefonesPaciente(array $telefones)
-    {
-        foreach ($telefones as $telefone) {
-            if ($telefone) {
-                Telefone::firstOrCreate([
-                    'numero' => $telefone,
-                    'paciente_id' => $this->id,
-                    'tipo' => 1
                 ]);
             }
         }
@@ -143,7 +133,7 @@ class Paciente extends Model
 
     public function estadoCivil()
     {
-        return $this->hasOne(EstadoCivil::class, 'id', 'estadocivil_id');
+        return $this->hasOne(EstadoCivil::class, 'id', 'estado_civil_id');
     }
 
     public function escolaridade()
@@ -153,12 +143,22 @@ class Paciente extends Model
 
     public function atividadeProfissional()
     {
-        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividadeprofissional_id');
+        return $this->hasOne(AtividadeProfissional::class, 'id', 'atividade_profissional_id');
+    }
+
+    public function bairro()
+    {
+        return $this->hasOne(Bairro::class, 'id', 'bairro_id');
     }
 
     public function municipio()
     {
         return $this->hasOne(Municipio::class, 'id', 'municipio_id');
+    }
+
+    public function estado()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
 
     public function instituicaoReferencia()
@@ -174,5 +174,10 @@ class Paciente extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class);
+    }
+
+    public function sintomas()
+    {
+        return $this->belongsToMany(Sintoma::class, 'pacientes_sintomas');
     }
 }

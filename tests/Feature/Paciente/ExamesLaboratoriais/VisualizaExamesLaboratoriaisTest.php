@@ -35,7 +35,7 @@ class VisualizaExamesLaboratoriaisTest extends TestCase
         ]);
 
         $response = $this->get("api/pacientes/{$paciente->id}/exames-laboratoriais");
-        $response->assertStatus(404);
+        $response->assertStatus(200);
         $response->assertJsonFragment([
             "message" => "Paciente não possui exames laboratóriais cadastrada"
         ]);
@@ -55,6 +55,9 @@ class VisualizaExamesLaboratoriaisTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonStructure([
             "exames_pcr"
+        ]);
+        $response->assertJsonStructure([
+            "exames_teste_rapido"
         ]);
     }
 }

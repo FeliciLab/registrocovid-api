@@ -25,4 +25,12 @@ class ListaDeMunicipiosTest extends TestCase
             "nome" => "Acrelândia",
         ]);
     }
+
+    public function testRetornoMunicipiosEstadoEspecifico()
+    {
+        $data = http_build_query(['conditions' => 'estado_id:=:4']);
+        $response = $this->getJson("api/municipios?{$data}");
+        $response->assertOk();
+        $response->assertJsonCount(15);
+    }
 }

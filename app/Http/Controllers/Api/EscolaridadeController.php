@@ -1,28 +1,46 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Api\ErrorMessage;
 use App\Models\Escolaridade;
 
 class EscolaridadeController extends Controller
 {
-     /** * Listar todas as escolaridades    
-     * @return JsonResponse  
+    /**
+     * Listar escolaridades
+     *
+     * @OA\Get(
+     *      path="/api/escolaridades",
+     *      operationId="getCores",
+     *      tags={"Recursos"},
+     *      summary="Lista escolaridades",
+     *      description="Retorna todas escolaridades cadastradas no sistema",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "nome": "Analfabeto"
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        try {
-
-          $escolaridades = Escolaridade::all();
-        
-          return response()->json($escolaridades);
-
-        } catch(\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return Escolaridade::all();
     }
 }

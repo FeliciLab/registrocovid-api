@@ -4,25 +4,43 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Corticosteroide;
-use App\Api\ErrorMessage;
-use Illuminate\Http\JsonResponse;
 
 class CorticosteroideController extends Controller
 {
     /**
      * Listar corticosteroides
      *
-     * @return JsonResponse
+     * @OA\Get(
+     *      path="/api/corticosteroides",
+     *      operationId="getCorticosteroides",
+     *      tags={"Recursos"},
+     *      summary="Lista corticosteroides",
+     *      description="Retorna todos corticosteroides cadastrados no sistema",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          {
+     *                              "id": 1,
+     *                              "descricao": "Prednisona > 40 mg/dia"
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        try {
-            $corticosteroide = Corticosteroide::all();
-
-            return response()->json($corticosteroide);
-        } catch (\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return Corticosteroide::all();
     }
 }

@@ -67,9 +67,7 @@ class HistoricoController extends Controller
 
     public function update($id, HistoricoRequest $request)
     {
-
         try {
-
             $data = $request->all();
 
             $historico = $this->historico->findOrFail($id);

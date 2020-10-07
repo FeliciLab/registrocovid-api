@@ -12,20 +12,59 @@ class TiposSuporteRespiratorio extends Seeder
      */
     public function run()
     {
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 1,
-            'nome' => 'Máscara de reservatório',
+            'nome' => 'Catéter nasal de baixo fluxo',
         ]);
 
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 2,
-            'nome' => 'Catéter 02',
+            'nome' => 'Catéter nasal de alto fluxo',
         ]);
 
-        DB::table('tipos_suporterespiratorio')->insert([
+        DB::table('tipos_suportes_respiratorios')->insert([
             'id'   => 3,
-            'nome' => 'Ventilação invasiva',
+            'nome' => 'Máscara de Venturi',
         ]);
-        DB::statement("ALTER SEQUENCE tipos_suporterespiratorio_id_seq RESTART WITH 4;");
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 4,
+            'nome' => 'Máscara com reservatório',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 5,
+            'nome' => 'Ventilação mecânica não invasiva (VNI)',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 6,
+            'nome' => 'Ventilação mecânica invasiva',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 7,
+            'nome' => 'Intubação Orotraqueal',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 8,
+            'nome' => 'Traqueostomia',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 9,
+            'nome' => 'Oxigenação por membrana extracorpórea (ECMO)',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 10,
+            'nome' => 'Pronação',
+        ]);
+
+        DB::table('tipos_suportes_respiratorios')->insert([
+            'id'   => 11,
+            'nome' => 'Inclusão em desmame da ventilação mecânica',
+        ]);
     }
 }
