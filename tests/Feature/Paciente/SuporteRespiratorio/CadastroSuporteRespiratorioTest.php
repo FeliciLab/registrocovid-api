@@ -31,7 +31,7 @@ class CadastroSuporteRespiratorioTest extends TestCase
                 "menos_24h_vmi" => false
             ],
             [
-                "tipo_suporte_id" => 7,
+                "tipo_suporte_id" => 10,
                 "data_pronacao" => Carbon::now(),
                 "quantidade_horas" => 12
             ]
