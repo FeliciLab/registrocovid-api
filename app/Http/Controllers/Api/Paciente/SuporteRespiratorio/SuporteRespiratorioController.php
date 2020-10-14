@@ -104,7 +104,7 @@ class SuporteRespiratorioController extends Controller
     {
         $resultado = new Collection();
         foreach ($request->post() as $suporte) {
-            if ($suporte['tipo_suporte_id'] === 7) {
+            if ($suporte['tipo_suporte_id'] === 10) {
                 $resultado->push(
                     Pronacao::create(array_merge(
                         $suporte,
@@ -115,7 +115,7 @@ class SuporteRespiratorioController extends Controller
                 );
             }
 
-            if ($suporte['tipo_suporte_id'] === 8) {
+            if ($suporte['tipo_suporte_id'] === 11) {
                 $resultado->push(
                     InclusaoDesmame::create(array_merge(
                         $suporte,
@@ -126,7 +126,7 @@ class SuporteRespiratorioController extends Controller
                 );
             }
 
-            if ($suporte['tipo_suporte_id'] < 7) {
+            if ($suporte['tipo_suporte_id'] < 10) {
                 $resultado->push(
                     SuporteRespiratorio::create(array_merge(
                         $suporte,
