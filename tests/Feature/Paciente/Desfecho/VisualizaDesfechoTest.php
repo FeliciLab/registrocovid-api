@@ -45,4 +45,27 @@ class VisualizaDesfechoTest extends TestCase
             'desfechos'
         ]);
     }
+
+    public function testRetornaUltimoDesfechoPaciente()
+    {
+        $paciente = factory(Paciente::class)->create([
+            'coletador_id' => $this->currentUser->id
+        ]);
+
+        factory(Desfecho::class)->create([
+            'paciente_id' => $paciente->id,
+            'data' => date_create("2020-10-16")
+        ]);
+        factory(Desfecho::class)->create([
+            'paciente_id' => $paciente->id,
+            'data' => date_create("2020-10-10")
+        ]);
+
+        $response = $this->get("api/pacientes/{$paciente->id}/desfecho/last");
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'desfecho'
+        ]);
+        $response->assertJsonFragment(["data" => "2020-10-16"]);
+    }
 }
