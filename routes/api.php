@@ -73,6 +73,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::post('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@store');
                 Route::get('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@index');
+                Route::get('/pacientes/{pacienteId}/desfecho/last', 'Desfecho\DesfechoController@last');
             });
         });
         Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
