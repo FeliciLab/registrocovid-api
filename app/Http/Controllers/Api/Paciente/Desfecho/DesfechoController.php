@@ -109,7 +109,7 @@ class DesfechoController extends Controller
 
     /**
      * Coleta Ultimo Desfecho do Paciente
-     * 
+     *
      * @OA\Get(
      *      path="/api/pacientes/{pacienteId}/desfecho/last",
      *      operationId="getDesfechoLast",
