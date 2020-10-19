@@ -154,8 +154,8 @@ class DesfechoController extends Controller
      *                                       "id": 3,
      *                                       "descricao": "Aguardando aval equipe CP"
      *                                    }
-     *                              }
-*                              }
+     *                          }
+     *                      }
      *                  )
      *              )
      *          }
