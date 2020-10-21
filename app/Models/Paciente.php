@@ -79,6 +79,26 @@ class Paciente extends Model
         static::addGlobalScope('coletador_id', function (Builder $query) {
             $query->where('coletador_id', auth()->user()->id);
         });
+
+        static::deleting(function ($paciente) {
+            Sintoma::where('paciente_id',$paciente->id)->delete();
+            Historico::where('paciente_id', $paciente->id)->delete();
+            Telefone::where('paciente_id', $paciente->id)->delete();
+            ComplicacaoVentilacaoMec::where('paciente_id', $paciente->id)->delete();
+            TransfusaoOcorrencia::where('paciente_id', $paciente->id)->delete();
+            Desfecho::where('paciente_id', $paciente->id)->delete();
+            IRAS::where('paciente_id', $paciente->id)->delete();
+            Complicacao::where('paciente_id', $paciente->id)->delete();
+            InclusaoDesmame::where('paciente_id', $paciente->id)->delete();
+            Pronacao::where('paciente_id', $paciente->id)->delete();
+            SuporteRespiratorio::where('paciente_id', $paciente->id)->delete();
+            TratamentoSuporte::where('paciente_id', $paciente->id)->delete();
+            ExameComplementar::where('paciente_id', $paciente->id)->delete();
+            EvolucaoDiaria::where('paciente_id', $paciente->id)->delete();
+            ExameRtPcr::where('paciente_id', $paciente->id)->delete();
+            ExameTesteRapido::where('paciente_id', $paciente->id)->delete();
+            // REPLICAR NAS OUTRAS
+        });
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
