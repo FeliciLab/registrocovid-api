@@ -61,7 +61,7 @@ class VisualizaDesfechoTest extends TestCase
             'data' => date_create("2020-10-10")
         ]);
 
-        $response = $this->get("api/pacientes/{$paciente->id}/desfecho/last");
+        $response = $this->get("api/pacientes/{$paciente->id}/desfecho/ultimo");
         $response->assertStatus(200);
         $response->assertJsonStructure([
             'desfecho'

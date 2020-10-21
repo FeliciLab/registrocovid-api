@@ -111,7 +111,7 @@ class DesfechoController extends Controller
      * Coleta Ultimo Desfecho do Paciente
      *
      * @OA\Get(
-     *      path="/api/pacientes/{pacienteId}/desfecho/last",
+     *      path="/api/pacientes/{pacienteId}/desfecho/ultimo",
      *      operationId="getDesfechoLast",
      *      tags={"Paciente"},
      *      summary="Exibi o ultimo desfecho do paciente cadastrada",
@@ -168,9 +168,9 @@ class DesfechoController extends Controller
 
     public function last($pacienteId)
     {
-        $desfechos = Desfecho::where('paciente_id', $pacienteId)->orderByDesc('data')->get();
+        $desfecho = Desfecho::where('paciente_id', $pacienteId)->orderByDesc('data')->first();
 
-        if (!count($desfechos)) {
+        if (!$desfecho) {
             return response()->json([
                 "message" => "Paciente não possui desfechos cadastrado",
                 "desfecho" => null,
@@ -178,8 +178,7 @@ class DesfechoController extends Controller
             ], 200);
         }
 
-        $desfechosCollection = DesfechoResource::collection($desfechos);
-        return ["desfecho" => $desfechosCollection->collection[0]];
+        return ["desfecho" => $desfecho];
     }
 
 
