@@ -107,6 +107,80 @@ class DesfechoController extends Controller
         return ["desfechos" => $desfechosCollection->collection];
     }
 
+    /**
+     * Coleta Ultimo Desfecho do Paciente
+     *
+     * @OA\Get(
+     *      path="/api/pacientes/{pacienteId}/desfecho/ultimo",
+     *      operationId="getDesfechoLast",
+     *      tags={"Paciente"},
+     *      summary="Exibi o ultimo desfecho do paciente cadastrada",
+     *      description="Mostra ultimo desfecho",
+     *      security={{"apiAuth":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="ID do paciente previamente cadastrado",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Executado com sucesso",
+     *          content={
+     *              @OA\MediaType(
+     *                  mediaType="application/json",
+     *                  @OA\Schema(
+     *                      example={
+     *                          "desfecho": {
+     *                                   "id": 1,
+     *                                   "tipo_desfecho": {
+     *                                      "id": 1,
+     *                                      "descricao": "Alta hospitalar"
+     *                                   },
+     *                                   "tipo_autocuidado": {
+     *                                      "id": 1,
+     *                                      "descricao": "Mesma antes da doença"
+     *                                   },
+     *                                   "instituicao_transferencia": null,
+     *                                   "data": "2020-09-08",
+     *                                   "causa_obito": null,
+     *                                   "obito_menos_24h": null,
+     *                                   "obito_em_vm": null,
+     *                                   "obito_em_uti": null,
+     *                                   "tipo_cuidado_paliativo": {
+     *                                       "id": 3,
+     *                                       "descricao": "Aguardando aval equipe CP"
+     *                                    }
+     *                          }
+     *                      }
+     *                  )
+     *              )
+     *          }
+     *       ),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function last($pacienteId)
+    {
+        $desfecho = Desfecho::where('paciente_id', $pacienteId)->orderByDesc('data')->first();
+
+        if (!$desfecho) {
+            return response()->json([
+                "message" => "Paciente não possui desfechos cadastrado",
+                "desfecho" => null,
+
+            ], 200);
+        }
+
+        return ["desfecho" => $desfecho];
+    }
+
 
     /**
      * Cadastra desfecho do paciente no sistema
