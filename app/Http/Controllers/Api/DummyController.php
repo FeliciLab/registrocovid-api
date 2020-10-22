@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use App\Models\Paciente;
 
-class DymmyController extends Controller
+class DummyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -71,7 +71,7 @@ class DymmyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DummyRequest $request, $id)
     {
         //
     }
@@ -92,6 +92,9 @@ class DymmyController extends Controller
         //     $message = new ErrorMessage($e->getMessage());
         //     return response()->json($message->getMessage(), 500);
         // }
-            $dummy = User::where('id', 1)->delete()
+            $dummy = Paciente::where('coletador_id', 1)->get();
+            foreach ($dummy as &$value) {
+                $value->delete();
+            }
     }
 }

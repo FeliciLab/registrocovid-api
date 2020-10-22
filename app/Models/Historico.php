@@ -21,7 +21,7 @@ class Historico extends Model
 
     public function situacao_uso_drogas()
     {
-        return $this->belongsTo(SituacaoUsoDrogas::class, 'situacao_uso_drogas_id')
+        return $this->belongsTo(SituacaoUsoDrogas::class, 'situacao_uso_drogas_id');
     }
 
     public function drogas()
@@ -31,10 +31,11 @@ class Historico extends Model
 
     protected static function booted()
     {
-        static::deleting(function ($Historico) {
-            $this->drogas()->async([]);
-            $this->situacao_uso_drogas()->detach();
-            $this->paciente()->detach();
-        }
+        static::deleting(function ($historico) {
+            $historico->drogas()->sync([]);
+            $historico->situacao_uso_drogas()->dissociate();
+            $historico->paciente()->dissociate();
+            // $historico->delete();
+        });
     }
 }
