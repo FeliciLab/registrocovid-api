@@ -92,9 +92,9 @@ class DummyController extends Controller
         //     $message = new ErrorMessage($e->getMessage());
         //     return response()->json($message->getMessage(), 500);
         // }
-            $dummy = Paciente::where('coletador_id', 1)->get();
-            foreach ($dummy as &$value) {
-                $value->delete();
-            }
+        $dummy = Paciente::where('coletador_id', 1)->get();
+        foreach ($dummy as &$value) {
+            $value->delete();
+        }
     }
 }
