@@ -90,8 +90,7 @@ class DummyDeletionTest extends TestCase
             'tuberculose',
         ]);
 
-        $responseDummy = $this->deleteJson("/api/dummy");
-
+        $responseDummy = $this->deleteJson("/api/dummy",['id' => $this->currentUser->id]);
         $responseDummy->assertStatus(200);
 
         $responseComorbidadeDepois = $this->getJson("api/pacientes/{$paciente->id}/comorbidades");
@@ -107,3 +106,6 @@ class DummyDeletionTest extends TestCase
 
     }
 }
+
+// php artisan migrate:fresh --seed --database=pgsql_test
+// php artisan test --filter DummyDeletionTest

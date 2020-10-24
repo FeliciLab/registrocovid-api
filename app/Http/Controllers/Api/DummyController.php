@@ -92,9 +92,22 @@ class DummyController extends Controller
         //     $message = new ErrorMessage($e->getMessage());
         //     return response()->json($message->getMessage(), 500);
         // }
-        $dummy = Paciente::where('coletador_id', 1)->get();
-        foreach ($dummy as &$value) {
-            $value->delete();
+
+        try{
+            $coletadorId = env('DUMMY_ID');
+            if(env('DB_CONNECTION') == "pgsql_test"){
+                $coletadorId = $request->id;
+            }
+
+            $dummy = Paciente::where('coletador_id', $coletadorId)->get();
+            foreach ($dummy as &$value) {
+                $value->delete();
+            }
+
+            return response()->json("Todos os dados foram apagados", 200);
+        }catch (\Exception $e){
+            $message = new ErrorMessage($e->getMessage());
+            return response()->json($message->getMessage(), 500);
         }
     }
 }
