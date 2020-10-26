@@ -35,7 +35,7 @@ class ExamesLaboratoriaisController extends Controller
     }
     public function store(ExamesLaboratoriaisRequest $request, $pacienteId)
     {
-        if ($request->has(['data_resultado', 'rt_pcr_resultado_id'])) {
+        if ($request->hasAny(['data_coleta', 'sitio_tipo_id', 'data_resultado', 'rt_pcr_resultado_id'])) {
             $exameRtPcr = ExameRtPcr::create(array_merge(
                 $request->only(['data_coleta', 'sitio_tipo_id', 'data_resultado', 'rt_pcr_resultado_id']),
                 [
@@ -44,7 +44,7 @@ class ExamesLaboratoriaisController extends Controller
             ));
         }
 
-        if ($request->has(['data_realizacao', 'resultado'])) {
+        if ($request->has(['resultado'])) {
             $exameTesteRapido = ExameTesteRapido::create(array_merge(
                 $request->only(['data_realizacao', 'resultado']),
                 [
