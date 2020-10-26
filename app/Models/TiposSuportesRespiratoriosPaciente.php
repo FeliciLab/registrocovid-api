@@ -20,7 +20,7 @@ class TiposSuportesRespiratoriosPaciente extends Model
         return $this->belongsToMany(Paciente::class, 'paciente_id');
     }
 
-    public function tipoSuporte()
+    public function tipoSuporteRespiratorio()
     {
         return $this->belongsToMany(TipoSuporteRespiratorio::class, 'tipo_suporte_respiratorio_id');
     }

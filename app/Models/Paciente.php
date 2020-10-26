@@ -196,14 +196,6 @@ class Paciente extends Model
     public function tipoSuporteRespiratorios()
     {
         return $this->belongsToMany(TipoSuporteRespiratorio::class, 'tipos_suportes_respiratorios_pacientes');
-        // return $this->hasManyThrough(
-        //     TipoSuporteRespiratorio::class,
-        //     TiposSuportesRespiratoriosPaciente::class,
-        //     'paciente_id',
-        //     'id',
-        //     'id',
-        //     'tipo_suporte_respiratorio_id'
-        // );
     }
 
     public function historico()
