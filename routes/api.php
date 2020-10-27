@@ -109,5 +109,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/tipos-desfecho', 'TipoDesfechoController@index');
         Route::get('/tipos-auto-cuidado', 'TipoAutoCuidadoController@index');
         Route::get('/tipos-cuidado-paliativo', 'TipoCuidadoPaliativoController@index');
+        Route::delete('/dummy', 'DummyController@destroy');
     });
 });
