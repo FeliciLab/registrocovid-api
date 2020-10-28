@@ -19,5 +19,7 @@ $factory->define(Paciente::class, function (Faker $faker) {
         'instituicao_id' => 1,
         'caso_confirmado' => false,
         'data_inicio_sintomas' => Carbon::now(),
+        'sexo' => 'M',
+        'data_nascimento' => Carbon::now()
     ];
 });
