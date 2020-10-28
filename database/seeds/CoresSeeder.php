@@ -14,32 +14,32 @@ class CoresSeeder extends Seeder
     {
         DB::table('cores')->insert([
             'id'   => 1,
-            'nome' => 'AMARELO',
+            'nome' => 'Branca',
         ]);
 
         DB::table('cores')->insert([
             'id'   => 2,
-            'nome' => 'BRANCO',
+            'nome' => 'Preta',
         ]);
 
         DB::table('cores')->insert([
             'id'   => 3,
-            'nome' => 'INDÍGENA',
+            'nome' => 'Parda/Mulata',
         ]);
 
         DB::table('cores')->insert([
             'id'   => 4,
-            'nome' => 'NÃO INFORMADO',
+            'nome' => 'Amarela/Oriental',
         ]);
 
         DB::table('cores')->insert([
             'id'   => 5,
-            'nome' => 'NEGRO',
+            'nome' => 'Raça indígena',
         ]);
 
         DB::table('cores')->insert([
             'id'   => 6,
-            'nome' => 'PARDO/MULATO',
+            'nome' => 'Não Informado',
         ]);
     }
 }
