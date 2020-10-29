@@ -24,7 +24,7 @@ class CoresSeeder extends Seeder
 
         DB::table('cores')->insert([
             'id'   => 3,
-            'nome' => 'Parda/Mulata',
+            'nome' => 'Parda/mulata',
         ]);
 
         DB::table('cores')->insert([
