@@ -23,9 +23,7 @@ class CadastroDePacienteTest extends TestCase
             'message',
             'errors' => [
                 'prontuario',
-                'data_internacao',
-                'sexo',
-                'data_nascimento'
+                'data_internacao'
             ]
         ]);
         $response->assertJsonFragment([
@@ -43,11 +41,8 @@ class CadastroDePacienteTest extends TestCase
         ]);
         $response = $this->postJson('api/pacientes', [
             'prontuario' => $paciente->prontuario,
-            'data_internacao' => Carbon::now()->toString(),
-            'sexo' => $paciente->sexo,
-            'data_nascimento' => $paciente->data_nascimento
+            'data_internacao' => Carbon::now()->toString()
         ]);
-        
         $response->assertStatus(422);
         $response->assertJsonFragment(
             ['prontuario' => ['O campo prontuario já está sendo utilizado.']]
@@ -59,9 +54,7 @@ class CadastroDePacienteTest extends TestCase
         $response = $this->postJson('api/pacientes', [
             'prontuario' => 123,
             'data_internacao' => Carbon::now()->toString(),
-            'tipos_suporte_respiratorio' => 'errado',
-            'sexo' => 'M',
-            'data_nascimento' => Carbon::now()->toString()
+            'tipos_suporte_respiratorio' => 'errado'
         ]);
         $response->assertStatus(422);
         $response->assertJsonFragment([
@@ -76,9 +69,7 @@ class CadastroDePacienteTest extends TestCase
             'data_internacao' => Carbon::now()->toString(),
             'tipos_suporte_respiratorio' => [
                 ['errado' => true]
-            ],
-            'sexo' => 'M',
-            'data_nascimento' => Carbon::now()->toString()
+            ]
         ]);
         $response->assertStatus(422);
         $response->assertJsonFragment([
@@ -93,9 +84,7 @@ class CadastroDePacienteTest extends TestCase
             'data_internacao' => Carbon::now()->toString(),
             'tipos_suporte_respiratorio' => [
                 ['id' => 1]
-            ],
-            'sexo' => 'M',
-            'data_nascimento' => Carbon::now()->toString()
+            ]
         ]);
         $response->assertStatus(201);
         $response->assertJsonStructure([
