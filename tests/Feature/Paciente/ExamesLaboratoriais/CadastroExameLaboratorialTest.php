@@ -17,26 +17,6 @@ class CadastroExameLaboratorialTest extends TestCase
         $this->authenticated();
     }
 
-    public function testValidacaoCamposRtPcr()
-    {
-        $paciente = factory(Paciente::class)->create([
-            'coletador_id' => $this->currentUser->id
-        ]);
-
-        $data = [
-            "data_coleta" => Carbon::now()->toString(),
-            "sitio_tipo_id" => null,
-            "data_resultado" => Carbon::now()->toString(),
-            "rt_pcr_resultado_id" => 3
-        ];
-
-        $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
-        $response->assertStatus(422);
-        $response->assertJsonFragment([
-            "O campo sitio tipo id é obrigatório quando data coleta está presente."
-        ]);
-    }
-
     public function testValidaCamposExameTesteRapido()
     {
         $paciente = factory(Paciente::class)->create([
@@ -44,15 +24,12 @@ class CadastroExameLaboratorialTest extends TestCase
         ]);
 
         $data = [
-            "resultado" => false,
+            "resultado" => null,
             "data_realizacao" => null
         ];
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/exames-laboratoriais", $data);
-        $response->assertStatus(422);
-        $response->assertJsonFragment([
-            "O campo data realizacao é obrigatório quando resultado está presente."
-        ]);
+        $response->assertStatus(500);
     }
 
     public function testExameLaboratorialComSucesso()
