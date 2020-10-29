@@ -14,12 +14,12 @@ class EstadoCivisSeeder extends Seeder
     {
         DB::table('estados_civis')->insert([
             'id'   => 1,
-            'nome' => 'Casado/Amasiado',
+            'nome' => 'Casado/ amasiado',
         ]);
 
         DB::table('estados_civis')->insert([
             'id'   => 2,
-            'nome' => 'Separado/Divorciado',
+            'nome' => 'Separado / divorciado',
         ]);
 
         DB::table('estados_civis')->insert([
