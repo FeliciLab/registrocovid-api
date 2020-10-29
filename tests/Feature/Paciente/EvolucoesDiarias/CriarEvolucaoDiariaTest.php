@@ -30,7 +30,7 @@ class CriarEvolucaoDiariaTest extends TestCase
       'pressao_sistolica' => 23,
       'pressao_diastolica' => 26,
       'frequencia_cardiaca' => 12,
-      'ascultura_pulmonar' => 'teste',
+      'ausculta_pulmonar' => 'teste',
       'oximetria' => 0.8,
       'escala_glasgow' => 4,
     ];
@@ -49,7 +49,7 @@ class CriarEvolucaoDiariaTest extends TestCase
       'pressao_sistolica',
       'pressao_diastolica',
       'frequencia_cardiaca',
-      'ascultura_pulmonar',
+      'ausculta_pulmonar',
       'oximetria',
       'escala_glasgow',
     ]);
