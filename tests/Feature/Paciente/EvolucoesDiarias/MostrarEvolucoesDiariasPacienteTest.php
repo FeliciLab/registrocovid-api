@@ -57,7 +57,7 @@ class MostrarEvolucoesDiariasPacienteTest extends TestCase
             "pressao_sistolica",
             "pressao_diastolica",
             "frequencia_cardiaca",
-            "ascultura_pulmonar",
+            "ausculta_pulmonar",
             "oximetria",
             "escala_glasgow",
             "created_at",
