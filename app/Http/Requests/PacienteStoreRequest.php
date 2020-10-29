@@ -25,7 +25,9 @@ class PacienteStoreRequest extends FormRequest
             'prontuario' => 'required|unique:pacientes',
             'data_internacao' => 'required|date',
             'tipos_suporte_respiratorio' => 'array',
-            'tipos_suporte_respiratorio.*.id' => 'required_with:tipos_suporte_respiratorio'
+            'tipos_suporte_respiratorio.*.id' => 'required_with:tipos_suporte_respiratorio',
+            'sexo' => 'required|string',
+            'data_nascimento' => 'required|date'
         ];
     }
 }
