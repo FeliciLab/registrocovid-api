@@ -16,7 +16,7 @@ class EvolucaoDiaria extends Model
         'pressao_sistolica',
         'pressao_diastolica',
         'frequencia_cardiaca',
-        'ascultura_pulmonar',
+        'ausculta_pulmonar',
         'oximetria',
         'escala_glasgow',
     ];
