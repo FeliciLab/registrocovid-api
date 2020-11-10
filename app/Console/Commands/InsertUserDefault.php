@@ -48,13 +48,13 @@ class InsertUserDefault extends Command
             'cpf' => $this->argument('cpf'), 
             'email' => Str::random(3) . '@' . Str::random(3) . '.' . Str::random(3), 
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('123456789'), 
+            'password' => Hash::make($this->option('passwd')), 
             'instituicao_id' => 1
         ]))->save();
 
         $this->info('Usuário');
         $this->info($this->argument('cpf'));
         $this->info('senha');
-        $this->info('123456789');
+        $this->info($this->option('passwd'));
     }
 }
