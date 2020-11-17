@@ -43,14 +43,14 @@ class ComorbidadeController extends Controller
         try {
             $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
 
-            if (Comorbidade::where('paciente_id', $pacienteId)->exists()) {
-                return response()->json(
-                    (new ErrorMessage('Paciente já possui comorbidade.'))->toArray(),
-                    400
-                );
+            $comorbidade = Comorbidade::where('paciente_id', $pacienteId)->first();
+            if ($comorbidade) {
+                $comorbidade->fill($data);
+                $comorbidade->save();
+            } else {
+                $comorbidade = Comorbidade::create($data);
             }
 
-            $comorbidade = Comorbidade::create($data);
 
             if ($request->has('doencas')) {
                 $comorbidade->doencas()->sync($request->get('doencas'));
@@ -59,7 +59,7 @@ class ComorbidadeController extends Controller
             if ($request->has('orgaos')) {
                 $comorbidade->orgaos()->sync($request->get('orgaos'));
             }
-            
+
             if ($request->has('corticosteroides')) {
                 $comorbidade->corticosteroides()->sync($request->get('corticosteroides'));
             }
