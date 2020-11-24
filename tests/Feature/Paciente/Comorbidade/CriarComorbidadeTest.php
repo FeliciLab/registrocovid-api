@@ -94,11 +94,7 @@ class CriarComorbidadeTest extends TestCase
     ]);
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades");
-        $response->assertStatus(400);
-        $response->assertJsonFragment([
-      "message" => "Paciente já possui comorbidade.",
-      "errors" => []
-    ]);
+        $response->assertStatus(201);
     }
   
     /**
