@@ -73,6 +73,7 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
 
                 Route::post('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@store');
                 Route::get('/pacientes/{pacienteId}/desfecho', 'Desfecho\DesfechoController@index');
+                Route::get('/pacientes/{pacienteId}/desfecho/ultimo', 'Desfecho\DesfechoController@last');
             });
         });
         Route::get('/complicacoes/{complicacaoId}', 'Paciente\ComplicacaoController@show');
@@ -108,5 +109,6 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/tipos-desfecho', 'TipoDesfechoController@index');
         Route::get('/tipos-auto-cuidado', 'TipoAutoCuidadoController@index');
         Route::get('/tipos-cuidado-paliativo', 'TipoCuidadoPaliativoController@index');
+        Route::delete('/dummy', 'DummyController@destroy');
     });
 });

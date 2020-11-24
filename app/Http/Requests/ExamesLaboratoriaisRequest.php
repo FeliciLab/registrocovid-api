@@ -16,7 +16,7 @@ class ExamesLaboratoriaisRequest extends FormRequest
     {
         return [
             'data_coleta' => 'nullable|date',
-            'data_realizacao' => 'nullable|required_with:resultado|date',
+            'data_realizacao' => 'nullable|date',
             'data_resultado' => 'nullable|date',
             'resultado' => 'nullable|bool',
             'rt_pcr_resultado_id' => 'nullable|integer|exists:rt_pcr_resultados,id',

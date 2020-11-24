@@ -79,6 +79,95 @@ class Paciente extends Model
         static::addGlobalScope('coletador_id', function (Builder $query) {
             $query->where('coletador_id', auth()->user()->id);
         });
+
+        static::deleting(function ($paciente) {
+            // Sintoma::where('paciente_id',$paciente->id)->delete();
+            $paciente->sintomas()->sync([]);
+            
+            $historicos = Historico::where('paciente_id', $paciente->id)->get();
+            foreach ($historicos as $historico) {
+                $historico->delete();
+            }
+
+            $telefones = Telefone::where('paciente_id', $paciente->id)->get();
+            foreach ($telefones as $telefone) {
+                $telefone->delete();
+            }
+
+            $complicacoesVM = ComplicacaoVentilacaoMec::where('paciente_id', $paciente->id)->get();
+            foreach ($complicacoesVM as $complicacao) {
+                $complicacao->delete();
+            }
+
+            $transfusoes = TransfusaoOcorrencia::where('paciente_id', $paciente->id)->get();
+            foreach ($transfusoes as $transfusao) {
+                $transfusao->delete();
+            }
+
+            $defechos = Desfecho::where('paciente_id', $paciente->id)->get();
+            foreach ($defechos as $defecho) {
+                $defecho->delete();
+            }
+
+            $iras = IRAS::where('paciente_id', $paciente->id)->get();
+            foreach ($iras as $ira) {
+                $ira->delete();
+            }
+
+            $complicacoes = Complicacao::where('paciente_id', $paciente->id)->get();
+            foreach ($complicacoes as $complicacao) {
+                $complicacao->delete();
+            }
+
+            $desmames = InclusaoDesmame::where('paciente_id', $paciente->id)->get();
+            foreach ($desmames as $desmame) {
+                $desmame->delete();
+            }
+
+            $pronacoes = Pronacao::where('paciente_id', $paciente->id)->get();
+            foreach ($pronacoes as $pronacao) {
+                $pronacao->delete();
+            }
+
+            $suportes = SuporteRespiratorio::where('paciente_id', $paciente->id)->get();
+            foreach ($suportes as $suporte) {
+                $suporte->delete();
+            }
+
+            $tratamentos = TratamentoSuporte::where('paciente_id', $paciente->id)->get();
+            foreach ($tratamentos as $tratamento) {
+                $tratamento->delete();
+            }
+
+            $exames = ExameComplementar::where('paciente_id', $paciente->id)->get();
+            foreach ($exames as $exame) {
+                $exame->delete();
+            }
+
+            $evolucoes = EvolucaoDiaria::where('paciente_id', $paciente->id)->get();
+            foreach ($evolucoes as $evolucao) {
+                $evolucao->delete();
+            }
+
+            $rtpcrs = ExameRtPcr::where('paciente_id', $paciente->id)->get();
+            foreach ($rtpcrs as $rtpcr) {
+                $rtpcr->delete();
+            }
+
+            $testRapidos = ExameTesteRapido::where('paciente_id', $paciente->id)->get();
+            foreach ($testRapidos as $testRapido) {
+                $testRapido->delete();
+            }
+
+            $comorbidades = Comorbidade::where('paciente_id', $paciente->id)->get();
+            foreach ($comorbidades as $comorbidade) {
+                $comorbidade->delete();
+            }
+
+            $paciente->tipoSuporteRespiratorios()->sync([]);
+
+            // REPLICAR NAS OUTRAS
+        });
     }
 
     public function associarPacienteTipoSuporteRespiratorio($postData)
@@ -91,8 +180,8 @@ class Paciente extends Model
 
         if (is_array($postData->tipos_suporte_respiratorio)) {
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
-                TipoSuporteRespitarioPaciente::firstOrCreate([
-                    'tipo_suporte_id' => $suporte_id['id'],
+                TiposSuportesRespiratoriosPaciente::firstOrCreate([
+                    'tipo_suporte_respiratorio_id' => $suporte_id['id'],
                     'paciente_id' => $this->id
                 ]);
             }
@@ -106,19 +195,17 @@ class Paciente extends Model
 
     public function tipoSuporteRespiratorios()
     {
-        return $this->hasManyThrough(
-            TipoSuporteRespiratorio::class,
-            TipoSuporteRespitarioPaciente::class,
-            'paciente_id',
-            'id',
-            'id',
-            'tipo_suporte_id'
-        );
+        return $this->belongsToMany(TipoSuporteRespiratorio::class, 'tipos_suportes_respiratorios_pacientes');
     }
 
     public function historico()
     {
         return $this->hasOne(Historico::class);
+    }
+
+    public function comorbidade()
+    {
+        return $this->hasOne(Comorbidade::class);
     }
 
     public function instituicaoPrimeiroAtendimento()

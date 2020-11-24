@@ -17,7 +17,7 @@ $factory->define(EvolucaoDiaria::class, function (Faker $faker) {
         'pressao_sistolica' => 5,
         'pressao_diastolica' => 15,
         'frequencia_cardiaca' => 82,
-        'ascultura_pulmonar' => 'teste',
+        'ausculta_pulmonar' => 'teste',
         'oximetria' => 0.8,
         'escala_glasgow' => 12,
     ];

@@ -44,6 +44,11 @@ class Comorbidade extends Model
         'medicacoes' => 'array',
     ];
 
+    public function paciente()
+    {
+        return $this->belongsTo(Paciente::class, 'paciente_id');
+    }
+
     public function doencas()
     {
         return $this->belongsToMany(Doenca::class, 'comorbidades_doencas');
@@ -57,5 +62,15 @@ class Comorbidade extends Model
     public function corticosteroides()
     {
         return $this->belongsToMany(Corticosteroide::class, 'comorbidades_corticosteroides');
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($comorbidade) {
+            $comorbidade->doencas()->sync([]);
+            $comorbidade->orgaos()->sync([]);
+            $comorbidade->corticosteroides()->sync([]);
+            $comorbidade->paciente()->dissociate();
+        });
     }
 }
