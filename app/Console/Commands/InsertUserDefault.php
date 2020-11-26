@@ -44,11 +44,11 @@ class InsertUserDefault extends Command
     public function handle()
     {
         (new User([
-            'name' => Str::random(6), 
-            'cpf' => $this->argument('cpf'), 
-            'email' => Str::random(3) . '@' . Str::random(3) . '.' . Str::random(3), 
+            'name' => Str::random(6),
+            'cpf' => $this->argument('cpf'),
+            'email' => Str::random(3) . '@' . Str::random(3) . '.' . Str::random(3),
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make($this->option('passwd')), 
+            'password' => Hash::make($this->option('passwd')),
             'instituicao_id' => 1
         ]))->save();
 
