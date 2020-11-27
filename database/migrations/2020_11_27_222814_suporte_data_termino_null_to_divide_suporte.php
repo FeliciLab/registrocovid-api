@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RetirarDataTerminoSuporteRespiratorio extends Migration
+class SuporteDataTerminoNullToDivideSuporte extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class RetirarDataTerminoSuporteRespiratorio extends Migration
      */
     public function up()
     {
-        Schema::table('suportes_respiratorios', function ($table){
-            $table->dropColumn('data_termino');
+        Schema::table('suportes_respiratorios', function (Blueprint $table) {
+            $table->date('data_termino')->nullable()->change();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -25,8 +25,8 @@ class RetirarDataTerminoSuporteRespiratorio extends Migration
      */
     public function down()
     {
-        Schema::table('suportes_respiratorios', function ($table){
-            $table->date('data_termino');
+        Schema::table('suportes_respiratorios', function (Blueprint $table) {
+            $table->date('data_termino')->change();
         });
     }
 }
