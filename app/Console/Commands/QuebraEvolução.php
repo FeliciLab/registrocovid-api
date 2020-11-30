@@ -42,7 +42,6 @@ class QuebraEvolução extends Command
     {
         $allSuporte = SuporteRespiratorio::all();
         foreach ($allSuporte as $suporte) {
-            $date = date_create($suporte->data_inicio);
             if($suporte->data_termino != null){
                 $periodDays = date_diff( date_create($suporte->data_inicio),date_create($suporte->data_termino) );
                 for ($i=0; $i <= $periodDays->d; $i++) { 
