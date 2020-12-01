@@ -7,8 +7,5 @@ use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 $factory->define(Historico::class, function (Faker $faker) {
-    return [
-        'tabagismo' => false,
-        'etilismo' => false,
-    ];
+    return [];
 });

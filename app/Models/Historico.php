@@ -11,7 +11,7 @@ class Historico extends Model
     ];
 
     protected $fillable = [
-        'paciente_id', 'situacao_uso_drogas_id', 'tabagismo', 'etilismo'
+        'paciente_id', 'situacao_uso_drogas_id', 'situacao_tabagismo_id', 'situacao_etilismo_id'
     ];
 
     public function paciente()
@@ -22,6 +22,14 @@ class Historico extends Model
     public function situacaoUsoDrogas()
     {
         return $this->belongsTo(SituacaoUsoDrogas::class, 'situacao_uso_drogas_id');
+    }
+    public function situacaoTabagismo()
+    {
+        return $this->belongsTo(SituacaoTabagismo::class, 'situacao_tabagismo_id');
+    }
+    public function situacaoEtilismo()
+    {
+        return $this->belongsTo(SituacaoEtilismo::class, 'situacao_etilismo_id');
     }
 
     public function drogas()
@@ -34,6 +42,8 @@ class Historico extends Model
         static::deleting(function ($historico) {
             $historico->drogas()->sync([]);
             $historico->situacaoUsoDrogas()->dissociate();
+            $historico->situacaoTabagismo()->dissociate();
+            $historico->situacaoEtilismo()->dissociate();
             $historico->paciente()->dissociate();
         });
     }
