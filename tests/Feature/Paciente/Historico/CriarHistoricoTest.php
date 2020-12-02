@@ -107,8 +107,8 @@ class CriarHistoricoTest extends TestCase
 
         $data = [
       'situacao_uso_drogas_id' => 1,
-      'tabagismo' => false,
-      'etilismo' => false,
+      'situacao_tabagismo_id' => 1,
+      'situacao_etilismo_id' => 2,
       'drogas' => [1,2,3]
     ];
 
@@ -117,8 +117,8 @@ class CriarHistoricoTest extends TestCase
         $response->assertJsonStructure([
       'id',
       'paciente_id',
-      'tabagismo',
-      'etilismo',
+      'situacao_tabagismo_id',
+      'situacao_etilismo_id',
       'created_at',
       'updated_at'
     ]);

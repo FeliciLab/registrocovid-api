@@ -53,8 +53,8 @@ class MostrarHistoricoTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'paciente_id',
-            'tabagismo',
-            'etilismo',
+            'situacao_tabagismo_id',
+            'situacao_etilismo_id',
             'drogas',
             'created_at',
             'updated_at'
@@ -78,8 +78,8 @@ class MostrarHistoricoTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'paciente_id',
-            'tabagismo',
-            'etilismo',
+            'situacao_tabagismo_id',
+            'situacao_etilismo_id',
             'drogas',
             'created_at',
             'updated_at'
