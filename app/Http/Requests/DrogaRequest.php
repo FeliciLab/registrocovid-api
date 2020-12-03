@@ -24,7 +24,7 @@ class DrogaRequest extends FormRequest
     public function rules()
     {
         return [
-            'descricao' => 'required|unique:drogas|string|max:100',
+            'descricao' => 'required|unique:drogas|string',
         ];
     }
 }
