@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EvolucaoDiariaRequest;
 use App\Models\EvolucaoDiaria;
 use App\Api\ErrorMessage;
+use App\Models\InclusaoDesmame;
+use App\Models\Pronacao;
+use App\Models\SuporteRespiratorio;
 
 class EvolucaoDiariaController extends Controller
 {
@@ -93,10 +96,20 @@ class EvolucaoDiariaController extends Controller
     public function show($pacienteId, $evolucaoId)
     {
         $evolucaoDiaria = EvolucaoDiaria::where('paciente_id', $pacienteId)->where('id', $evolucaoId)->first();
+        // return response()->json($evolucaoDiaria->data_evolucao);
+        $suportesRespiratorios = SuporteRespiratorio::where('paciente_id', $pacienteId)->where('data_inicio',$evolucaoDiaria->data_evolucao)->get();
+        $tratamentoPronacao = Pronacao::where('paciente_id', $pacienteId)->where('data_pronacao',$evolucaoDiaria->data_evolucao)->get();
+        $tratamentoInclusaoDesmame = InclusaoDesmame::where('paciente_id', $pacienteId)->where('data_inclusao_desmame',$evolucaoDiaria->data_evolucao)->get();
+        
 
         if (!$evolucaoDiaria) {
             return response()->json('', 404);
         }
-        return response()->json($evolucaoDiaria);
+        return response()->json([
+            'evolucaoDiaria' => $evolucaoDiaria,
+            'suportesRespiratorios' => $suportesRespiratorios,
+            'tratamento_pronacao' => $tratamentoPronacao,
+            'tratamento_inclusao_desmame' => $tratamentoInclusaoDesmame
+        ]);
     }
 }
