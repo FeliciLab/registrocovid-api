@@ -19,7 +19,7 @@ class DesfechoStoreRequest extends FormRequest
             '*.tipo_autocuidado_id' => 'nullable|integer|exists:tipo_auto_cuidados,id',
             '*.instituicao_transferencia_id' => 'nullable|integer|exists:instituicoes,id',
             '*.data' => 'required|date',
-            '*.causa_obito' => 'nullable|string|max:191',
+            '*.causa_obito' => 'nullable|string',
             '*.obito_menos_24h' => 'nullable|bool',
             '*.obito_em_vm' => 'nullable|bool',
             '*.obito_em_uti' => 'nullable|bool',
