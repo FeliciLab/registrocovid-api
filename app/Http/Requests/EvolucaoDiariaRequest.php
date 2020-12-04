@@ -22,7 +22,7 @@ class EvolucaoDiariaRequest extends FormRequest
             'pressao_sistolica' => 'integer',
             'pressao_diastolica' => 'integer',
             'frequencia_cardiaca' => 'integer',
-            'ausculta_pulmonar' => 'string|max:191',
+            'ausculta_pulmonar' => 'string',
             'oximetria' => 'numeric',
             'escala_glasgow' => 'integer|between:3,15',
         ];

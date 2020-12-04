@@ -17,7 +17,7 @@ class ComplicacaoRequest extends FormRequest
             '*.tipo_complicacao_id' => 'required|integer',
             '*.data' => 'required|date',
             '*.data_termino' => 'nullable|date',
-            '*.descricao' => 'nullable|string|max:100',
+            '*.descricao' => 'nullable|string',
             '*.menos_24h_uti' => 'nullable|boolean',
             '*.glasgow_admissao_uti' => 'nullable|integer',
         ];
