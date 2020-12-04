@@ -29,7 +29,7 @@ class HistoricoController extends Controller
             if (!$historico) {
                 return response()->json(
                     (new ErrorMessage('Histórico não encontrado.'))->toArray(),
-                    404
+                    204
                 );
             }
 
