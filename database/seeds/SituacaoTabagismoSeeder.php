@@ -12,7 +12,6 @@ class SituacaoTabagismoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('situacao_tabagismo')->delete();
         DB::table('situacao_tabagismo')->insert(['id' => 1, 'descricao' => 'Fumante']);
         DB::table('situacao_tabagismo')->insert(['id' => 2, 'descricao' => 'Ex-Fumante']);
         DB::table('situacao_tabagismo')->insert(['id' => 3, 'descricao' => 'Não Fumante']);

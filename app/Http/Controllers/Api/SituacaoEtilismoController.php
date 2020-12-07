@@ -43,11 +43,6 @@ class SituacaoEtilismoController extends Controller
      */
     public function index()
     {
-        try {
-            return SituacaoEtilismo::all();
-        } catch (\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return SituacaoEtilismo::all();
     }
 }

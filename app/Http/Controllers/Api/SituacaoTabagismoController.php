@@ -43,11 +43,6 @@ class SituacaoTabagismoController extends Controller
      */
     public function index()
     {
-        try {
-            return SituacaoTabagismo::all();
-        } catch (\Exception $e) {
-            $message = new ErrorMessage($e->getMessage());
-            return response()->json($message->getMessage(), 500);
-        }
+        return SituacaoTabagismo::all();
     }
 }

@@ -20,8 +20,6 @@ class AlterarCamposTabagismo extends Migration
             $table->string('descricao', 100);
             $table->timestamps();
         });
-    
-        Artisan::call('db:seed', ['--class' => 'SituacaoTabagismoSeeder', '--force' => true]);
     }
 
     /**

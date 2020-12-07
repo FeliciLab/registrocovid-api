@@ -28,6 +28,11 @@ class IncluirSituacoesNoHistorico extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('historicos', function (Blueprint $table) {
+            $table->dropForeign('situacao_tabagismo_id');
+            $table->dropForeign('situacao_etilismo_id');
+            $table->boolean('tabagismo')->nullable();
+            $table->boolean('etilismo')->nullable();
+        });
     }
 }

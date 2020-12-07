@@ -12,7 +12,6 @@ class SituacaoUsoDrogasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('situacoes_uso_drogas')->delete();
         DB::table('situacoes_uso_drogas')->insert(['id' => 1, 'descricao' => 'É usuário']);
         DB::table('situacoes_uso_drogas')->insert(['id' => 2, 'descricao' => 'Ex-usuário']);
         DB::table('situacoes_uso_drogas')->insert(['id' => 3, 'descricao' => 'Nunca usou drogas']);

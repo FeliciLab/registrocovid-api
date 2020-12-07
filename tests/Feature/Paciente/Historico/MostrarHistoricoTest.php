@@ -32,11 +32,7 @@ class MostrarHistoricoTest extends TestCase
         ]);
 
         $response = $this->getJson("api/pacientes/{$paciente->id}/historico");
-        $response->assertNotFound();
-        $response->assertJson([
-            'message' => 'Histórico não encontrado.',
-            'errors' => []
-        ]);
+        $response->assertNoContent();
     }
 
     public function testMostrarHistoricoComSucesso()

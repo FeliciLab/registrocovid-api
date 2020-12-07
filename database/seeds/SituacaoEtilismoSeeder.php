@@ -12,7 +12,6 @@ class SituacaoEtilismoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('situacao_etilismo')->delete();
         DB::table('situacao_etilismo')->insert(['id' => 1, 'descricao' => 'Etilista']);
         DB::table('situacao_etilismo')->insert(['id' => 2, 'descricao' => 'Ex- etilista']);
         DB::table('situacao_etilismo')->insert(['id' => 3, 'descricao' => 'Não etilista']);
