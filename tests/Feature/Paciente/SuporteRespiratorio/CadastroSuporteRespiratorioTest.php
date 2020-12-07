@@ -27,7 +27,6 @@ class CadastroSuporteRespiratorioTest extends TestCase
                 "tipo_suporte_id" => 1,
                 "parametro" => 100,
                 "data_inicio" => Carbon::now(),
-                "data_termino" => Carbon::now(),
                 "menos_24h_vmi" => false
             ],
             [
@@ -66,16 +65,12 @@ class CadastroSuporteRespiratorioTest extends TestCase
         return [
             [
                 ['tipo_suporte_id' => 0],
-                ['errors' => ['tipo_suporte_id.data_inicio' => ['O campo tipo_suporte_id.data_inicio é obrigatório.'], 'tipo_suporte_id.data_termino' => ['O campo tipo_suporte_id.data_termino é obrigatório.'], 'tipo_suporte_id.tipo_suporte_id' => ['O campo tipo_suporte_id.tipo_suporte_id é obrigatório.']]]
+                ['errors' => ['tipo_suporte_id.data_inicio' => ['O campo tipo_suporte_id.data_inicio é obrigatório.'], 'tipo_suporte_id.tipo_suporte_id' => ['O campo tipo_suporte_id.tipo_suporte_id é obrigatório.']]]
             ],
             [
                 ['data_inicio' => 0],
-                ['errors' => ['data_inicio.data_inicio' => ['O campo data_inicio.data_inicio é obrigatório.'], 'data_inicio.data_termino' => ['O campo data_inicio.data_termino é obrigatório.'], 'data_inicio.tipo_suporte_id' => ['O campo data_inicio.tipo_suporte_id é obrigatório.']]]
+                ['errors' => ['data_inicio.data_inicio' => ['O campo data_inicio.data_inicio é obrigatório.'], 'data_inicio.tipo_suporte_id' => ['O campo data_inicio.tipo_suporte_id é obrigatório.']]]
             ],
-            [
-                ['data_termino' => 0],
-                ['errors' => ['data_termino.data_inicio' => ['O campo data_termino.data_inicio é obrigatório.'], 'data_termino.data_termino' => ['O campo data_termino.data_termino é obrigatório.'], 'data_termino.tipo_suporte_id' => ['O campo data_termino.tipo_suporte_id é obrigatório.']]]
-            ]
         ];
     }
 }

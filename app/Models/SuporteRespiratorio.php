@@ -17,7 +17,6 @@ class SuporteRespiratorio extends Model
         'fluxo_gasoso',
         'fio2',
         'data_inicio',
-        'data_termino',
         'menos_24h_vmi'
     ];
 
