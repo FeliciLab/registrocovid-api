@@ -89,6 +89,11 @@ class Paciente extends Model
                 $historico->delete();
             }
 
+            $gasometriasArteriais = GasometriaArterial::where('paciente_id', $paciente->id)->get();
+            foreach ($gasometriasArteriais as $gasometriaArterial) {
+                $gasometriaArterial->delete();
+            }
+
             $telefones = Telefone::where('paciente_id', $paciente->id)->get();
             foreach ($telefones as $telefone) {
                 $telefone->delete();
@@ -201,6 +206,11 @@ class Paciente extends Model
     public function historico()
     {
         return $this->hasOne(Historico::class);
+    }
+
+    public function gasometriaArterial()
+    {
+        return $this->hasOne(GasometriaArterial::class);
     }
 
     public function comorbidade()

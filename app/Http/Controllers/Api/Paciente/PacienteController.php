@@ -9,6 +9,7 @@ use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Exception;
 use App\Api\ErrorMessage;
+use App\Models\GasometriaArterial;
 use App\Repositories\PacienteRepository;
 
 class PacienteController extends Controller
@@ -45,10 +46,19 @@ class PacienteController extends Controller
             ));
             $paciente->associarPacienteTipoSuporteRespiratorio($request->post());
 
+            $gasometriaArterial = [];
+
+            if( $request->hasAny(['ph', 'pao2', 'paco2', 'hco3', 'be', 'sao2', 'lactato']) ){
+                $gasometriaArterial = (GasometriaArterial::create(array_merge(
+                    $request->post(),
+                    [ 'paciente_id' => $paciente->id]
+                )))->toArray();
+            }
+
             return response()->json(
                 [
                     'message' => 'Paciente cadastrado com sucesso',
-                    'paciente' => $paciente->toArray()
+                    'paciente' => array_merge($paciente->toArray(), $gasometriaArterial)
                 ],
                 201
             );
