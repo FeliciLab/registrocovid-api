@@ -31,7 +31,10 @@ class PacienteController extends Controller
             ], 404);
         }
 
-        return $paciente->toArray();
+        $gasometriaArterial = GasometriaArterial::where('paciente_id', $paciente->id)->first();
+
+
+        return array_merge($paciente->toArray(), $gasometriaArterial->toArray());
     }
 
     public function store(PacienteStoreRequest $request)
