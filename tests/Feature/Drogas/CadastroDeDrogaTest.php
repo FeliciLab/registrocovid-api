@@ -10,11 +10,6 @@ class CadastroDeDrogaTest extends TestCase
     public function cenariosValidacao(): array
     {
         return [
-            //Enviando uma descrição maior que 150 caracters
-            [
-                'Este texto tem mais de 100 caracteres e vai ser utilizado para testar o tamanho da do campo descrição quando informado mais de 100 caracteres',
-                'O campo descricao não pode ser superior a 100 caracteres.'
-            ],
             //Não enviando a descrição
             [null, 'O campo descricao é obrigatório.'],
             //Enviando valor booleano no campo descrição

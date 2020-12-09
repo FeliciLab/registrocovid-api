@@ -32,9 +32,13 @@ class PacienteController extends Controller
         }
 
         $gasometriaArterial = GasometriaArterial::where('paciente_id', $paciente->id)->first();
+        if ($gasometriaArterial) {
+            return array_merge($paciente->toArray(), $gasometriaArterial->toArray());
+        }else {
+            return $paciente->toArray();
+        }
 
-
-        return array_merge($paciente->toArray(), $gasometriaArterial->toArray());
+        
     }
 
     public function store(PacienteStoreRequest $request)
@@ -51,10 +55,10 @@ class PacienteController extends Controller
 
             $gasometriaArterial = [];
 
-            if( $request->hasAny(['ph', 'pao2', 'paco2', 'hco3', 'be', 'sao2', 'lactato']) ){
+            if ($request->hasAny(['ph', 'pao2', 'paco2', 'hco3', 'be', 'sao2', 'lactato'])) {
                 $gasometriaArterial = (GasometriaArterial::create(array_merge(
                     $request->post(),
-                    [ 'paciente_id' => $paciente->id]
+                    ['paciente_id' => $paciente->id]
                 )))->toArray();
             }
 

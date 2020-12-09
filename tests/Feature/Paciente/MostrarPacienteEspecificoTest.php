@@ -56,6 +56,7 @@ class MostrarPacienteEspecificoTest extends TestCase
             'coletador_id' => $this->currentUser->id
         ]);
         $response = $this->getJson("/api/pacientes/{$paciente->id}");
+
         $response->assertOk();
         $response->assertJsonStructure([
             'id',
