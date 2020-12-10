@@ -37,6 +37,14 @@ class Paciente extends Model
         'data_inicio_sintomas',
         'caso_confirmado',
         'chegou_traqueostomizado',
+        'debito_urinario',
+        'ph', 
+        'pao2', 
+        'paco2', 
+        'hco3', 
+        'be', 
+        'sao2', 
+        'lactato'
     ];
 
     protected $with = [
@@ -87,11 +95,6 @@ class Paciente extends Model
             $historicos = Historico::where('paciente_id', $paciente->id)->get();
             foreach ($historicos as $historico) {
                 $historico->delete();
-            }
-
-            $gasometriasArteriais = GasometriaArterial::where('paciente_id', $paciente->id)->get();
-            foreach ($gasometriasArteriais as $gasometriaArterial) {
-                $gasometriaArterial->delete();
             }
 
             $telefones = Telefone::where('paciente_id', $paciente->id)->get();
@@ -206,11 +209,6 @@ class Paciente extends Model
     public function historico()
     {
         return $this->hasOne(Historico::class);
-    }
-
-    public function gasometriaArterial()
-    {
-        return $this->hasOne(GasometriaArterial::class);
     }
 
     public function comorbidade()

@@ -15,6 +15,13 @@ class UpdatePacientesAddColumnDebitoUrinario extends Migration
     {
         Schema::table('pacientes', function (Blueprint $table) {
             $table->integer('debito_urinario')->nullable();
+            $table->float('ph')->nullable();
+            $table->integer('pao2')->nullable();
+            $table->integer('paco2')->nullable();
+            $table->integer('hco3')->nullable();
+            $table->integer('be')->nullable();
+            $table->integer('sao2')->nullable();
+            $table->integer('lactato')->nullable();
         });
     }
 
