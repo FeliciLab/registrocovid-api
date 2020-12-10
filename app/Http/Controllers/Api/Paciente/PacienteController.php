@@ -31,7 +31,6 @@ class PacienteController extends Controller
         }
 
         return $paciente->toArray();
-        
     }
 
     public function store(PacienteStoreRequest $request)
