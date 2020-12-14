@@ -34,6 +34,13 @@ class UpdatePacientesAddColumnDebitoUrinario extends Migration
     {
         Schema::table('pacientes', function (Blueprint $table) {
             $table->dropColumn('debito_urinario');
+            $table->dropColumn('ph');
+            $table->dropColumn('pao2');
+            $table->dropColumn('paco2');
+            $table->dropColumn('hco3');
+            $table->dropColumn('be');
+            $table->dropColumn('sao2');
+            $table->dropColumn('lactato');
         });
     }
 }
