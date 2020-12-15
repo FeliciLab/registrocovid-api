@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\SituacaoEtilismo;
+use App\Models\SituacaoTabagismo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,7 +39,9 @@ class DatabaseSeeder extends Seeder
             TipoIRASSeedder::class,
             TipoAutoCuidadoSeeder::class,
             TipoCuidadoPaliativoSeeder::class,
-            TipoDesfechoSeeder::class
+            TipoDesfechoSeeder::class,
+            SituacaoTabagismo::class,
+            SituacaoEtilismo::class
         ]);
     }
 }
