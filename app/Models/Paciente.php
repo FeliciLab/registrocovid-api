@@ -37,6 +37,14 @@ class Paciente extends Model
         'data_inicio_sintomas',
         'caso_confirmado',
         'chegou_traqueostomizado',
+        'debito_urinario',
+        'ph',
+        'pao2',
+        'paco2',
+        'hco3',
+        'be',
+        'sao2',
+        'lactato'
     ];
 
     protected $with = [
