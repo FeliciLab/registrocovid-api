@@ -30,7 +30,7 @@ class ListaDeTiposComplicacoesCadastradasTest extends TestCase
     {
         $response = $this->json('GET', 'api/tipos-complicacoes');
         $response->assertOk();
-        $response->assertJsonCount(15);
+        $response->assertJsonCount(16);
         $response->assertJsonFragment([
             'id' => 2,
             'descricao' => 'Síndrome Respiratória Aguda Grave (SRAG)'
