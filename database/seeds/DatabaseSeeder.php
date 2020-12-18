@@ -37,7 +37,9 @@ class DatabaseSeeder extends Seeder
             TipoIRASSeedder::class,
             TipoAutoCuidadoSeeder::class,
             TipoCuidadoPaliativoSeeder::class,
-            TipoDesfechoSeeder::class
+            TipoDesfechoSeeder::class,
+            SituacaoTabagismoSeeder::class,
+            SituacaoEtilismoSeeder::class
         ]);
     }
 }

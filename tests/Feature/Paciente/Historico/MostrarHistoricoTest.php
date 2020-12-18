@@ -33,10 +33,6 @@ class MostrarHistoricoTest extends TestCase
 
         $response = $this->getJson("api/pacientes/{$paciente->id}/historico");
         $response->assertNotFound();
-        $response->assertJson([
-            'message' => 'Histórico não encontrado.',
-            'errors' => []
-        ]);
     }
 
     public function testMostrarHistoricoComSucesso()
@@ -53,8 +49,8 @@ class MostrarHistoricoTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'paciente_id',
-            'tabagismo',
-            'etilismo',
+            'situacao_tabagismo_id',
+            'situacao_etilismo_id',
             'drogas',
             'created_at',
             'updated_at'
@@ -78,8 +74,8 @@ class MostrarHistoricoTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'paciente_id',
-            'tabagismo',
-            'etilismo',
+            'situacao_tabagismo_id',
+            'situacao_etilismo_id',
             'drogas',
             'created_at',
             'updated_at'
