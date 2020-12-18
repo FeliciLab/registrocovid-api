@@ -14,6 +14,14 @@ class Complicacao extends Model
         'descricao',
         'menos_24h_uti',
         'glasgow_admissao_uti',
+        'debito_urinario',
+        'ph',
+        'pao2',
+        'paco2',
+        'hco3',
+        'be',
+        'sao2',
+        'lactato'
     ];
 
     protected $with = [
