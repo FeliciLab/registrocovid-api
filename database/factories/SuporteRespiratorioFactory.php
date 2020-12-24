@@ -15,7 +15,6 @@ $factory->define(SuporteRespiratorio::class, function (Faker $faker) {
         "fluxo_gasoso" => 100,
         "fio2" => 100,
         "data_inicio" => Carbon::now(),
-        "data_termino" => Carbon::now(),
         "menos_24h_vmi" => false
     ];
 });

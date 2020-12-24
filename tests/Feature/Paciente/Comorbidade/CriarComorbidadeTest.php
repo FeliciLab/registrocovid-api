@@ -82,24 +82,6 @@ class CriarComorbidadeTest extends TestCase
       'updated_at',
     ]);
     }
-
-    public function testComorbidadeJaExiste()
-    {
-        $paciente = factory(Paciente::class)->create([
-      'coletador_id' => $this->currentUser->id,
-    ]);
-
-        factory(Comorbidade::class)->create([
-      'paciente_id' => $paciente->id
-    ]);
-
-        $response = $this->postJson("api/pacientes/{$paciente->id}/comorbidades");
-        $response->assertStatus(400);
-        $response->assertJsonFragment([
-      "message" => "Paciente já possui comorbidade.",
-      "errors" => []
-    ]);
-    }
   
     /**
      * @dataProvider possiveisValoresDoencas

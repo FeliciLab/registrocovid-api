@@ -100,6 +100,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
         Route::get('/tipos-transfusao', 'TipoTransfusaoController@index');
         Route::get('/tipos-complicacao-vm', 'TipoComplicacaoVMController@index');
         Route::get('/situacao-uso-drogas', 'SituacaoUsoDrogasController@index');
+        Route::get('/situacao-tabagismo', 'SituacaoTabagismoController@index');
+        Route::get('/situacao-etilismo', 'SituacaoEtilismoController@index');
         Route::get('/suportes-respiratorios', 'SuporteRespiratorioController@index');
         Route::get('/tipos-doencas', 'TipoDoencaController@index');
         Route::get('/tipos-complicacoes', 'TipoComplicacaoController@index');

@@ -18,7 +18,6 @@ class SuporteRespiratorioStoreRequest extends FormRequest
             '*.tipo_suporte_id' => 'required|integer|exists:tipos_suportes_respiratorios,id',
             '*.parametro' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             '*.data_inicio' => 'exclude_if:*.tipo_suporte_id,10,11|required|date',
-            '*.data_termino' => 'exclude_if:*.tipo_suporte_id,10,11|required|date',
             '*.menos_24h_vmi' => 'nullable|bool',
             '*.data_pronacao' => 'exclude_unless:*.tipo_suporte_id,10|required|date',
             '*.quantidade_horas' => 'exclude_unless:*.tipo_suporte_id,10|nullable|regex:/^\d+(\.\d{1,2})?$/',

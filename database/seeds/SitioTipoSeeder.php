@@ -17,5 +17,6 @@ class SitioTipoSeeder extends Seeder
         DB::table('sitios_tipos')->insert(['id' => 3, 'descricao' => 'Secreção traqueal']);
         DB::table('sitios_tipos')->insert(['id' => 4, 'descricao' => 'Lavado broncoalveolar']);
         DB::table('sitios_tipos')->insert(['id' => 5, 'descricao' => 'Outros']);
+        DB::table('sitios_tipos')->insert(['id' => 6, 'descricao' => 'Não informado']);
     }
 }

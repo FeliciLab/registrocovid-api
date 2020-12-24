@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TiposComplicacoesSeeder extends Seeder
 {
@@ -26,5 +27,6 @@ class TiposComplicacoesSeeder extends Seeder
         DB::table('tipos_complicacoes')->insert(['id' => 13,'descricao' => 'Outros fenômenos tromboembólicos']);
         DB::table('tipos_complicacoes')->insert(['id' => 14,'descricao' => 'Complicação neurológica']);
         DB::table('tipos_complicacoes')->insert(['id' => 15,'descricao' => 'Outras']);
+        DB::table('tipos_complicacoes')->insert(['id' => 16,'descricao' => 'Insuficiência respiratória']);
     }
 }

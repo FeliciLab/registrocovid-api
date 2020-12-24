@@ -23,7 +23,7 @@ class MostrarEvolucaoDiariaEspecificaTest extends TestCase
         ]);
 
         $response = $this->getJson("api/pacientes/{$paciente->id}/evolucoes-diarias/0");
-        
+
         $response->assertStatus(404);
     }
 
@@ -40,23 +40,24 @@ class MostrarEvolucaoDiariaEspecificaTest extends TestCase
         $response = $this->getJson("api/pacientes/{$paciente->id}/evolucoes-diarias/{$evolucao->id}");
 
         $response->assertOk();
-        $this->assertEquals($response->getData(), json_decode($evolucao));
         $response->assertJsonStructure([
-            "id",
-            "paciente_id",
-            "data_evolucao",
-            "temperatura",
-            "frequencia_respiratoria",
-            "peso",
-            "altura",
-            "pressao_sistolica",
-            "pressao_diastolica",
-            "frequencia_cardiaca",
-            "ausculta_pulmonar",
-            "oximetria",
-            "escala_glasgow",
-            "created_at",
-            "updated_at",
+            "evolucaoDiaria" => [
+                "id",
+                "paciente_id",
+                "data_evolucao",
+                "temperatura",
+                "frequencia_respiratoria",
+                "peso",
+                "altura",
+                "pressao_sistolica",
+                "pressao_diastolica",
+                "frequencia_cardiaca",
+                "ausculta_pulmonar",
+                "oximetria",
+                "escala_glasgow",
+                "created_at",
+                "updated_at",
+            ]
         ]);
     }
 }
