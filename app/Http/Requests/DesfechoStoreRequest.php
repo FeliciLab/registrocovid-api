@@ -23,6 +23,7 @@ class DesfechoStoreRequest extends FormRequest
             '*.obito_menos_24h' => 'nullable|bool',
             '*.obito_em_vm' => 'nullable|bool',
             '*.obito_em_uti' => 'nullable|bool',
+            '*.uso_suporte_respiratorio' => 'nullable|bool',
             '*.tipo_cuidado_paliativo_id' => 'nullable|integer|exists:tipo_cuidado_paliativos,id'
         ];
     }
