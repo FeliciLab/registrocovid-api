@@ -16,7 +16,8 @@ class Desfecho extends Model
         'obito_menos_24h',
         'obito_em_vm',
         'obito_em_uti',
-        'tipo_cuidado_paliativo_id'
+        'tipo_cuidado_paliativo_id',
+        'uso_suporte_respiratorio'
     ];
 
     protected $hidden = ['updated_at', 'created_at', 'paciente_id'];
