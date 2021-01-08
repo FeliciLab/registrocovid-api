@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api\Paciente\TerapiaTransfusional;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TerapiaTranfusionalRequest;
 use App\Models\TerapiaTransfusional;
 use App\Models\TransfusaoOcorrencia;
+use Exception;
 use Illuminate\Http\Request;
 
 class TerapiaTransfusionalController extends Controller
@@ -128,15 +129,16 @@ class TerapiaTransfusionalController extends Controller
     public function store(TerapiaTranfusionalRequest $request, $pacienteId)
     {
         $transfusaoOcorrencia = TerapiaTransfusional::create(array_merge(
-            $request->post(),
+            $request->all(),
             [
                 'paciente_id' => $pacienteId
             ]
         ));
 
         return response()->json([
-            "message" => "Complicação ventilação mecânica cadastrado com sucesso",
+            "message" => "Terapia Transfusional cadastrada com sucesso",
             "terapia_transfusional" => $transfusaoOcorrencia->toArray()
         ], 201);
+    
     }
 }

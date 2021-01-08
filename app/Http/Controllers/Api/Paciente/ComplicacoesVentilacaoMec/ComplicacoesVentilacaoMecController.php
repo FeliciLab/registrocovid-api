@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Paciente\ComplicacoesVentilacaoMec;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ComplicacaoVentilacaoMecanicaRequest;
 use App\Models\ComplicacaoVentilacaoMec;
+use Exception;
 
 class ComplicacoesVentilacaoMecController extends Controller
 {
@@ -129,8 +130,9 @@ class ComplicacoesVentilacaoMecController extends Controller
      */
     public function store(ComplicacaoVentilacaoMecanicaRequest $request, $pacienteId)
     {
+        try{
         $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
-            $request->json(),
+            $request->all(),
             [
                 'paciente_id' => $pacienteId
             ]
@@ -140,5 +142,8 @@ class ComplicacoesVentilacaoMecController extends Controller
             "message" => "Complicação ventilação mecânica cadastrado com sucesso",
             "ventilacao_mecanica" => $complicacaoVentilacaoMec->toArray(),
         ], 201);
+    } catch (Exception $e){
+        dd($e);
+    }
     }
 }
