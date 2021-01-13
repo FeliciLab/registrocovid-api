@@ -65,8 +65,7 @@ class ComplicacoesVentilacaoMecController extends Controller
             return response()->json(
                 [
                     'message' => 'Paciente não possui complicações cadastradas',
-                    'complicacoes_ventilacao_mecanica' => [],
-                    'transfussoes_ocorrencia' => []
+                    'complicacoes_ventilacao_mecanica' => []
                 ],
                 200
             );

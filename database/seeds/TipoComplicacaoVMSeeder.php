@@ -29,11 +29,6 @@ class TipoComplicacaoVMSeeder extends Seeder
 
         DB::table('tipos_complicacao_vm')->insert([
             'id'   => 4,
-            'descricao' => 'Necessidade transfusional',
-        ]);
-
-        DB::table('tipos_complicacao_vm')->insert([
-            'id'   => 5,
             'descricao' => 'Outras',
         ]);
     }
