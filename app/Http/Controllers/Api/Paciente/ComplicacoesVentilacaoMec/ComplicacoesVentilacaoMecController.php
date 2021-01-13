@@ -129,20 +129,20 @@ class ComplicacoesVentilacaoMecController extends Controller
      */
     public function store(ComplicacaoVentilacaoMecanicaRequest $request, $pacienteId)
     {
-        try{
-        $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
-            $request->all(),
-            [
+        try {
+            $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
+                $request->all(),
+                [
                 'paciente_id' => $pacienteId
             ]
-        ));
+            ));
 
-        return response()->json([
+            return response()->json([
             "message" => "Complicação ventilação mecânica cadastrado com sucesso",
             "ventilacao_mecanica" => $complicacaoVentilacaoMec->toArray(),
         ], 201);
-    } catch (Exception $e){
-        dd($e);
-    }
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 }

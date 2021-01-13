@@ -101,7 +101,7 @@ class TerapiaTransfusionalController extends Controller
      *              @OA\Property(property="tipo_transfusao_id", type="integer", example=1),
      *              @OA\Property(property="data_transfusao", type="string", example="2020-08-20"),
      *              @OA\Property(property="volume_transfusao", type="float", example=4.2),
-     *              
+     *
      *          )
      *      ),
      *      @OA\Response(
@@ -139,6 +139,5 @@ class TerapiaTransfusionalController extends Controller
             "message" => "Terapia Transfusional cadastrada com sucesso",
             "terapia_transfusional" => $transfusaoOcorrencia->toArray()
         ], 201);
-    
     }
 }
