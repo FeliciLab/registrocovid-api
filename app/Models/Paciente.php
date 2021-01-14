@@ -213,7 +213,7 @@ class Paciente extends Model
 
     public function tipoSuporteRespiratorios()
     {
-        return $this->belongsToMany(TipoSuporteRespiratorio::class, 'tipos_suportes_respiratorios_pacientes');
+        return $this->hasMany(TiposSuportesRespiratoriosPaciente::class);
     }
 
     public function historico()
@@ -286,3 +286,5 @@ class Paciente extends Model
         return $this->belongsToMany(Sintoma::class, 'pacientes_sintomas');
     }
 }
+
+
