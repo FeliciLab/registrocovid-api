@@ -188,10 +188,18 @@ class Paciente extends Model
 
         if (is_array($postData->tipos_suporte_respiratorio)) {
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
+                $fluxoO2 = null;
+                $fio2 = null;
+                if (array_key_exists("fluxo_o2", $suporte_id)) {
+                    $fluxoO2 = $suporte_id['fluxo_o2'];
+                }
+                if (array_key_exists("fio2", $suporte_id)) {
+                    $fio2 = $suporte_id['fio2'];
+                }
                 TiposSuportesRespiratoriosPaciente::firstOrCreate([
                     'tipo_suporte_respiratorio_id' => $suporte_id['id'],
-                    'fluxo_o2' => $suporte_id['fluxo_o2'],
-                    'fio2' => $suporte_id['fio2'],
+                    'fluxo_o2' => $fluxoO2,
+                    'fio2' => $fio2,
                     'paciente_id' => $this->id
                 ]);
             }
