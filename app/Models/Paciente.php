@@ -190,6 +190,8 @@ class Paciente extends Model
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
                 TiposSuportesRespiratoriosPaciente::firstOrCreate([
                     'tipo_suporte_respiratorio_id' => $suporte_id['id'],
+                    'fluxo_o2' => $suporte_id['fluxo_o2'],
+                    'fio2' => $suporte_id['fio2'],
                     'paciente_id' => $this->id
                 ]);
             }

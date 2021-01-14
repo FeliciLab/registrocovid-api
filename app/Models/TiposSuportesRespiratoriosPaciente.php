@@ -12,7 +12,9 @@ class TiposSuportesRespiratoriosPaciente extends Model
     
     protected $fillable = [
         'tipo_suporte_respiratorio_id',
-        'paciente_id'
+        'paciente_id',
+        'fio2',
+        'fluxo_o2'
     ];
 
     public function paciente()
