@@ -286,5 +286,3 @@ class Paciente extends Model
         return $this->belongsToMany(Sintoma::class, 'pacientes_sintomas');
     }
 }
-
-
