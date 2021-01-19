@@ -106,17 +106,16 @@ class Paciente extends Model
             foreach ($complicacoesVM as $complicacao) {
                 $complicacao->delete();
             }
-
             $transfusoes = TransfusaoOcorrencia::where('paciente_id', $paciente->id)->get();
             foreach ($transfusoes as $transfusao) {
                 $transfusao->delete();
             }
-
+            
             $defechos = Desfecho::where('paciente_id', $paciente->id)->get();
             foreach ($defechos as $defecho) {
                 $defecho->delete();
             }
-
+            
             $iras = IRAS::where('paciente_id', $paciente->id)->get();
             foreach ($iras as $ira) {
                 $ira->delete();
@@ -172,8 +171,7 @@ class Paciente extends Model
                 $comorbidade->delete();
             }
 
-            $paciente->tipoSuporteRespiratorios()->sync([]);
-
+            TiposSuportesRespiratoriosPaciente::where('paciente_id', $paciente->id)->delete();
             // REPLICAR NAS OUTRAS
         });
     }
