@@ -107,13 +107,9 @@ class Paciente extends Model
             foreach ($complicacoesVM as $complicacao) {
                 $complicacao->delete();
             }
-            try {
-                $transfusoes = TerapiaTransfusional::where('paciente_id', $paciente->id)->get();
-                foreach ($transfusoes as $transfusao) {
-                    $transfusao->delete();
-                }
-            } catch (Exception $err) {
-                dd($err);
+            $transfusoes = TerapiaTransfusional::where('paciente_id', $paciente->id)->get();
+            foreach ($transfusoes as $transfusao) {
+                $transfusao->delete();
             }
 
             $defechos = Desfecho::where('paciente_id', $paciente->id)->get();
