@@ -37,6 +37,7 @@ class Comorbidade extends Model
         'puerperio_semanas',
         'outras_condicoes',
         'medicacoes',
+        'metastatica'
     ];
 
     protected $casts = [
