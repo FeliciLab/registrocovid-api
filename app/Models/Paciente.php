@@ -111,12 +111,12 @@ class Paciente extends Model
             foreach ($transfusoes as $transfusao) {
                 $transfusao->delete();
             }
-
+            
             $defechos = Desfecho::where('paciente_id', $paciente->id)->get();
             foreach ($defechos as $defecho) {
                 $defecho->delete();
             }
-
+            
             $iras = IRAS::where('paciente_id', $paciente->id)->get();
             foreach ($iras as $ira) {
                 $ira->delete();
@@ -172,8 +172,7 @@ class Paciente extends Model
                 $comorbidade->delete();
             }
 
-            $paciente->tipoSuporteRespiratorios()->sync([]);
-
+            TiposSuportesRespiratoriosPaciente::where('paciente_id', $paciente->id)->delete();
             // REPLICAR NAS OUTRAS
         });
     }
@@ -188,8 +187,18 @@ class Paciente extends Model
 
         if (is_array($postData->tipos_suporte_respiratorio)) {
             foreach ($postData->tipos_suporte_respiratorio as $suporte_id) {
+                $fluxoO2 = null;
+                $fio2 = null;
+                if (array_key_exists("fluxo_o2", $suporte_id)) {
+                    $fluxoO2 = $suporte_id['fluxo_o2'];
+                }
+                if (array_key_exists("fio2", $suporte_id)) {
+                    $fio2 = $suporte_id['fio2'];
+                }
                 TiposSuportesRespiratoriosPaciente::firstOrCreate([
                     'tipo_suporte_respiratorio_id' => $suporte_id['id'],
+                    'fluxo_o2' => $fluxoO2,
+                    'fio2' => $fio2,
                     'paciente_id' => $this->id
                 ]);
             }
@@ -203,7 +212,7 @@ class Paciente extends Model
 
     public function tipoSuporteRespiratorios()
     {
-        return $this->belongsToMany(TipoSuporteRespiratorio::class, 'tipos_suportes_respiratorios_pacientes');
+        return $this->hasMany(TiposSuportesRespiratoriosPaciente::class);
     }
 
     public function historico()
