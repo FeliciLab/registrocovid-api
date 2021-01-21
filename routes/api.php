@@ -62,6 +62,8 @@ Route::group(['middleware' => ['apiJwt']], function ($router) {
                 Route::get('/pacientes/{pacienteId}/tratamento-suporte', 'TratamentoSuporte\TratamentoSuporteController@index');
                 Route::post('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@store');
                 Route::get('pacientes/{pacienteId}/ventilacao-mecanica', 'ComplicacoesVentilacaoMec\ComplicacoesVentilacaoMecController@index');
+                Route::post('pacientes/{pacienteId}/terapia-transfusional', 'TerapiaTransfusional\TerapiaTransfusionalController@store');
+                Route::get('pacientes/{pacienteId}/terapia-transfusional', 'TerapiaTransfusional\TerapiaTransfusionalController@index');
 
                 Route::get('/pacientes/{pacienteId}/evolucoes-diarias/{evolucaoId}', 'EvolucaoDiariaController@show');
 

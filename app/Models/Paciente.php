@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -106,7 +107,7 @@ class Paciente extends Model
             foreach ($complicacoesVM as $complicacao) {
                 $complicacao->delete();
             }
-            $transfusoes = TransfusaoOcorrencia::where('paciente_id', $paciente->id)->get();
+            $transfusoes = TerapiaTransfusional::where('paciente_id', $paciente->id)->get();
             foreach ($transfusoes as $transfusao) {
                 $transfusao->delete();
             }

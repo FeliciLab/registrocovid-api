@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Paciente\ComplicacoesVentilacaoMec;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ComplicacaoVentilacaoMecanicaRequest;
 use App\Models\ComplicacaoVentilacaoMec;
-use App\Models\TransfusaoOcorrencia;
+use Exception;
 
 class ComplicacoesVentilacaoMecController extends Controller
 {
@@ -42,17 +42,9 @@ class ComplicacoesVentilacaoMecController extends Controller
      *                                  "data_complicacao": "2020-08-19",
      *                                  "descricao": "descricao qualquer",
      *                                  "tipo_complicacao": {
-     *                                       "id": 4,
-     *                                       "descricao": "Necessidade transfusional"
+     *                                       "id": 1,
+     *                                       "descricao": "Pneumotórax"
      *                                   }
-     *                              }
-     *                          },
-     *                          "transfussoes_ocorrencia": {
-     *                              {
-     *                                  "id": 1,
-     *                                  "data_transfusao": "2020-08-19",
-     *                                  "volume_transfusao": "4.2",
-     *                                  "tipos_transfussoes": null
      *                              }
      *                          }
      *                      }
@@ -68,22 +60,19 @@ class ComplicacoesVentilacaoMecController extends Controller
     public function index($pacienteId)
     {
         $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::where('paciente_id', $pacienteId)->get()->toArray();
-        $transfusaoOcorrencia = TransfusaoOcorrencia::where('paciente_id', $pacienteId)->get()->toArray();
 
-        if (!count($complicacaoVentilacaoMec) && !count($transfusaoOcorrencia)) {
+        if (!count($complicacaoVentilacaoMec)) {
             return response()->json(
                 [
                     'message' => 'Paciente não possui complicações cadastradas',
-                    'complicacoes_ventilacao_mecanica' => [],
-                    'transfussoes_ocorrencia' => []
+                    'complicacoes_ventilacao_mecanica' => []
                 ],
                 200
             );
         }
 
         return response()->json([
-            'complicacoes_ventilacao_mecanica' => $complicacaoVentilacaoMec,
-            'transfussoes_ocorrencia' => $transfusaoOcorrencia
+            'complicacoes_ventilacao_mecanica' => $complicacaoVentilacaoMec
         ]);
     }
 
@@ -107,15 +96,13 @@ class ComplicacoesVentilacaoMecController extends Controller
      *          )
      *      ),
      *      @OA\RequestBody(
-     *          description="Os campos a seguir não são obrigatórios mas se data_complicacao for preenchido obrigatoriamente tipo_complicacao_id é obrigatorio e vice-versa. O mesmo acontece com data_transfusao e tipo_transfusao_id.",
-     *          required=false,
+     *          description="Os campos a seguir não são obrigatórios para inserção.",
+     *          required=true,
      *          @OA\JsonContent(
+     *              required={"tipo_complicacao_id","data_complicacao"}
      *              @OA\Property(property="tipo_complicacao_id", type="integer", example=4),
      *              @OA\Property(property="data_complicacao", type="string", example="2020-08-19"),
-     *              @OA\Property(property="descricao", type="string", example="descricao da complicacao"),
-     *              @OA\Property(property="tipo_transfusao_id", type="integer", example=1),
-     *              @OA\Property(property="data_transfusao", type="string", example="2020-08-20"),
-     *              @OA\Property(property="volume_transfusao", type="float", example=4.2)
+     *              @OA\Property(property="descricao", type="string", example="descricao da complicacao")
      *          )
      *      ),
      *      @OA\Response(
@@ -131,11 +118,6 @@ class ComplicacoesVentilacaoMecController extends Controller
      *                              "data_complicacao": "2020-08-19",
      *                              "descricao": "descricao da complicacao",
      *                              "id": 2
-     *                          },
-     *                          "transfusao_ocorrencia": {
-     *                              "data_transfusao": "2020-08-25",
-     *                              "volume_transfusao": 4.2,
-     *                              "id": 3
      *                          }
      *                      }
      *                  )
@@ -147,37 +129,16 @@ class ComplicacoesVentilacaoMecController extends Controller
      */
     public function store(ComplicacaoVentilacaoMecanicaRequest $request, $pacienteId)
     {
-        if ($request->has(['tipo_complicacao_id', 'data_complicacao'])) {
-            $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
-                $request->only(['tipo_complicacao_id', 'data_complicacao', 'descricao']),
-                [
-                    'paciente_id' => $pacienteId
-                ]
-            ));
-
-            if ($request->input('tipo_complicacao_id') == 4) {
-                $transfusaoOcorrencia = new TransfusaoOcorrencia();
-                $transfusaoOcorrencia->tipo_transfusao_id = $request->tipo_transfusao_id;
-                $transfusaoOcorrencia->data_transfusao = $request->data_complicacao;
-                $transfusaoOcorrencia->volume_transfusao = $request->volume_transfusao;
-                $transfusaoOcorrencia->paciente_id = $pacienteId;
-                $transfusaoOcorrencia->save();
-            }
-        }
-
-        if ($request->has(['tipo_transfusao_id', 'data_transfusao', 'volume_transfusao'])) {
-            $transfusaoOcorrencia = TransfusaoOcorrencia::create(array_merge(
-                $request->only(['tipo_transfusao_id', 'data_transfusao', 'volume_transfusao']),
-                [
-                    'paciente_id' => $pacienteId
-                ]
-            ));
-        }
+        $complicacaoVentilacaoMec = ComplicacaoVentilacaoMec::create(array_merge(
+            $request->all(),
+            [
+                'paciente_id' => $pacienteId
+            ]
+        ));
 
         return response()->json([
             "message" => "Complicação ventilação mecânica cadastrado com sucesso",
-            "ventilacao_mecanica" => isset($complicacaoVentilacaoMec) ? $complicacaoVentilacaoMec->toArray() : [],
-            "transfusao_ocorrencia" => isset($transfusaoOcorrencia) ? $transfusaoOcorrencia->toArray() : []
+            "ventilacao_mecanica" => $complicacaoVentilacaoMec->toArray(),
         ], 201);
     }
 }
