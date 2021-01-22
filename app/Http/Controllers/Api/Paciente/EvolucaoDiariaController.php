@@ -27,10 +27,8 @@ class EvolucaoDiariaController extends Controller
         if ($evolucoesDiarias) {
             $evolucoesDiarias->fill($data);
             $evolucoesDiarias->save();
-
         } else {
             $evolucoesDiarias = EvolucaoDiaria::create($data);
-
         }
         return response()->json($evolucoesDiarias, 201);
     }

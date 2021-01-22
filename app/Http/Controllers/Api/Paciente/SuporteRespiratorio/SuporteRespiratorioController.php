@@ -105,7 +105,7 @@ class SuporteRespiratorioController extends Controller
         $resultado = new Collection();
         foreach ($request->post() as $suporte) {
             if ($suporte['tipo_suporte_id'] === 10) {
-                    $pronacao = Pronacao::where('id', $suporte['id'])->first();
+                $pronacao = Pronacao::where('id', $suporte['id'])->first();
                 if ($pronacao) {
                     $pronacao->fill($suporte);
                     $resultado->push($pronacao->save());
