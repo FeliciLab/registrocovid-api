@@ -23,17 +23,16 @@ class EvolucaoDiariaController extends Controller
     {
         $data = array_merge($request->all(), ['paciente_id' => $pacienteId]);
 
-        if ($request->has('id')) {
-            $evolucoesDiarias = EvolucaoDiaria::where('id', $request->get("id"))->first();
+        $evolucoesDiarias = EvolucaoDiaria::where('id', $request->get("id"))->first();
+        if ($evolucoesDiarias) {
             $evolucoesDiarias->fill($data);
             $evolucoesDiarias->save();
 
-            return response()->json($evolucoesDiarias, 201);
         } else {
             $evolucoesDiarias = EvolucaoDiaria::create($data);
 
-            return response()->json($evolucoesDiarias, 201);
         }
+        return response()->json($evolucoesDiarias, 201);
     }
 
     /**
@@ -106,7 +105,7 @@ class EvolucaoDiariaController extends Controller
         $evolucaoDiaria = EvolucaoDiaria::where('paciente_id', $pacienteId)->where('id', $evolucaoId)->first();
 
         if (!$evolucaoDiaria) {
-            return response()->json('', 404);
+            return response()->json("Para os valores de id de paciente {$pacienteId} e de evolução {$evolucaoId} não foi possível encontra uma evolução diária", 404);
         }
 
         $suportesRespiratorios = SuporteRespiratorio::where('paciente_id', $pacienteId)->where('data_inicio', $evolucaoDiaria->data_evolucao)->get();
