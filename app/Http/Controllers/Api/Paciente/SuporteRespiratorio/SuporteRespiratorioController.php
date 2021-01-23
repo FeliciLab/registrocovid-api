@@ -105,7 +105,10 @@ class SuporteRespiratorioController extends Controller
         $resultado = new Collection();
         foreach ($request->post() as $suporte) {
             if ($suporte['tipo_suporte_id'] === 10) {
-                $pronacao = Pronacao::where('id', $suporte['id'])->first();
+                $pronacao = null;
+                if (isset($suporte['id'])) {
+                    $pronacao = Pronacao::where('id', $suporte['id'])->first();
+                }
                 if ($pronacao) {
                     $pronacao->fill($suporte);
                     $resultado->push($pronacao->save());
@@ -122,7 +125,10 @@ class SuporteRespiratorioController extends Controller
             }
 
             if ($suporte['tipo_suporte_id'] === 11) {
-                $desmame = InclusaoDesmame::where('id', $suporte['id'])->first();
+                $desmame = null;
+                if (isset($suporte['id'])) {
+                    $desmame = InclusaoDesmame::where('id', $suporte['id'])->first();
+                }
                 if ($desmame) {
                     $desmame->fill($suporte);
                     $resultado->push($desmame->save());
@@ -139,7 +145,10 @@ class SuporteRespiratorioController extends Controller
             }
 
             if ($suporte['tipo_suporte_id'] < 10) {
-                $suporterespiratorio = SuporteRespiratorio::where('id', $suporte['id'])->first();
+                $suporterespiratorio = null;
+                if (isset($suporte['id'])) {
+                    $suporterespiratorio = SuporteRespiratorio::where('id', $suporte['id'])->first();
+                }
                 if ($suporterespiratorio) {
                     $suporterespiratorio->fill($suporte);
                     $resultado->push($suporterespiratorio->save());
