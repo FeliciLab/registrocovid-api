@@ -105,36 +105,63 @@ class SuporteRespiratorioController extends Controller
         $resultado = new Collection();
         foreach ($request->post() as $suporte) {
             if ($suporte['tipo_suporte_id'] === 10) {
-                $resultado->push(
-                    Pronacao::create(array_merge(
-                        $suporte,
-                        [
-                            'paciente_id' => $pacienteId
-                        ]
-                    ))
-                );
+                $pronacao = null;
+                if (isset($suporte['id'])) {
+                    $pronacao = Pronacao::where('id', $suporte['id'])->first();
+                }
+                if ($pronacao) {
+                    $pronacao->fill($suporte);
+                    $resultado->push($pronacao->save());
+                } else {
+                    $resultado->push(
+                        Pronacao::create(array_merge(
+                            $suporte,
+                            [
+                                'paciente_id' => $pacienteId
+                            ]
+                        ))
+                    );
+                }
             }
 
             if ($suporte['tipo_suporte_id'] === 11) {
-                $resultado->push(
-                    InclusaoDesmame::create(array_merge(
-                        $suporte,
-                        [
-                            'paciente_id' => $pacienteId
-                        ]
-                    ))
-                );
+                $desmame = null;
+                if (isset($suporte['id'])) {
+                    $desmame = InclusaoDesmame::where('id', $suporte['id'])->first();
+                }
+                if ($desmame) {
+                    $desmame->fill($suporte);
+                    $resultado->push($desmame->save());
+                } else {
+                    $resultado->push(
+                        InclusaoDesmame::create(array_merge(
+                            $suporte,
+                            [
+                                'paciente_id' => $pacienteId
+                            ]
+                        ))
+                    );
+                }
             }
 
             if ($suporte['tipo_suporte_id'] < 10) {
-                $resultado->push(
-                    SuporteRespiratorio::create(array_merge(
-                        $suporte,
-                        [
-                            'paciente_id' => $pacienteId
-                        ]
-                    ))
-                );
+                $suporterespiratorio = null;
+                if (isset($suporte['id'])) {
+                    $suporterespiratorio = SuporteRespiratorio::where('id', $suporte['id'])->first();
+                }
+                if ($suporterespiratorio) {
+                    $suporterespiratorio->fill($suporte);
+                    $resultado->push($suporterespiratorio->save());
+                } else {
+                    $resultado->push(
+                        SuporteRespiratorio::create(array_merge(
+                            $suporte,
+                            [
+                                'paciente_id' => $pacienteId
+                            ]
+                        ))
+                    );
+                }
             }
         }
 

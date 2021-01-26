@@ -15,6 +15,7 @@ class SuporteRespiratorioStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            '*.id' => 'nullable|integer|exists:suportes_respiratorios,id',
             '*.tipo_suporte_id' => 'required|integer|exists:tipos_suportes_respiratorios,id',
             '*.parametro' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             '*.data_inicio' => 'exclude_if:*.tipo_suporte_id,10,11|required|date',
