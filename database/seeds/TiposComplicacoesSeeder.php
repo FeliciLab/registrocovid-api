@@ -28,5 +28,6 @@ class TiposComplicacoesSeeder extends Seeder
         DB::table('tipos_complicacoes')->insert(['id' => 14,'descricao' => 'Complicação neurológica']);
         DB::table('tipos_complicacoes')->insert(['id' => 15,'descricao' => 'Outras']);
         DB::table('tipos_complicacoes')->insert(['id' => 16,'descricao' => 'Insuficiência respiratória']);
+        DB::table('tipos_complicacoes')->insert(['id' => 17,'descricao' => 'Câncer']);
     }
 }

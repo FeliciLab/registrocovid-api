@@ -23,11 +23,9 @@ class CadastroComplicacaoTest extends TestCase
         ]);
 
         $data = [
-            "tipo_complicacao_id" => 4,
+            "tipo_complicacao_id" => 1,
             "data_complicacao" => "2020-08-10",
-            "descricao" => "descricao qualquer",
-            "tipo_transfusao_id" => 5,
-            "volume_transfusao" => 6.2
+            "descricao" => "descricao qualquer"
         ];
 
         $response = $this->postJson("api/pacientes/{$paciente->id}/ventilacao-mecanica", $data);
@@ -38,9 +36,9 @@ class CadastroComplicacaoTest extends TestCase
         $response->assertJsonStructure([
             "ventilacao_mecanica"
         ]);
-        $response->assertJsonStructure([
-            "transfusao_ocorrencia"
-        ]);
+        // $response->assertJsonStructure([
+        //     "transfusao_ocorrencia"
+        // ]);
     }
 
     /**
@@ -73,14 +71,6 @@ class CadastroComplicacaoTest extends TestCase
             [
                 ['descricao' => 0],
                 ['descricao' => ['O campo descricao deve ser uma string.']]
-            ],
-            [
-                ['tipo_transfusao_id' => 0],
-                ['errors' => ['tipo_transfusao_id' => ['O campo tipo transfusao id selecionado é inválido.']]]
-            ],
-            [
-                ['volume_transfusao' => 'teste'],
-                ['errors' => ['volume_transfusao' => ['O campo volume transfusao tem um formato inválido.']]]
             ]
         ];
     }

@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransfusaoOcorrencia extends Model
+class TerapiaTransfusional extends Model
 {
+    protected $table = 'transfusao_ocorrencias';
+
     protected $fillable = [
         'paciente_id',
         'tipo_transfusao_id',

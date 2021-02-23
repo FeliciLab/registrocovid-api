@@ -20,5 +20,6 @@ class EscolaridadesSeeder extends Seeder
         DB::table('escolaridades')->insert(['id' => 7,'nome' => 'Ensino Superior Incompleto']);
         DB::table('escolaridades')->insert(['id' => 8,'nome' => 'Ensino Superior Completo']);
         DB::table('escolaridades')->insert(['id' => 9,'nome' => 'Pós-Graduação']);
+        DB::table('escolaridades')->insert(['id' => 10,'nome' => 'Não informado']);
     }
 }

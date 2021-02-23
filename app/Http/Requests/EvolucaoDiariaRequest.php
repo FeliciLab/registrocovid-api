@@ -14,6 +14,7 @@ class EvolucaoDiariaRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'nullable|integer|exists:evolucoes_diarias,id',
             'data_evolucao' => 'required|date',
             'temperatura' => 'numeric',
             'frequencia_respiratoria' => 'integer',
