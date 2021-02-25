@@ -25,7 +25,7 @@ class EvolucaoDiariaRequest extends FormRequest
             'frequencia_cardiaca' => 'integer',
             'ausculta_pulmonar' => 'string',
             'oximetria' => 'numeric',
-            'escala_glasgow' => 'integer|between:3,15',
+            'escala_glasgow' => 'nullable|integer|between:3,15',
         ];
     }
 }
