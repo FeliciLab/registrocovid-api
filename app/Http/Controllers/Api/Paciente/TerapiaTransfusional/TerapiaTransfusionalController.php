@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Paciente\TerapiaTransfusional;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TerapiaTranfusionalRequest;
+use App\Http\Requests\TerapiaTransfusionalRequest;
 use App\Models\TerapiaTransfusional;
 use App\Models\TransfusaoOcorrencia;
 use Exception;
@@ -126,7 +126,7 @@ class TerapiaTransfusionalController extends Controller
      *      @OA\Response(response=401, description="Unauthorized")
      * )
      */
-    public function store(TerapiaTranfusionalRequest $request, $pacienteId)
+    public function store(TerapiaTransfusionalRequest $request, $pacienteId)
     {
         $transfusaoOcorrencia = TerapiaTransfusional::create(array_merge(
             $request->all(),

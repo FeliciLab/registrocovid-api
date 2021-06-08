@@ -22,7 +22,7 @@ class PacienteStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'prontuario' => 'required|unique:pacientes',
+            'prontuario' => 'required|unique:pacientes,prontuario,NULL,id,instituicao_id,'.auth()->user()->instituicao_id,
             'data_internacao' => 'required|date',
             'tipos_suporte_respiratorio' => 'array',
             'tipos_suporte_respiratorio.*.id' => 'required_with:tipos_suporte_respiratorio',
