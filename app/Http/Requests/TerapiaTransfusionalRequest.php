@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TerapiaTranfusionalRequest extends FormRequest
+class TerapiaTransfusionalRequest extends FormRequest
 {
 
     /**
